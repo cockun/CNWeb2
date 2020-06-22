@@ -40,7 +40,7 @@ export default class Footer extends React.Component {
 
         <div className="footer-section">
           <div className="container2">
-            <div className="row">
+            <div className="row2">
               <div className="col1">
                 <div className="footer-left">
                   <div className="footer-logo">
@@ -97,7 +97,7 @@ export default class Footer extends React.Component {
           </div>
           <div className="copyright-reserved">
             <div className="container">
-              <div className="row">
+              <div className="row2">
                 <div className="col5">
                   <div className="copyright-text">
                     Copyright ©2020 All rights reserved | This template is made with  by Colorlib

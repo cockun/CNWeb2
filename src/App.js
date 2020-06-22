@@ -1,6 +1,8 @@
 
 import React from 'react';
 import './App.css';
+import Footer from './Components/Footer'
+
 
 export default class ShopPage extends React.Component {
   render() {
@@ -12,7 +14,7 @@ export default class ShopPage extends React.Component {
                 <div className="colleftShop">
                     <div className="filter-widget">
                         <h4 className="fw-title">Categories</h4>
-                        <ul classNameName="filter-catagories">
+                        <ul className="filter-catagories">
                             <li><a href="#">Men</a></li>
                             <li><a href="#">Women</a></li>
                             <li><a href="#">Kids</a></li>
@@ -146,9 +148,7 @@ export default class ShopPage extends React.Component {
                                     </select>
                                 </div>
                             </div>
-                            <div className="col-lg-5 col-md-5 text-right">
-                                <p>Show 01- 09 Of 36 Product</p>
-                            </div>
+                            
                         </div>
                     </div>
                     <div className="product-list">
@@ -162,9 +162,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                            
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                           
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -187,9 +187,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                           
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                         
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -212,9 +212,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                            
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                           
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -237,9 +237,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                           
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                            
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -262,9 +262,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                           
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                    
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -287,9 +287,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                           
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                     
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -313,9 +313,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                            
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                         
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -338,9 +338,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                          
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                 
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -363,9 +363,9 @@ export default class ShopPage extends React.Component {
                                             <i className="icon_heart_alt"></i>
                                         </div>
                                         <ul>
-                                            <li className="w-icon active"><a href="#"><i className="icon_bag_alt"></i></a></li>
-                                            <li className="quick-view"><a href="#">+ Quick View</a></li>
-                                            <li className="w-icon"><a href="#"><i className="fa fa-random"></i></a></li>
+                                           
+                                            <li className="quick-view"><a href="#">Mua ngay</a></li>
+                                   
                                         </ul>
                                     </div>
                                     <div className="pi-text">
@@ -392,7 +392,7 @@ export default class ShopPage extends React.Component {
             </div>
         </div>
     </div>
-        
+        <Footer/>
       </div>
 
 
