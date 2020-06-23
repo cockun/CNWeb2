@@ -1,3 +1,9 @@
+.register-login-section {
+	padding-top: 72px;
+	padding-bottom: 80px;
+}
+
+.register-form h2,
 .login-form h2 {
 	color: #252525;
 	font-weight: 700;
@@ -61,89 +67,17 @@
 	background: #9f9f9f;
 	content: "";
 }
-
-.login-form .group-input.gi-check {
-	margin-bottom: 8px;
-}
-
-.login-form .group-input .gi-more {
-	overflow: hidden;
-}
-
-.login-form .group-input .gi-more label {
-	position: relative;
-	cursor: pointer;
-	padding-left: 28px;
-	font-size: 14px;
-	color: #6B6B6B;
-	float: left;
-}
-
-.login-form .group-input .gi-more label input {
-	position: absolute;
-	visibility: hidden;
-}
-
-.login-form .group-input .gi-more label input:checked~span {
-	border-color: #6C6C6C;
-}
-
-.login-form .group-input .gi-more label input:checked~span:after {
-	border-color: #6c6c6c;
-}
-
-.login-form .group-input .gi-more label .checkmark {
-	position: absolute;
-	left: 0;
-	top: 4px;
-	height: 13px;
-	width: 13px;
-	border: 1px solid #6C6C6C;
-	border-radius: 2px;
-}
-
-.login-form .group-input .gi-more label .checkmark:after {
-	left: 2px;
-	top: -2px;
-	width: 13px;
-	height: 6px;
-	border: solid #ffffff;
-	border-width: 2px 2px 0px 0px;
-	-webkit-transform: rotate(127deg);
-	-ms-transform: rotate(127deg);
-	transform: rotate(127deg);
-}
-
-.login-form .group-input .gi-more .forget-pass {
-	float: right;
-	line-height: 20px;
-	margin-top: -2px;
-	font-size: 14px;
-	color: #6B6B6B;
-}
-.containerlogin
-{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-   
-}
-.collogin
-{
-   margin-top: 100px;
-    
-}
-.form
-{
-    width: 100%;
-}
-.login-form
+.register-form
 {
     width: 500px;
     height: 600px;
     align-self: center;
 }
-
+.colregister
+{
+    display: flex;
+    justify-content: center;
+}
 .site-btn {
 	color: #ffffff;
 	background: #e7ab3c;
