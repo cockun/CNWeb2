@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import ShopPage from './Components/Shop';
+import Login from './Components/Login';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ShopPage />
+    <Login />
   </React.StrictMode>,
   document.getElementById('root')
 );
