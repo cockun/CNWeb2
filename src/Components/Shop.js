@@ -1,7 +1,7 @@
 
 import React from 'react';
-import './App.css';
-import Footer from './Components/Footer'
+import '../Css/Shop.css';
+import Footer from '../Components/Footer'
 
 
 export default class ShopPage extends React.Component {
