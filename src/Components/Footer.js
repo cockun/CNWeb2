@@ -5,7 +5,7 @@ import '../Css/Footer.css';
 export default class Footer extends React.Component {
   render() {
     return (
-      <div classNam="containerover">
+      <div>
         <div className="partner-logo">
           <div className="container1">
             <div className="logo-carousel">
@@ -39,7 +39,7 @@ export default class Footer extends React.Component {
         </div>
 
         <div className="footer-section">
-          <div className="container1">
+          <div className="container2">
             <div className="row2">
               <div className="col1">
                 <div className="footer-left">
