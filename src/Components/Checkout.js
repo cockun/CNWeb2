@@ -23,11 +23,11 @@ export default class Checkout extends React.Component {
                         <h4 className="billh4"> Biiling Details</h4>
                         <div className="rowleft">
                             <div className="col-lg-6">
-                                <label for="fir"> Tài khoản<span>*</span></label>
+                                <label for="fir"> Họ và Tên<span>*</span></label>
                                 <input type="text" id="fir"/>
                             </div>
                             <div className="col-lg-12">
-                                <label for="cun-name">Mật khẩu</label>
+                                <label for="cun-name">Số chứng minh</label>
                                 <input type="text" id="cun-name"/>
                             </div>
                             <div className="col-lg-12">
@@ -39,10 +39,7 @@ export default class Checkout extends React.Component {
                                 <input type="text" id="street" className="street-first"/>
                                 
                             </div>
-                            <div className="col-lg-12">
-                                <label for="zip">Nhập lại mật khẩu</label>
-                                <input type="text" id="zip"/>
-                            </div>                                                             
+                                                                                       
                         </div>
                     </div>
                     {/* --  */}
