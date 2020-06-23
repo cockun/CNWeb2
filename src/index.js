@@ -2,11 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Checkout from './Components/Checkout';
+import Detail from './Components/Detail'
+import Login from './Components/Login';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Checkout />
+    <Detail />
   </React.StrictMode>,
   document.getElementById('root')
 );
