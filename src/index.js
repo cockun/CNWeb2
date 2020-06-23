@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Register from './Components/Register';
+import Checkout from './Components/Checkout';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Register />
+    <Checkout />
   </React.StrictMode>,
   document.getElementById('root')
 );
