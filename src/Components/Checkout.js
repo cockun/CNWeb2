@@ -51,7 +51,7 @@ export default class Checkout extends React.Component {
                             <input type="text" placeholder="Enter Your Coupon Code"/>
                         </div>
                         <div className="place-order">
-                            <h4>Your Order</h4>
+                            <h4 className="billh4r">Your Order</h4>
                             <div className="order-total">
                                 <ul className="order-table">
                                     <li>Product <span>Total</span></li>
