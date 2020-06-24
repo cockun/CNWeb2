@@ -7,7 +7,7 @@ import { faMapMarked , faPhone , faMailBulk } from '@fortawesome/free-solid-svg-
 function Contact(){
     return(
         <div >
-            <Header />
+          
             <div className="ContactCont">
                 <img src={banner} className="ContactBanner" alt=""/>
                 <div className="ContactUs">

@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from './Header.js'
+import BrigdeRouter from './brigdeRouter.js'
 import product1 from '../image/product-1.jpg'
 import product2 from '../image/product-2.jpg'
 import product3 from '../image/product-3.jpg'
@@ -8,7 +8,7 @@ import '../css/Cart.css'
 function Cart(){
     return(
         <div >
-            <Header />
+   
             <div className="cartContainerTitle">
                 <div className="cartTitle" style={{flex: 3 }}>IMAGE</div>
                 <div className="cartTitle" style={{flex: 4}}>PRODUCT NAME</div>

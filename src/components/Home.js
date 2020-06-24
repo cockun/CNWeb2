@@ -8,7 +8,6 @@ import StyleOf from './styleOf.js'
 function Home() {
   return (
     <div className="App">
-      <Header />
       <Slider />
       <Category />
       <StyleOf />
