@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Checkout from './Components/Checkout';
+import Detail from './Components/Shop'
+import Login from './Components/Login';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Detail />
   </React.StrictMode>,
   document.getElementById('root')
 );
