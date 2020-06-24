@@ -2,9 +2,7 @@ a{
     text-decoration: none;
 }
 
-a:visited{
-    color: #171717;
-}
+
 
 
 .styleOf{
@@ -47,19 +45,20 @@ a:visited{
     margin-left: 60px;
 }
 
-.productCont{
+.productContStyle{
     display: flex;
-   
     align-items: center;
     flex-direction: column;
+    flex: 1;
 }
 
-.productView{
+.productViewStyle{
     display: flex;
+    width: 100%;
     position: relative;
 }
 
-.product{
+.productStyle{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -88,3 +87,8 @@ a:visited{
     letter-spacing: 2px;
 }
 
+.productImg{
+    height: 290px;
+    width: 240px;
+    margin-bottom: 20px;
+}

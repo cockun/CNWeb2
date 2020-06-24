@@ -9,15 +9,15 @@ function Category() {
     <div className="catContainer">
       <div className="catContent">
         <div className="catImgCont">
-          <img src={Men} className="catImg" />
+          <img src={Men} className="catImg" alt="" />
           <div className="catName">Men 's</div>
         </div>
         <div className="catImgCont">
-          <img src={Women} className="catImg" />
+          <img src={Women} className="catImg" alt="" />
           <div className="catName">Women 's</div>
         </div>
         <div className="catImgCont">
-          <img src={Kid} className="catImg" />
+          <img src={Kid} className="catImg" alt="" />
           <div className="catName">Kid 's</div>
         </div>
       </div>
