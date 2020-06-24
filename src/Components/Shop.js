@@ -166,7 +166,7 @@ export default class ShopPage extends React.Component {
                                           <div className="icon">
                                               <i className="icon_heart_alt"></i>
                                           </div>
-                                          <ul>
+                                          <ul style={{textAlign: 'center'}}>
                                               
                                               <li className="quick-view"><a href="#">Mua ngay</a></li>
                                              

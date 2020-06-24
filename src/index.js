@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Checkout from './Components/Checkout';
-import Detail from './Components/Detail'
+import Detail from './Components/Shop'
 import Login from './Components/Login';
 import * as serviceWorker from './serviceWorker';
 
