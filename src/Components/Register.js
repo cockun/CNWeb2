@@ -1,8 +1,7 @@
 import React from 'react';
-import '../Css/Register.css';
-import Header from './Header';
-import Footer from './Footer';
-import {callApi} from '../utils/apiCaller';
+import '../css/Register.css';
+import {callApi} from '../ultis/apiCaller';
+import {Link} from 'react-router-dom'
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -32,14 +31,14 @@ export default class Register extends React.Component {
       let a = parseInt(respJson.length);
       let jus = 1;
       for (var i = 0; i < a; i++) {
-        if (String(this.state.name) == String(respJson[i].name)) {
+        if (String(this.state.name) === String(respJson[i].name)) {
           alert('Tên tài khoản đã tồn tại');
           jus = 0;
           break;
         }
       }
       if (jus === 1) {
-        if (String(this.state.pass) == String(this.state.pass2)) {
+        if (String(this.state.pass) === String(this.state.pass2)) {
           callApi('Account', 'POST', {
             id: '',
             name: this.state.name,
@@ -53,7 +52,7 @@ export default class Register extends React.Component {
         }
         else
         {
-          if (String(this.state.pass) != String(this.state.pass2)) {
+          if (String(this.state.pass) !== String(this.state.pass2)) {
             alert('Mật khẩu nhập lại không đúng');
           }
         }

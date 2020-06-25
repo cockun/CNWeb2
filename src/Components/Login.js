@@ -61,7 +61,6 @@ export default class Login extends React.Component {
                                 <input type="text" id="username" value={String(this.state.name)} 
                                 onChange={ (txt) => {
                                   this.setState({name:txt.target.value})
-                                  
                                 } } />
                             </div>
                             <div className="group-input">
@@ -69,9 +68,7 @@ export default class Login extends React.Component {
                                 <input type="text" id="pass" value={String(this.state.pass)} 
                                 onChange={ (txt) => {
                                   this.setState({pass:txt.target.value})
-                                  
                                 } }
-                                
                                 />
                             </div>
                             <div className="group-input gi-check">
@@ -87,18 +84,10 @@ export default class Login extends React.Component {
                             <button type="submit" className="site-btn login-btn">Sign In</button>
                         </form>
                         <div className="switch-login">
-                            <a href="./register.html" className="or-login">Or Create An Account</a>
+                            <Link to="/Register" className="or-login">Or Create An Account</Link>
                         </div>
                       </div>
-                      <button type="submit" className="site-btn login-btn">
-                        Sign In
-                      </button>
-                    </form>
-                    <div className="switch-login">
-                      <Link to="/Register" className="or-login">
-                        Or Create An Account
-                      </Link>
-                    </div>
+                 
                   </div>
                 </div>
               </div>
@@ -106,12 +95,6 @@ export default class Login extends React.Component {
           </div>
 
         </div>
-        
-        <div>
-          
-        </div>
-        
-      </div>
     );
   }
 }
