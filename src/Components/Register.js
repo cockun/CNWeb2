@@ -1,9 +1,7 @@
 import React from 'react';
 import '../css/Register.css';
-import Header from './Header';
-import Footer from './Footer';
 import {callApi} from '../ultis/apiCaller';
-
+import swal from 'sweetalert';
 import '../css/Register.css';
 import {Link} from 'react-router-dom'
 export default class Register extends React.Component {
@@ -25,7 +23,7 @@ export default class Register extends React.Component {
   async add() {
     if(this.state.pass!=this.state.pass2)
     {
-      alert('Nhập lại mật khẩu sai')
+      swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
     }
     else{
       if (this.state.name !== '' && this.state.pass !== '') {
@@ -40,7 +38,7 @@ export default class Register extends React.Component {
         let jus = 1;
         for (var i = 0; i < a; i++) {
           if (String(this.state.name) == String(respJson[i].name)) {
-            alert('Tên tài khoản đã tồn tại');
+            swal("Thông báo!", "Tên tài khoản đã tồn tại", "error");
             jus = 0;
             break;
           }
@@ -55,14 +53,14 @@ export default class Register extends React.Component {
               phone : this.state.phone,
               address:this.state.address
             });
-            alert('Đăng ký thành công');
+            swal("Thông báo!", "Đăng ký thành công", "success");
          
           }
         }     
       } 
       else
       {
-        alert('Vui lòng nhập đầy đủ thông tin!!!');
+        swal("Thông báo!", "Vui lòng nhập đầy đủ thông tin!", "error");
       }
     }
     
