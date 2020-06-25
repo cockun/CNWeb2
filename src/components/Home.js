@@ -1,6 +1,5 @@
 import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import Header from './Header.js'
 import Slider from './Slider.js'
 import Category from './Category.js'
 import StyleOf from './styleOf.js'

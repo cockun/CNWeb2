@@ -1,11 +1,11 @@
 
 import React from 'react';
-import '../Css/Footer.css';
-
+import '../css/Footer.css';
+import {Link} from 'react-router-dom'
 export default class Footer extends React.Component {
   render() {
     return (
-      <div>
+      <div className="myFooter">
         <div className="partner-logo">
           <div className="container1">
             <div className="logo-carousel">
@@ -44,19 +44,13 @@ export default class Footer extends React.Component {
               <div className="col1">
                 <div className="footer-left">
                   <div className="footer-logo">
-                    <a href="#"><img src="img/footer-logo.png" alt="" /></a>
+                    <Link to="#"><img src="img/footer-logo.png" alt="" /></Link>
                   </div>
                   <ul>
                     <li>Address: 60-49 Road 11378 New York</li>
                     <li>Phone: +65 11.188.888</li>
                     <li>Email: hello.colorlib@gmail.com</li>
                   </ul>
-                  <div className="footer-social">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                    <a href="#"><i class="fa fa-instagram"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                  </div>
                 </div>
               </div>
               <div className="col2">
@@ -64,10 +58,10 @@ export default class Footer extends React.Component {
                   <h5>Information</h5>
                   <div className="border">
                     <ul >
-                      <li className="info"><a href="#">About Us</a></li>
-                      <li className="info"><a href="#">Checkout</a></li>
-                      <li className="info"><a href="#">Contact</a></li>
-                      <li> <a href="#">Serivius</a></li>
+                      <li className="info"><Link to="#">About Us</Link></li>
+                      <li className="info"><Link to="#">Checkout</Link></li>
+                      <li className="info"><Link to="#">Contact</Link></li>
+                      <li> <Link to="#">Serivius</Link></li>
                     </ul>
 
                   </div>
@@ -78,10 +72,10 @@ export default class Footer extends React.Component {
                 <div className="footer-widget">
                   <h5>My Account</h5>
                   <ul>
-                    <li><a href="#">My Account</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">Shopping Cart</a></li>
-                    <li><a href="#">Shop</a></li>
+                    <li><Link to="#">My Account</Link></li>
+                    <li><Link to="#">Contact</Link></li>
+                    <li><Link to="#">Shopping Cart</Link></li>
+                    <li><Link to="#">Shop</Link></li>
                   </ul>
                 </div>
               </div>

@@ -1,14 +1,12 @@
 import React from 'react';
-import '../Css/Register.css';
-import Header from './Header';
-import Footer from './Footer'
-
+import '../css/Register.css';
+import {Link} from 'react-router-dom'
 export default class Register extends React.Component {
   render() {
     return (
       <div>
           <div>
-            <Header/>
+            
           </div>
           <div>
           <div class="register-login-section spad">
@@ -33,7 +31,7 @@ export default class Register extends React.Component {
                             <button type="submit" class="site-btn register-btn">REGISTER</button>
                     </form>
                         <div class="switch-login">
-                            <a href="./login.html" class="or-login">Or Login</a>
+                            <Link to="/Login" class="or-login">Or Login</Link>
                         </div>
                     </div>
                 </div>
@@ -45,7 +43,7 @@ export default class Register extends React.Component {
           
 
             <div>
-            <Footer/>
+            
             </div>
       </div>
 

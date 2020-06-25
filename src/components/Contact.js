@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from './Header.js'
 import banner from '../image/hero-3.jpg'
 import '../css/Contact.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
