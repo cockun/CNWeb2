@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Css/Detail.css';
+import '../css/Detail.css';
 
 export default class Detail extends React.Component {
   render() {

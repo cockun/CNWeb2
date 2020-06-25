@@ -1,14 +1,11 @@
 import React from 'react';
-<<<<<<< HEAD
-import '../Css/Register.css';
+import '../css/Register.css';
 import Header from './Header';
 import Footer from './Footer';
 import {callApi} from '../utils/apiCaller';
 
-=======
 import '../css/Register.css';
 import {Link} from 'react-router-dom'
->>>>>>> 14Nov
 export default class Register extends React.Component {
   constructor(props) {
     super(props);
