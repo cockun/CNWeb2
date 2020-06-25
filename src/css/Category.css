@@ -1,0 +1,43 @@
+.catContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 216px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.catContent{
+    width: 90%;
+    height: 100%;
+    display: flex;  
+   justify-content: space-between;
+}
+
+.catImgCont{
+    display: flex;
+    position: relative;
+    height: 100%;
+}
+
+.catImg{
+    height: 100%;
+    width: 380px;
+}
+
+.catName{
+    position: absolute;
+    width: 120px;
+    height: 50px;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+

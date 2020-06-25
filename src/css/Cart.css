@@ -1,0 +1,141 @@
+.cartContainerTitle{
+    
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 40px;
+    border: 1px solid #ebebeb;
+    display: flex;
+    height: 65px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartTitle{
+    font-size: 16px;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+}
+
+.cartProduct{
+    
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #ebebeb;
+    display: flex;
+    height: 230px;
+    justify-content: center;
+    align-items: center;
+    border-top: none;
+}
+
+.cartCenter{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+.cartProductName{
+    color: #252525;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.cartProductPrice{
+    color: #e7ab3c;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cartProductQuantity{
+    
+    display: flex;
+    justify-content: center;
+}
+
+.quantityForm{
+    border: 1px solid #ebebeb;
+    width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.decreceBtn{
+    margin-right: 10px;
+    font-size: 30px;
+    color: #b2b2b2;
+}
+
+.increseBtn{
+    font-size: 24px;
+    color: #b2b2b2;
+    margin-left: 10px;
+    line-height: 40px;
+    
+}
+
+.inputBtn{
+
+    border: none;
+    width: 25px  ;
+    font-size: 14px;
+    line-height: 40px;
+}
+
+.cartProductTotal{
+    color: #e7ab3c;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.cartCheckoutCont{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.cartCheckout{
+    width: 360px;
+    height: 80px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.totalCart{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid #ebebeb;
+    background: #ebebe0;
+}
+
+.totalCartTitle{
+    font-size: 18px;
+    font-weight: 700;
+    color: #252525;
+}
+
+.totalCartPrice{
+    font-size: 18px;
+    font-weight: 700;
+    color: #e7ab3c;
+}
+
+.cartCheckoutBtn{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    background: #252525;
+    cursor: pointer;
+}

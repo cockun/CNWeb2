@@ -1,9 +1,14 @@
 import React from 'react';
+<<<<<<< HEAD
 import '../Css/Register.css';
 import Header from './Header';
 import Footer from './Footer';
 import {callApi} from '../utils/apiCaller';
 
+=======
+import '../css/Register.css';
+import {Link} from 'react-router-dom'
+>>>>>>> 14Nov
 export default class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -68,7 +73,7 @@ export default class Register extends React.Component {
     return (
       <div>
           <div>
-            <Header/>
+            
           </div>
           <div>
           <div class="register-login-section spad">
@@ -129,7 +134,7 @@ export default class Register extends React.Component {
                             <button type="submit" class="site-btn register-btn">REGISTER</button>
                     </form>
                         <div class="switch-login">
-                            <a href="./login.html" class="or-login">Or Login</a>
+                            <Link to="/Login" class="or-login">Or Login</Link>
                         </div>
                     </div>
                 </div>
@@ -141,7 +146,7 @@ export default class Register extends React.Component {
           
 
             <div>
-            <Footer/>
+            
             </div>
       </div>
 
