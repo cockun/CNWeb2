@@ -18,7 +18,7 @@ export default class Login extends React.Component {
             <div className="loginform">
                 <div className="collogin">
                     <div className="login-form">
-                        <h2>Login</h2>
+                        <h2>Login 213</h2>
                         <form action="#" className="form">
                             <div className="group-input">
                                 <label for="username">Username or email address *</label>
