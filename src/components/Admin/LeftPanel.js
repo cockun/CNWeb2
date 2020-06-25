@@ -20,7 +20,6 @@ import MailIcon from "@material-ui/icons/Mail";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Account from "./Account";
-import TableAccount from "./TableAccount";
 import Products from "./Products";
 const drawerWidth = 240;
 
@@ -181,7 +180,7 @@ export default function LeftPanel(props) {
               <Products />
             </Route>
             <Route path="/Admin/bills">
-              <TableAccount />
+              
             </Route>
             <Route path="/Admin/">
               <Account />

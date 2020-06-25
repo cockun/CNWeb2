@@ -1,24 +1,53 @@
 import React, { useEffect, useState } from "react";
 import classes from "../../css/Account.module.css";
-import TableAccount from "./TableAccount";
 import Button from "@material-ui/core/Button";
 import { callApi } from "../../utils/apiCaller";
-import ModalAccount from "./Modal";
+import ModalAccount from "./ModalAccount";
+import TableData from "./TableData";
 
 export default function Account() {
-  const [state, setState] = useState([]);
-  const [showModal, setShowModal] = useState(false);
-  const handleOpen = (item) => {
-    console.log(item);
-    setShowModal(true);
+  const [state, setState] = useState({
+    data: [],
+    type: "Account",
+  });
+  const [showModal, setShowModal] = useState({
+    show: false,
+    data: {
+      name: "",
+      fullname: "",
+      author: "",
+      phone: "124",
+      address: "",
+    },
+    action: "",
+  });
+  const handleOpen = (item, a) => {
+    setShowModal({ data: item, show: true, action: a });
   };
 
-  const handleClose2 = () => {
-    setShowModal(false);
+
+  const handleClose2 = (item, action) => {
+    if (item) {
+      let data = state.data.map((a) => {
+        if (a.id === item.id) {
+          return item;
+        } else {
+          return a;
+        }
+      });
+      setState({ ...state, data: data });
+    }
+    if (action === "POST") {
+      callApi("Account", "GET").then((res) => {
+        setState({ ...state, data: res.data });
+      });
+    }
+
+    setShowModal({ data: {}, show: false });
   };
   useEffect(() => {
     callApi("Account", "GET").then((res) => {
-      setState(res.data);
+      setState({ ...state, data: res.data });
     });
   }, []);
 
@@ -39,6 +68,12 @@ export default function Account() {
             variant="contained"
             color="primary"
             className={classes.button}
+            onClick={() => {
+              handleOpen(
+                { name: "", fullname: "", author: "", phone: "", address: "" },
+                "POST"
+              );
+            }}
           >
             Thêm mới
           </Button>
@@ -51,12 +86,9 @@ export default function Account() {
           <span>Tìm kiếm:</span>
         </div>
 
-        <TableAccount handleOpen2 ={handleOpen} data={state} />
+        <TableData handleOpen2={handleOpen} data={state} />
       </div>
       <ModalAccount show={showModal} handleClose={handleClose2} />
-      <button type="button" onClick={handleOpen}>
-        react-transition-group
-      </button>
     </div>
   );
 }

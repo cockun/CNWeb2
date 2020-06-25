@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, StylesProvider } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
+import swal from "sweetalert";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import { callApi } from "../../utils/apiCaller";
+import { Helper } from "../../utils/helper";
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -43,9 +46,37 @@ export default function ModalAccount(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
+  const [data, setData] = useState({
+    name: "",
+    fullname: "",
+    author: "",
+    phone: "1234",
+    address: "",
+  });
   useEffect(() => {
-    setOpen(props.show);
+    setOpen(props.show.show);
+  }, [props.show.show]);
+
+  useEffect(() => {
+    setData(props.show.data);
   }, [props.show]);
+
+  const handleChangeSelect = (event) => {
+    setData({ ...data, author: event.target.value });
+  };
+
+  const btnOk = async () => {
+    swal("Good job!", "Ấn OK để tiếp tục!", "success");
+
+    if (props.show.action === "POST") {
+      await callApi("Account", "POST", data);
+    } else {
+      if (props.show.action === "PUT") {
+        callApi("Account/" + data.id, props.show.action, data);
+      }
+    }
+    props.handleClose(data, props.show.action);
+  };
 
   return (
     <div>
@@ -76,6 +107,10 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
+                    value={data.name}
+                    onChange={(e) => {
+                      setData({ ...data, name: e.target.value });
+                    }}
                   />
                 </div>
                 <div className={classes.rowText}>
@@ -88,6 +123,10 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
+                    value={data.fullname}
+                    onChange={(e) => {
+                      setData({ ...data, fullname: e.target.value });
+                    }}
                   />
                 </div>
                 <div className={classes.rowText}>
@@ -100,9 +139,11 @@ export default function ModalAccount(props) {
                   <select
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     id="cars"
+                    value={data.author}
+                    onChange={handleChangeSelect}
                   >
-                    <option value="user">User</option>
-                    <option value="admin">Admin</option>
+                    <option value="1">User</option>
+                    <option value="0">Admin</option>
                   </select>
                 </div>
                 <h2>Thông tin cá nhân</h2>
@@ -116,6 +157,17 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
+                    value={data.phone}
+                    onChange={(e) => {
+                      console.log(e.target.value);
+                      if (e.target.value !== "") {
+                        if (Helper.checkNumber(e.target.value)) {
+                          setData({ ...data, phone: e.target.value });
+                        }
+                      } else {
+                        setData({ ...data, phone: "" });
+                      }
+                    }}
                   />
                 </div>
                 <div className={classes.rowText}>
@@ -130,6 +182,10 @@ export default function ModalAccount(props) {
                     aria-label="maximum height"
                     rowsMin={10}
                     placeholder="Nhập địa chỉ "
+                    value={data.address}
+                    onChange={(e) => {
+                      setData({ ...data, address: e.target.value });
+                    }}
                   />
                 </div>
               </div>
@@ -137,11 +193,20 @@ export default function ModalAccount(props) {
                 <Button
                   style={{ marginRight: 10 }}
                   variant="outlined"
-                  onClick={props.handleClose}
+                  onClick={() => {
+                    props.handleClose();
+                    setData({
+                      name: "",
+                      fullname: "",
+                      author: "",
+                      phone: "",
+                      address: "",
+                    });
+                  }}
                 >
                   Đóng
                 </Button>
-                <Button variant="contained" color="primary">
+                <Button onClick={btnOk} variant="contained" color="primary">
                   Lưu
                 </Button>
               </div>
