@@ -93,8 +93,10 @@ export default class Login extends React.Component {
                                 onChange={ (txt) => {
                                   this.setState({pass:txt.target.value})
                                   
-                                } }
-                                
+                                }
+                               
+                            }
+                            type="password"
                                 />
                             </div>
                             <div className="group-input gi-check">
