@@ -84,12 +84,23 @@ export default function TableData(props) {
     }
   }, [props.data]);
 
-  const deleteItem = (row) => {
+  const deleteItem = async (row) => {
     let index = state.findIndex((item) => item.id === row.id);
     state.splice(index, 1);
     setState([...state]);
+    try{
+      await callApi(props.data.type + "/" + row.id, "DELETE");
+      swal("Đã xóa", {
+        icon: "success",
+      });
+    }catch(e) {
+      swal("Error", {
+        icon: "Warning",
+      });
+    }
+   
 
-    callApi(props.data.type + "/" + row.id, "DELETE");
+   
   };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -175,9 +186,6 @@ export default function TableData(props) {
                             dangerMode: true,
                           }).then((willDelete) => {
                             if (willDelete) {
-                              swal("Đã xóa", {
-                                icon: "success",
-                              });
                               deleteItem(row);
                             }
                           });

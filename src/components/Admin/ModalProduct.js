@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { makeStyles, StylesProvider } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
+import styles from "../../css/ModalProduct.module.css";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 import swal from "sweetalert";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
-import ImageUploader from "react-images-upload";
 import { callApi } from "../../utils/apiCaller";
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -44,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
 export default function ModalAccount(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [pic, setPic] = useState("");
   const [data, setData] = useState({});
   useEffect(() => {
     setOpen(props.show.show);
@@ -57,8 +56,6 @@ export default function ModalAccount(props) {
   }, [props.show.data]);
 
   const btnOk = async () => {
-    swal("Good job!", "Ấn OK để tiếp tục!", "success");
-
     if (props.show.action === "POST") {
       await callApi("Products", "POST", data);
     } else {
@@ -67,13 +64,15 @@ export default function ModalAccount(props) {
       }
     }
     props.handleClose(data, props.show.action);
+    swal("Good job!", "Ấn OK để tiếp tục!", "success");
   };
+
   const onChangee = (e) => {
     let render = new FileReader();
     render.readAsDataURL(e.target.files[0]);
     render.onload = (e) => {
-      console.log(e.target.result);
-      setPic(e.target.result)
+      setData({ ...data, src: e.target.result });
+      console.log(data);
     };
   };
 
@@ -136,15 +135,29 @@ export default function ModalAccount(props) {
                       Hình ảnh
                     </span>
                   </div>
-                  <input
-                    type="file"
-                    onChange={(e) => {
-                      onChangee(e);
+                  <div
+                    style={{
+                      flex: 1,
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
                     }}
-                    
-                  />
+                  >
+                    <input
+                      type="file"
+                      className={styles.imgFile}
+                      style={{ width: 150 }}
+                      onChange={(e) => {
+                        onChangee(e);
+                      }}
+                    />
 
-                  <img src={data.src} style={{ width: 100 }} alt="" />
+                    <img
+                      src={data.src}
+                      style={{ width: 120, height: 120 }}
+                      alt=""
+                    />
+                  </div>
                 </div>
                 <h2>Giá sản phẩm</h2>
                 <div className={classes.rowText}>
