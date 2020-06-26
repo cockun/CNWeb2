@@ -1,5 +1,5 @@
 import React from 'react'
-import banner from '../image/hero-3.jpg'
+import Contact1 from '../image/contact.jpg'
 import '../css/Contact.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarked , faPhone , faMailBulk } from '@fortawesome/free-solid-svg-icons'
@@ -8,15 +8,15 @@ function Contact(){
         <div >
           
             <div className="ContactCont">
-                <img src={banner} className="ContactBanner" alt=""/>
+                <img src={Contact1} className="ContactBanner" alt=""/>
                 <div className="ContactUs">
                     <div className="ContWWidth">
-                        <p className="ContactTitle">Contact Us</p>
+                        <p className="ContactTitle">Trung tâm chăm sóc khách hàng </p>
                         
                         <div className="subContactTitle">
-                        Contrary to popular belief, Lorem Ipsum is 
-                        simply random text. It has roots in a piece 
-                        of classical Latin literature from 45 BC, maki years old   
+                        Nếu bạn có thắc mắc hoặc cần giúp đỡ về những điều khoản của Shop 
+                        Xin vui lòng liên lạc bằng những thông tin bên dưới đễ nhận được hỗ trợ 
+                        sớm nhất có thể 
                         </div>
                         <div className="contactOption">
                             <div className="OptionCT">
@@ -24,8 +24,8 @@ function Contact(){
                                     <FontAwesomeIcon icon={faMapMarked} />
                                 </div>
                                 <div className="CTWay">
-                                    <p className="CTWayTitle">Address:</p>
-                                    <p className="CTWayContent">60-49 Road 11378 New York</p>
+                                    <p className="CTWayTitle">Địa chỉ: </p>
+                                    <p className="CTWayContent">280 An Dương Vương, Phường 4, Quận 5, Hồ Chí Minh</p>
                                 </div>
                             </div>
                             <div className="OptionCT">
@@ -33,8 +33,8 @@ function Contact(){
                                     <FontAwesomeIcon icon={faPhone} />
                                 </div>
                                 <div className="CTWay">
-                                    <p className="CTWayTitle">Address:</p>
-                                    <p className="CTWayContent">60-49 Road 11378 New York</p>
+                                    <p className="CTWayTitle">SĐT:</p>
+                                    <p className="CTWayContent">028 3835 20204</p>
                                 </div>
                             </div>
                             <div className="OptionCT">
@@ -42,8 +42,8 @@ function Contact(){
                                     <FontAwesomeIcon icon={faMailBulk} />
                                 </div>
                                 <div className="CTWay">
-                                    <p className="CTWayTitle">Address:</p>
-                                    <p className="CTWayContent">60-49 Road 11378 New York</p>
+                                    <p className="CTWayTitle">Đường dây nóng</p>
+                                    <p className="CTWayContent">028 3835 2020334</p>
                                 </div>
                             </div>
                         </div>

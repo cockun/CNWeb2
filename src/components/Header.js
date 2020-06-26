@@ -1,21 +1,30 @@
-import React from "react";
+
 import "../css/Header.css";
+import { Switch, Route, Link } from "react-router-dom";
+import Home from "./Home";
+import Cart from "./Cart";
+import Shop from "./NewProduct";
+import Contact from "./Contact";
+import Login from "./Login";
+import React, { useState, useEffect } from "react";
+import Register from "./Register";
+import Checkout from "./Checkout";
+import Detail from "./Detail";
+import Search from "./Search";
+import Bill from "./ReviewBill"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import Home from './Home';
-import Cart from './Cart';
-import Shop from './Shop';
-import Contact from './Contact';
-import Login from './Login';
-import Register from './Register';
-import Checkout from './Checkout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch  , faCartPlus, faSignInAlt } from '@fortawesome/free-solid-svg-icons'
+  faSearch,
+  faCartPlus,
+  faSignInAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
+  const [text,setState]=useState("");
+  const changeValue = (e) => {
+    setState(e.target.value);
+  }
+
   return (
     <div className="Header">
       <div className="intro">
@@ -25,57 +34,75 @@ function Header() {
           </div>
           <div className="inputForm">
             <div className="searchForm">
-              <input type="text" className="input" placeholder="Tìm Sản Phẩm" />
-
-              <button className="button" type="button">
-                <FontAwesomeIcon icon={faSearch} style={{fontSize: 20 , color: 'white'}} />
-              </button>
+              <input type="text" className="input" placeholder="Tìm Sản Phẩm" value={text} onChange={changeValue}/>
+              <Link  to={`/Search/${text}`} style={{flex:1}}>
+                <button className="button" type="button" >
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    style={{ fontSize: 20, color: "white" }}
+                  />
+                </button>
+              </Link>
             </div>
           </div>
           <div className="Cart">
             <Link to="/Cart">
-              <FontAwesomeIcon icon={faCartPlus} style={{fontSize: 25 , color: '#E7AB3C',marginLeft:10}} />
+              <FontAwesomeIcon
+                icon={faCartPlus}
+                style={{ fontSize: 25, color: "#E7AB3C", marginLeft: 10 }}
+              />
             </Link>
             <Link to="/Login">
-             <FontAwesomeIcon icon={faSignInAlt} style={{fontSize: 25 , color: '#E7AB3C' , marginLeft:10}} />
+              <FontAwesomeIcon
+                icon={faSignInAlt}
+                style={{ fontSize: 25, color: "#E7AB3C", marginLeft: 10 }}
+              />
             </Link>
           </div>
-
         </div>
       </div>
 
       <div className="container">
         <div className="content">
-          <Link to="/Home" className="title">HOME</Link>
-          <Link to="/Shop" className="title">PRODUCT</Link>
-          <Link to="/Cart" className="title">CART</Link>
-          <Link to="/Contact" className="title">CONTACT</Link>
+          <Link to="/Home" className="title">Trang chủ</Link>
+          <Link to="/Shop" className="title">Sản phẩm</Link>
+          <Link to="/Cart" className="title">Giỏ hàng</Link>
+          <Link to="/Contact" className="title">Chăm sóc khách hàng</Link>
+          <Link to="/Bill" className="title">Xem Đơn Hàng</Link>
         </div>
       </div>
       <Switch>
         <Route exact path="/">
-            <Home />
+          <Home />
         </Route>
+        <Route path="/Detail/:id" component={Detail}></Route>
         <Route path="/Home">
-            <Home />
+          <Home />
         </Route>
-        <Route  path="/Shop">
-            <Shop />
+        <Route path="/Search/:text" component={Search}></Route>
+        <Route path="/Shop">
+          <Shop />
         </Route>
-        <Route  path="/Contact">
-            <Contact />
+        <Route path="/Contact">
+          <Contact />
         </Route>
-        <Route  path="/Cart">
-            <Cart />
+        <Route path="/Bill">
+          <Bill />
         </Route>
-        <Route  path="/Login">
-            <Login />
+        <Route path="/Cart">
+          <Cart />
+        </Route>
+        <Route path="/Login">
+          <Login />
         </Route>
         <Route path="/Register">
-            <Register />
+          <Register />
         </Route>
         <Route path="/Checkout">
-            <Checkout />
+          <Checkout />
+        </Route>
+        <Route path="/Detail">
+          <Detail />
         </Route>
       </Switch>
     </div>

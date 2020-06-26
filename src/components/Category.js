@@ -1,7 +1,7 @@
 import React from "react";
-import Men from "../image/banner-1.jpg";
-import Women from "../image/banner-2.jpg";
-import Kid from "../image/banner-3.jpg";
+import Keyboard from "../image/banphim2.jpg";
+import Laptop from "../image/laptop2.jpg";
+import Phone from "../image/dienthoai2.jpg";
 import "../css/Category.css";
 
 function Category() {
@@ -9,16 +9,16 @@ function Category() {
     <div className="catContainer">
       <div className="catContent">
         <div className="catImgCont">
-          <img src={Men} className="catImg" alt="" />
-          <div className="catName">Men 's</div>
+          <img src={Keyboard} className="catImg" alt="" />
+          <div className="catName">Bàn phím </div>
         </div>
         <div className="catImgCont">
-          <img src={Women} className="catImg" alt="" />
-          <div className="catName">Women 's</div>
+          <img src={Laptop} className="catImg" alt="" />
+          <div className="catName">Laptop</div>
         </div>
         <div className="catImgCont">
-          <img src={Kid} className="catImg" alt="" />
-          <div className="catName">Kid 's</div>
+          <img src={Phone} className="catImg" alt="" />
+          <div className="catName">Điện thoại</div>
         </div>
       </div>
     </div>

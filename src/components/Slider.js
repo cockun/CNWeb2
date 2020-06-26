@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import img1 from '../image/hero-1.jpg'
-import img2 from '../image/hero-2.jpg'
+import img1 from '../image/hero3.jpg'
+import img2 from '../image/hero4.png'
 
 
 export default class DemoCarousel extends Component {
@@ -15,6 +15,7 @@ export default class DemoCarousel extends Component {
                 interval={2500}
                 infiniteLoop={true}
                 showStatus={false}
+                size='1500'
             >
                 <div>
                     <img src={img1} alt="" />
