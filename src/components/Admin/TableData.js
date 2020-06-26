@@ -37,6 +37,7 @@ export default function TableData(props) {
       columns = [
         { id: "src", label: "Hình ảnh", minWidth: 120 },
         { id: "name", label: "Tên sản phẩm", minWidth: 120 },
+        { id: "category", label: "Loại", minWidth: 120 },
         {
           id: "price",
           label: "Giá gốc",
