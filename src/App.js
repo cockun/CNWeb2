@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 
 function App() {
   sessionStorage.setItem('myCart', JSON.stringify([]))
+  sessionStorage.setItem('myAccount', JSON.stringify(""))
   return (
     <div className="App">
       <Header />

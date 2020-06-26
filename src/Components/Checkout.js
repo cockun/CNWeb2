@@ -6,6 +6,7 @@ import { callApi } from '../ultis/apiCaller';
 import swal from 'sweetalert';
 var data = [];
 var total = 0;
+var today= new Date();
 export function Checkout() {
   const [state, setState] = useState({
     phone: '',
@@ -30,7 +31,8 @@ export function Checkout() {
           fullname: state.fullname,
           phone: state.phone,
           address: state.address,
-
+          date: today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
+          name: JSON.parse(sessionStorage.getItem("myAccount")),
         }); 
       data.map(async item => {  
         let tmp ;

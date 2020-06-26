@@ -11,6 +11,7 @@ import Register from "./Register";
 import Checkout from "./Checkout";
 import Detail from "./Detail";
 import Search from "./Search";
+import Bill from "./ReviewBill"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -34,7 +35,7 @@ function Header() {
           <div className="inputForm">
             <div className="searchForm">
               <input type="text" className="input" placeholder="Tìm Sản Phẩm" value={text} onChange={changeValue}/>
-              <Link to={`/Search/${text}`}>
+              <Link  to={`/Search/${text}`} style={{flex:1}}>
                 <button className="button" type="button" >
                   <FontAwesomeIcon
                     icon={faSearch}
@@ -67,6 +68,7 @@ function Header() {
           <Link to="/Shop" className="title">Sản phẩm</Link>
           <Link to="/Cart" className="title">Giỏ hàng</Link>
           <Link to="/Contact" className="title">Chăm sóc khách hàng</Link>
+          <Link to="/Bill" className="title">Xem Đơn Hàng</Link>
         </div>
       </div>
       <Switch>
@@ -83,6 +85,9 @@ function Header() {
         </Route>
         <Route path="/Contact">
           <Contact />
+        </Route>
+        <Route path="/Bill">
+          <Bill />
         </Route>
         <Route path="/Cart">
           <Cart />

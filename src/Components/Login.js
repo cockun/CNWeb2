@@ -35,6 +35,8 @@ export default class Login extends React.Component {
         ) {
           if (respJson[i].author == "1") {
             swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success");
+            sessionStorage.setItem('myAccount', JSON.stringify(this.state.name))
+            
             break;
           } else {
             swal(

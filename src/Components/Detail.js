@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/Detail.css";
 import { callApi } from "../ultis/apiCaller";
-import product from "../image/product-1.jpg"
+import { Helper } from "../ultis/Helper";
 function Detail(props) {
   const [data, setData] = useState({});
   const [number,setNumber] = useState(1);
@@ -45,8 +45,8 @@ function Detail(props) {
             <h3 style={{fontSize: 30, color: '#252525' , fontWeight: 700 }}>{data.name}</h3>
             <p style={{fontSize: 16, color: '#636363' , fontWeight: 400, lineHeight: '26px', }}>{data.description}</p>
             <h4 style={{fontSize: 26, color: 'red' , fontWeight: 'bold', lineHeight: '26px', }}>
-              {data.price}
-              <span style={{fontSize: 18, color: '#636363' , fontWeight: 400, textDecorationLine:'line-through', marginLeft: 13 }}>{data.pirce2}</span>
+              {data.pirce2}
+              <span style={{fontSize: 18, color: '#636363' , fontWeight: 400, textDecorationLine:'line-through', marginLeft: 13 }}>{data.price}</span>
             </h4>
             <div className="detailQuantity"> 
               <span 
