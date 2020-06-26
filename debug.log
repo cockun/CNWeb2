@@ -12,3 +12,7 @@
 [0625/172405.026:ERROR:process_info.cc(359)] UncheckedAllocate
 [0625/172533.105:ERROR:process_info.cc(359)] UncheckedAllocate
 [0625/172605.291:ERROR:process_info.cc(359)] UncheckedAllocate
+[0626/214339.888:ERROR:process_info.cc(359)] UncheckedAllocate
+[0626/214351.114:ERROR:process_info.cc(359)] UncheckedAllocate
+[0626/214653.579:ERROR:process_info.cc(359)] UncheckedAllocate
+[0626/214654.075:ERROR:process_info.cc(359)] UncheckedAllocate

@@ -65,9 +65,47 @@ a{
     margin-bottom: 40px;
     letter-spacing: 2px;
 }
-
-.productImg{
-    height: 290px;
-    width: 240px;
-    margin-bottom: 20px;
+.containerhome
+{
+    width: 20%;
+    
+    border-style: solid;
+    border-width: 0.5px;
+    box-shadow: 5px 10px #888888;
+    margin-left: 50px;
+    display: flex;
+    align-items: center ;
+}
+.pi-pic
+{
+    
+    width:250px;
+    
+    
+}
+.item
+{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+}
+.pic{
+    height: 70%;
+    width: 100%;
+}
+.text
+{
+    height: 30%;
+}
+.textname
+{
+    padding-left: 5px;
+    font-size: 20;
+}
+.textprice
+{
+    padding-left: 5px;
+    font-size: 20;
+    font-weight: bold;
+    color: red;
 }
