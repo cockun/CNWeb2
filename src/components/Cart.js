@@ -21,7 +21,6 @@ function Cart() {
   var total = 0 
   const [data, setData] = useState([]);
 
-
   useEffect(() => {
 
     sessionStorage.setItem("myData", JSON.stringify(DATA));
