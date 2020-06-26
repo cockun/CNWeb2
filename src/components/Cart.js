@@ -10,11 +10,11 @@ const DATA = [
     id: 1,
     img: product1,
     name: "Ai Là Best Wibu",
-    price: 1000000,
+    pirce2: 1000000,
     quantity: 1,
   },
-  { id: 2, img: product2, name: "Best Nhái", price: 1000000, quantity: 1 },
-  { id: 3, img: product3, name: "Best Cóc", price: 1000000, quantity: 1 },
+  { id: 2, img: product2, name: "Best Nhái", pirce2: 1000000, quantity: 1 },
+  { id: 3, img: product3, name: "Best Cóc", pirce2: 1000000, quantity: 1 },
 ];
 
 function Cart() {
@@ -30,7 +30,7 @@ function Cart() {
   const getFinalTotal =  () => {
         let arrItem = JSON.parse(sessionStorage.getItem("myData"));
         arrItem !== null && arrItem.map( (item) => {
-          total += item.price*item.quantity;
+          total += item.pirce2*item.quantity;
         })
         sessionStorage.setItem("totalBill", total);
   }
@@ -99,7 +99,7 @@ function Cart() {
               {item.name}
             </div>
             <div className="cartProductPrice cartCenter" style={{ flex: 2 }}>
-              {Helper.formatDollar(item.price)}
+              {Helper.formatDollar(item.pirce2)}
             </div>
             <div className="cartProductQuantity cartCenter" style={{ flex: 2 }}>
               <div className="quantityForm">
@@ -114,11 +114,11 @@ function Cart() {
               </div>
             </div>
             <div className="cartProductTotal cartCenter" style={{ flex: 2 }}>
-              {Helper.formatDollar(item.price * item.quantity)}
+              {Helper.formatDollar(item.pirce2 * item.quantity)}
             </div>
             <button
-              className="CartProductDelete cartCenter"
-              style={{ flex: 1, backgroundColor: "pink" }}
+              className="CartProductDeletecartCenter"
+            
               onClick={() => {
                 deleteItem(item);
               }}

@@ -10,7 +10,7 @@ function StyleOf(props){
             <div className={props.right ? "styleImageRight" : "styleImage" }>
             </div>
             <div className="productContStyle">
-                <div className="styleTitle">Product</div>
+                <div className="styleTitle">Sản phẩm bán chạy</div>
                 <div className="productViewStyle">
                     <div className="productStyle">
                         <img src={product1} className="productImg" alt=""/>
@@ -20,6 +20,11 @@ function StyleOf(props){
                     <div className="productStyle">
                         <img src={product1} className="productImg" alt=""/>
                         <div className="productName">Converse XXX</div>
+                        <div className="productPrice">$14.00</div>
+                    </div>
+                    <div className="productStyle">
+                        <img src={product1} className="productImg" alt=""/>
+                        <div  className="productName">Converse XXX</div>
                         <div className="productPrice">$14.00</div>
                     </div>
                     <div className="productStyle">

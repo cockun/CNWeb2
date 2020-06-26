@@ -45,8 +45,17 @@ export default class Login extends React.Component {
               String(respJson[i].name) == String(this.state.name) &&
               String(respJson[i].password) == String(this.state.pass)
             ) {
-              swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success");
-              break;
+              if(respJson[i].author=='1')
+              {
+                swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success");
+                break;
+              }
+              else
+              {
+                swal("Chào mừng!", "Bạn đã đăng nhập thành công với tư cách admin", "success");
+                break;
+              }
+              
             }
             if (i == a - 1) {
               swal("Thông báo!", "Đăng nhập thất bại", "error");

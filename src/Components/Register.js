@@ -51,10 +51,10 @@ export default class Register extends React.Component {
               password: this.state.pass,
               fullname:this.state.fullname,
               phone : this.state.phone,
-              address:this.state.address
+              address:this.state.address,
+              author : '1',
             });
             swal("Thông báo!", "Đăng ký thành công", "success");
-         
           }
         }     
       } 
