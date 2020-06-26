@@ -46,10 +46,10 @@ function Header() {
 
       <div className="container">
         <div className="content">
-          <Link to="/Home" className="title">HOME</Link>
-          <Link to="/Shop" className="title">PRODUCT</Link>
-          <Link to="/Cart" className="title">CART</Link>
-          <Link to="/Contact" className="title">CONTACT</Link>
+          <Link to="/Home" className="title">Trang chủ</Link>
+          <Link to="/Shop" className="title">Sản phẩm</Link>
+          <Link to="/Cart" className="title">Giỏ hàng</Link>
+          <Link to="/Contact" className="title">Chăm sóc khách hàng</Link>
         </div>
       </div>
       <Switch>
