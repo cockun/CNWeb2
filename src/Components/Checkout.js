@@ -6,7 +6,12 @@ import { callApi } from '../ultis/apiCaller';
 import swal from 'sweetalert';
 var data = [];
 var total = 0;
-var today= new Date();
+var today = new Date();
+var date =
+  today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
+var time =
+  today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+var dateTime = date + ' ' + time;
 export function Checkout() {
   const [state, setState] = useState({
     phone: '',
@@ -28,6 +33,7 @@ export function Checkout() {
         {
           billinfo: data,
           total: total,
+          date : String(dateTime),
           fullname: state.fullname,
           phone: state.phone,
           address: state.address,

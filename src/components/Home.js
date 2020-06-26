@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import Slider from './Slider.js'
 import Category from './Category.js'
 import StyleOf from './styleOf.js'
+import StyleOf2 from './styleOf2.js'
 
 function Home() {
   return (
@@ -10,7 +11,7 @@ function Home() {
       <Slider />
       <Category />
       <StyleOf />
-      <StyleOf right={true}/>
+      <StyleOf2/>
 
     </div>
   );

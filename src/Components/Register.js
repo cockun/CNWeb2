@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import '../css/Register.css';
 import {callApi} from '../ultis/apiCaller';
 import {Link} from 'react-router-dom'
+
 export default class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -97,7 +98,8 @@ export default class Register extends React.Component {
                                 onChange={ (txt) => {
                                   this.setState({pass:txt.target.value})
                                   
-                                } } />
+                                } }
+                                type="password" />
                             </div>
                             <div class="group-input">
                                 <label for="con-pass">Nhập lại mật khẩu</label>
@@ -105,7 +107,8 @@ export default class Register extends React.Component {
                                 onChange={ (txt) => {
                                   this.setState({pass2:txt.target.value})
                                   
-                                } } />
+                                } }
+                                type="password" />
                             </div>
                             <div class="group-input">
                                 <label for="con-pass">Họ và tên</label>
