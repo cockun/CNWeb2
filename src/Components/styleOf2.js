@@ -1,12 +1,11 @@
 import React from 'react'
 
-import product1 from '../image/product-1.jpg'
+
 import '../css/styleOf.css'
-import {Helper} from '../ultis/Helper.js'
 import {Link} from 'react-router-dom'
 import { callApi } from '../ultis/apiCaller';
 
-export default class styleOf extends React.Component {
+export default class styleOf2 extends React.Component {
   constructor(props) {
     super(props);
     this.state =  {
@@ -16,7 +15,7 @@ export default class styleOf extends React.Component {
   componentDidMount() {
     callApi('Products', 'GET', null).then((res) => {
        const data = res.data;
-       const a= data.splice(10,4)
+       const a= data.splice(30,4)
       this.setState({data : a}) ;
     });
   }
