@@ -107,6 +107,7 @@ function Cart() {
             <div className="cartProductTotal cartCenter" style={{ flex: 2 }}>
               {Helper.formatDollar(item.pirce2 * item.quantity)}
             </div>
+            <div style={{flex:1 , display: 'flex' , justifyContent: 'center'}}>
             <button
               className="CartProductDeletecartCenter"
             
@@ -116,6 +117,7 @@ function Cart() {
             >
               X
             </button>
+            </div>
           </div>
         ))}
       </div>

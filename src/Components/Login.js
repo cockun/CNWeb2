@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/Login.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect, Switch } from "react-router-dom";
 import swal from "sweetalert";
 
 export default class Login extends React.Component {
@@ -10,11 +10,19 @@ export default class Login extends React.Component {
       data: [],
       name: "",
       pass: "",
+      redirect: false,
     };
 
     this.check = this.check.bind(this);
   }
+  renderRedirect = () => {};
 
+  setRedirect = () => {
+    console.log(1);
+    this.setState({
+      redirect: true,
+    });
+  };
   async check(e) {
     e.preventDefault();
     if (this.state.name == "" || this.state.pass == "") {
@@ -35,8 +43,11 @@ export default class Login extends React.Component {
         ) {
           if (respJson[i].author == "1") {
             swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success");
-            sessionStorage.setItem('myAccount', JSON.stringify(this.state.name))
-            
+            sessionStorage.setItem(
+              "myAccount",
+              JSON.stringify(this.state.name)
+            );
+            this.setRedirect();
             break;
           } else {
             swal(
@@ -44,6 +55,7 @@ export default class Login extends React.Component {
               "Bạn đã đăng nhập thành công với tư cách admin",
               "success"
             );
+
             break;
           }
         }
@@ -56,6 +68,9 @@ export default class Login extends React.Component {
   }
 
   render() {
+    if (this.state.redirect) {
+      return <Redirect to="/Home" />;
+    }
     return (
       <div>
         <div>
@@ -106,6 +121,7 @@ export default class Login extends React.Component {
                           <a className="forget-pass">Forget your Password</a>
                         </div>
                       </div>
+
                       <button type="submit" className="site-btn login-btn">
                         Sign In
                       </button>
