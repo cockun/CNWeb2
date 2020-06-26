@@ -1,0 +1,53 @@
+.productContainer{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 80px;
+    flex-direction: column;
+    align-items: center;
+}
+.productMainPage{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.Product{
+    height: 400px;
+    width: 250px;
+    margin-bottom: 70px;
+    padding: 20px;
+    box-shadow:  8px 10px 10px #E8E8E8;
+}
+
+.productImgCont{
+    height: 300px;
+    width: 250px;
+
+ 
+}
+
+.productTitleCont{
+    height: 100px;
+    display: flex;
+    flex-direction: column
+}
+
+.productImg{
+    height: 300px;
+    width: 250px;
+    background-size: cover;
+}
+
+.nameofProduct{
+    display: flex;
+    height: 70px;
+    align-items: center;
+    margin-bottom: 10px;
+    
+}
+
+.priceofProduct{
+    display: flex;
+    justify-content: space-between;
+}
