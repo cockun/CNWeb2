@@ -139,11 +139,6 @@
     background: #252525;
     cursor: pointer;
 }
-<<<<<<< HEAD
-.cartProductImage{
-    width: 80%;
-    height: 80%;
-=======
 .CartProductDeletecartCenter
 {
     background-color: #58257b; /* Màu của Quản trị mạng ^^ */
@@ -159,5 +154,9 @@
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 4px;
->>>>>>> origin/nhái
+}
+
+.cartProductImage{
+    width: 80%;
+    height: 80%;
 }

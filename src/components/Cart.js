@@ -15,7 +15,7 @@ function Cart() {
   const getFinalTotal = () => {
     if (data) {
       data.map((item) => {
-        total += item.price * item.quantity;
+        total += item.pirce2 * item.quantity;
       });
       sessionStorage.setItem("totalBill", total);
     }

@@ -22,7 +22,6 @@ export default class App extends Component {
   receivedData() {
     callApi("Products", "GET", null)
           .then(res => {
-
               const data = res.data;
               const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
               const postData = slice.map( (pd,index) => <React.Fragment  key={index}>

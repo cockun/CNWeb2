@@ -2,11 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../css/Checkout.css";
 import { Helper } from '../ultis/Helper';
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-function Checkout() {
-  const data = JSON.parse(sessionStorage.getItem("myCart"));
-  const total = JSON.parse(sessionStorage.getItem("totalBill"));
-=======
 import { callApi } from '../ultis/apiCaller';
 import swal from 'sweetalert';
 var data = [];
@@ -18,13 +13,14 @@ export function Checkout() {
     address: '',
   });
   useEffect(() => {
-    data = JSON.parse(sessionStorage.getItem("myData"));
+    data = JSON.parse(sessionStorage.getItem("myCart"));
+    
     total = JSON.parse(sessionStorage.getItem('totalBill'))
     setState({ ...state })
 
   }, [])
 
-
+  console.log(data);
   const checkoutbill = () => {
     if (state.phone != '' && state.fullname != '' && state.address != '') {
       callApi('Bill', 'POST',
@@ -53,7 +49,6 @@ export function Checkout() {
     }
 
   }
->>>>>>> origin/nhái
   return (
     <div>
       <section className="checkout-section spad">

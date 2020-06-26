@@ -1,6 +1,5 @@
 import React from 'react';
 import '../css/Register.css';
-import {callApi} from '../ultis/apiCaller';
 import swal from 'sweetalert';
 import '../css/Register.css';
 import {callApi} from '../ultis/apiCaller';
@@ -21,7 +20,8 @@ export default class Register extends React.Component {
     this.add = this.add.bind(this);
     
   }
-  async add() {
+  async add(e) {
+    e.preventDefault();
     if(this.state.pass!=this.state.pass2)
     {
       swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
@@ -80,7 +80,9 @@ export default class Register extends React.Component {
                 <div class="colregister">
                     <div class="register-form">
                         <h2>Register</h2>
-                    <form action="#" onSubmit={this.add}>
+                    <form action="#" onSubmit={(e)=>{
+                      this.add(e)
+                    }}>
                             <div class="group-input">
                                 <label for="username">Tài khoản</label>
                                 <input type="text" id="username" value={String(this.state.name)} 
