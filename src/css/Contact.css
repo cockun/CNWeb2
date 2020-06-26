@@ -1,0 +1,73 @@
+.ContactCont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.ContactBanner{
+    width: 80%;
+    margin-bottom: 60px;
+ 
+  
+}
+.ContactUs{
+    width: 80%;
+
+}
+
+.ContWWidth{
+    width: 400px;
+    margin: 0 auto;
+}
+
+.ContactTitle{
+    font-size: 24px;
+    margin-bottom: 16px;
+    font-weight: bold;
+}
+
+.subContactTitle{
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #636363;
+}
+
+.contactOption{
+    width: 100%;
+
+}
+
+.OptionCT{
+    display: flex;
+    height: 100px;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+    box-shadow:  8px 15px 10px #E8E8E8;
+}
+
+.iconCT{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    font-size: 25px;
+    color: #b2b2b2
+}
+
+.CTWay{
+    flex: 4;
+    
+}
+
+.CTWayTitle{
+    color: #b2b2b2;
+    font-size: 16px;
+    margin-bottom: -16px;
+}
+
+.CTWayContent{
+    color: #252525;
+    font-size: 18px;
+    font-weight: bold;
+}

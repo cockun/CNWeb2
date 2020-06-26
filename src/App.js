@@ -1,14 +1,13 @@
-import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import HomeAdmin from "./components/Admin/HomeAdmin";
-import { Provider } from "react-redux";
-import products from "./reducers/products";
-import { categories } from "./reducers/categories";
-import { cart } from "./reducers/cart";
-import { createStore, combineReducers } from "redux";
-const store = createStore(combineReducers({ products, categories, cart }));
+import React from 'react';
+import './App.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import Header from './components/Header';
+import Footer from './components/Footer';
+
+
 function App() {
+  sessionStorage.setItem('myCart', JSON.stringify([]))
+  sessionStorage.setItem('myAccount', JSON.stringify(""))
   return (
     <Provider store={store}>
       <div className="App">
