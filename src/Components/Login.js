@@ -26,17 +26,16 @@ export default class Login extends React.Component {
         let respJson = await resp.json();
         this.setState({ data: respJson });
         let a = parseInt(respJson.length);
-        let b = 0;
     
         for (var i = 0; i < a; i++) {
           if (
-            String(respJson[i].name) == String(this.state.name) &&
-            String(respJson[i].password) == String(this.state.pass)
+            String(respJson[i].name) === String(this.state.name) &&
+            String(respJson[i].password) === String(this.state.pass)
           ) {
             alert('Đăng nhập thành công');
             break;
           }
-          if (i == a - 1) {
+          if (i === a - 1) {
             alert('Sai tài khoản hoặc mật khẩu');
             break;
           }

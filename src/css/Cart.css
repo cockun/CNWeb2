@@ -139,3 +139,7 @@
     background: #252525;
     cursor: pointer;
 }
+.cartProductImage{
+    width: 80%;
+    height: 80%;
+}

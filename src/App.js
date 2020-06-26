@@ -4,11 +4,14 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import Header from './components/Header';
 import Footer from './components/Footer';
 
+
 function App() {
+  sessionStorage.setItem('myCart', JSON.stringify([]))
   return (
     <div className="App">
       <Header />
       <Footer />
+
     </div>
   );
 }
