@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles, StylesProvider } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -66,16 +66,24 @@ export default function ModalAccount(props) {
   };
 
   const btnOk = async () => {
-    swal("Good job!", "Ấn OK để tiếp tục!", "success");
-
-    if (props.show.action === "POST") {
-      await callApi("Account", "POST", data);
-    } else {
-      if (props.show.action === "PUT") {
-        callApi("Account/" + data.id, props.show.action, data);
+    let tmp = props.allData.data.find((item) => {
+      if (item.name === data.name && item.id !== data.id) {
+        return item;
       }
+    });
+    if (tmp) {
+      swal("Tên đã tồn tại", "Ấn OK để tiếp tục!", "error");
+    } else {
+      if (props.show.action === "POST") {
+        await callApi("Account", "POST", data);
+      } else {
+        if (props.show.action === "PUT") {
+          callApi("Account/" + data.id, props.show.action, data);
+        }
+      }
+      props.handleClose(data, props.show.action);
+      swal("Good job!", "Ấn OK để tiếp tục!", "success");
     }
-    props.handleClose(data, props.show.action);
   };
 
   return (

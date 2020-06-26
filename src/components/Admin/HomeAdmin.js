@@ -6,7 +6,7 @@ export default function HomeAdmin() {
   const listTasks2 = [
     { name: "Tài khoản", toLink: "/Admin/" },
     { name: "Sản phẩm", toLink: "/Admin/products" },
-    { name: "Bill", toLink: "/Admin/bills" },
+    { name: "Đon hàng", toLink: "/Admin/bills" },
   ];
   return (
     <Router>

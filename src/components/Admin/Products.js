@@ -19,7 +19,19 @@ export default function Account() {
   const handleOpen = (item, a) => {
     setShowModal({ data: item, show: true, action: a });
   };
+  const [changeText, setChangeText] = useState({
+    value: "",
+    data: [],
+  });
 
+  const search = (e) => {
+    console.log(state.data);
+    let tmp = state.data.filter((item) => {
+      return item.name.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    console.log(tmp);
+    setChangeText({ value: e.target.value, data: [...tmp] });
+  };
   const handleClose2 = (item, action) => {
     if (item) {
       let data = state.data.map((a) => {
@@ -73,11 +85,24 @@ export default function Account() {
 
       <div className={{}}>
         <div className={classes.searchContainer}>
-          <input type="text" className={classes.textSeacch} />
+          <input type="text" className={classes.textSeacch} value ={changeText.value} onChange={(e)=>{
+            search(e)
+          }} />
           <span>Tìm kiếm:</span>
         </div>
 
-        <TableData handleOpen2={handleOpen} data={state} />
+        {[{ a: 2 }].map(() => {
+          if (changeText.value === "") {
+            return <TableData handleOpen2={handleOpen} data={state} />;
+          } else {
+            return (
+              <TableData
+                handleOpen2={handleOpen}
+                data={{ data: changeText.data, type: "Products" }}
+              />
+            );
+          }
+        })}
       </div>
       <ModalProduct show={showModal} handleClose={handleClose2} />
     </div>

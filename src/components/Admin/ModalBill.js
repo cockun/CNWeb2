@@ -4,9 +4,12 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
-import swal from "sweetalert";
+
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import { Helper } from "../../utils/helper";
+import TableData from "./TableData";
 import { callApi } from "../../utils/apiCaller";
+import TableBill from "./TableBill";
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: "flex",
@@ -28,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textContainer: {
     flex: 1,
+    marginTop: "36px",
   },
   btnContainer: {
     height: "20px",
@@ -37,49 +41,27 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
     marginBottom: "30px",
+    flexDirection: "row",
+  },
+  rowText1: {
+    right: 10,
   },
 }));
 
-export default function ModalAccount(props) {
+export default function ModalBill(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+
   const [data, setData] = useState({});
   useEffect(() => {
     setOpen(props.show.show);
-  }, [props.show.show]);
-
-  useEffect(() => {
-    if (props.show.data) {
-      setData(props.show.data);
-    }
-  }, [props.show.data]);
+    setData(props.show.data);
+  }, [props.show]);
 
   const btnOk = async () => {
-    try {
-      if (props.show.action === "POST") {
-        await callApi("Products", "POST", data);
-      } else {
-        if (props.show.action === "PUT") {
-          callApi("Products/" + data.id, props.show.action, data);
-        }
-      }
-      props.handleClose(data, props.show.action);
-    swal("Good job!", "Ấn OK để tiếp tục!", "success");
-    }catch (e){
-      swal("Error", "Ấn OK để tiếp tục!", "warning");
-    }
-
-    
+    props.handleClose(data, props.show.action);
   };
-
-  const onChangee = (e) => {
-    let render = new FileReader();
-    render.readAsDataURL(e.target.files[0]);
-    render.onload = (e) => {
-      setData({ ...data, src: e.target.result });
-      console.log(data);
-    };
-  };
+  console.log(data);
 
   return (
     <div>
@@ -99,84 +81,66 @@ export default function ModalAccount(props) {
           <div className={classes.paper}>
             <div className={classes.container}>
               <div className={classes.textContainer}>
-                <h2 style={classes.tittle}>Thông tin sản phảm</h2>
+                <h2 style={classes.tittle}>Thông tin Bill</h2>
                 <div className={classes.rowText}>
                   <span
-                    style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
+                    style={{
+                      fontSize: "15px",
+                      fontWeight: "bold",
+                      marginRight: 5,
+                    }}
                   >
-                    Tên sản phẩm
+                    ID:
                   </span>
 
                   <input
-                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
+                    style={{ marginRight: "auto", height: "30px" }}
+                    size="5"
                     type="text"
-                    value={data.name}
+                    value={data.id}
                     onChange={(e) => {
-                      setData({ ...data, name: e.target.value });
+                      setData({ ...data, id: e.target.value });
                     }}
                   />
-                </div>
-                <div className={classes.rowText}>
-                  <span
-                    style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
-                  >
-                    Loại sản phẩm
-                  </span>
-
-                  <input
-                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
-                    type="text"
-                    value={data.category}
-                    onChange={(e) => {
-                      setData({ ...data, category: e.target.value });
-                    }}
-                  />
-                </div>
-                <div className={classes.rowText}>
-                  <div style={{ width: "33%" }}>
+                  <div className={classes.rowText1}>
                     <span
                       style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
                     >
-                      Hình ảnh
+                      Tổng tiền:
                     </span>
-                  </div>
-                  <div
-                    style={{
-                      flex: 1,
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
+
                     <input
-                      type="file"
-                      style={{ width: 150 }}
+                      style={{ flex: 2, marginLeft: "10px", height: "30px" }}
+                      type="text"
+                      value={data.total}
                       onChange={(e) => {
-                        onChangee(e);
+                        setData({ ...data, total: e.target.value });
                       }}
                     />
-
-                    <img
-                      src={data.src}
-                      style={{ width: 120, height: 120 }}
-                      alt=""
-                    />
                   </div>
                 </div>
-                <h2>Giá sản phẩm</h2>
+
+                <h2>Thông tin cá nhân</h2>
                 <div className={classes.rowText}>
                   <span
                     style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
                   >
-                    Giá 1:
+                    Họ Tên:
                   </span>
 
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.price}
+                    value={data.fullname}
                     onChange={(e) => {
-                      setData({ ...data, price: e.target.value });
+                      console.log(e.target.value);
+                      if (e.target.value !== "") {
+                        if (Helper.checkNumber(e.target.value)) {
+                          setData({ ...data, fullname: e.target.value });
+                        }
+                      } else {
+                        setData({ ...data, fullname: "" });
+                      }
                     }}
                   />
                 </div>
@@ -184,15 +148,22 @@ export default function ModalAccount(props) {
                   <span
                     style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
                   >
-                    Giá 2
+                    Địa chỉ:
                   </span>
 
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.pirce2}
+                    value={data.address}
                     onChange={(e) => {
-                      setData({ ...data, pirce2: e.target.value });
+                      console.log(e.target.value);
+                      if (e.target.value !== "") {
+                        if (Helper.checkNumber(e.target.value)) {
+                          setData({ ...data, address: e.target.value });
+                        }
+                      } else {
+                        setData({ ...data, address: "" });
+                      }
                     }}
                   />
                 </div>
@@ -200,18 +171,31 @@ export default function ModalAccount(props) {
                   <span
                     style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
                   >
-                    Miêu tả sản phẩm
+                    Số điện thoại:
                   </span>
 
-                  <TextareaAutosize
-                    style={{ flex: 2, marginLeft: "10px" }}
-                    aria-label="maximum height"
-                    rowsMin={10}
-                    placeholder="Nhập địa chỉ "
-                    value={data.description}
+                  <input
+                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
+                    type="text"
+                    value={data.phone}
                     onChange={(e) => {
-                      setData({ ...data, description: e.target.value });
+                      console.log(e.target.value);
+                      if (e.target.value !== "") {
+                        if (Helper.checkNumber(e.target.value)) {
+                          setData({ ...data, phone: e.target.value });
+                        }
+                      } else {
+                        setData({ ...data, phone: "" });
+                      }
                     }}
+                  />
+                </div>
+                <div
+                  className={classes.rowText}
+                  style={{ width: "100%", height: "270px" }}
+                >
+                  <TableBill
+                    data={{ type: "billInfo", data: props.show.data.billinfo }}
                   />
                 </div>
               </div>

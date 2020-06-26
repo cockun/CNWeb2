@@ -12,19 +12,16 @@ export default function Account() {
   });
   const [showModal, setShowModal] = useState({
     show: false,
-    data: {
-      name: "",
-      fullname: "",
-      author: "",
-      phone: "124",
-      address: "",
-    },
+    data: {},
     action: "",
+  });
+  const [changeText, setChangeText] = useState({
+    value: "",
+    data: [],
   });
   const handleOpen = (item, a) => {
     setShowModal({ data: item, show: true, action: a });
   };
-
 
   const handleClose2 = (item, action) => {
     if (item) {
@@ -50,7 +47,15 @@ export default function Account() {
       setState({ ...state, data: res.data });
     });
   }, []);
-
+  const search = (e) => {
+    console.log(state.data);
+    let tmp = state.data.filter((item) => {
+      return item.fullname.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+    console.log(tmp);
+    setChangeText({ value: e.target.value, data: [...tmp] });
+  };
+  console.log(changeText.data);
   return (
     <div className={classes.container}>
       <div
@@ -82,13 +87,37 @@ export default function Account() {
 
       <div className={{}}>
         <div className={classes.searchContainer}>
-          <input type="text" className={classes.textSeacch} />
+          <input
+            type="text"
+            className={classes.textSeacch}
+            value={changeText.value}
+            onChange={(e) => {
+              search(e);
+            }}
+          />
           <span>Tìm kiếm:</span>
         </div>
-
-        <TableData handleOpen2={handleOpen} data={state} />
+        <div>
+          {[{ a: 2 }].map(() => {
+            if (changeText.value === "") {
+              return <TableData handleOpen2={handleOpen} data={state} />;
+            } else {
+              return (
+                <TableData
+                  handleOpen2={handleOpen}
+                  data={{ data: changeText.data, type: "Account" }}
+                />
+              );
+            }
+          })}
+        </div>
       </div>
-      <ModalAccount show={showModal} handleClose={handleClose2} />
+
+      <ModalAccount
+        allData={state}
+        show={showModal}
+        handleClose={handleClose2}
+      />
     </div>
   );
 }

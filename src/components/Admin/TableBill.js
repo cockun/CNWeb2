@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 var columns = [];
-export default function TableData(props) {
+export default function TableBill(props) {
   const classes = useStyles();
   const [state, setState] = useState([]);
   const [page, setPage] = React.useState(0);
@@ -119,7 +119,6 @@ export default function TableData(props) {
     } else {
       if (props.data.type === "billInfo") {
         columns = [
-        
           { id: "name", label: "Tên sản phẩm", minWidth: 190 },
           {
             id: "pirce2",
@@ -186,7 +185,7 @@ export default function TableData(props) {
                   {column.label}
                 </TableCell>
               ))}
-              {[{a:4}].map(() => {
+              {[{ a: 4 }].map(() => {
                 if (props.data.type !== "billInfo") {
                   return (
                     <TableCell
@@ -205,7 +204,7 @@ export default function TableData(props) {
             {check()
               .sort(function (a, b) {
                 return a.id - b.id;
-              })  
+              })
               .reverse()
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
@@ -236,7 +235,7 @@ export default function TableData(props) {
                         );
                       }
                     })}
-                    {[{a:3}].map(() => {
+                    {[{ a: 3 }].map(() => {
                       if (props.data.type !== "billInfo") {
                         return (
                           <TableCell key="action" align="right">
@@ -283,7 +282,7 @@ export default function TableData(props) {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[3 , 25, 100]}
         component="div"
         count={check().length}
         rowsPerPage={rowsPerPage}

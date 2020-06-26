@@ -17,6 +17,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import Bill from "./Bill";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Account from "./Account";
@@ -152,7 +153,7 @@ export default function LeftPanel(props) {
         </List>
         <Divider />
         <List>
-          {["Đăng xuất"].map((text, index) => (
+          {["Doanh thu", "Đăng xuất"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -180,7 +181,7 @@ export default function LeftPanel(props) {
               <Products />
             </Route>
             <Route path="/Admin/bills">
-              
+              <Bill />
             </Route>
             <Route path="/Admin/">
               <Account />
