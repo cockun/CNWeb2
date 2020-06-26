@@ -72,14 +72,15 @@ a{
     border-style: solid;
     border-width: 0.5px;
     box-shadow: 5px 10px #888888;
-    margin-left: 50px;
+    margin-left: 30px;
+    margin-right: 30px;
     display: flex;
     align-items: center ;
 }
 .pi-pic
 {
     
-    width:250px;
+    width:100%;
     
     
 }
@@ -99,12 +100,13 @@ a{
 }
 .textname
 {
-    padding-left: 5px;
+    padding-left: 10px;
     font-size: 20;
+    font-weight: bold;
 }
 .textprice
 {
-    padding-left: 5px;
+    padding-left: 10px;
     font-size: 20;
     font-weight: bold;
     color: red;
