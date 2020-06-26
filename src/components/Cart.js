@@ -80,7 +80,7 @@ function Cart() {
               {item.name}
             </div>
             <div className="cartProductPrice cartCenter" style={{ flex: 2 }}>
-              {Helper.formatDollar(item.price)}
+              {Helper.formatDollar(item.pirce2)}
             </div>
             <div className="cartProductQuantity cartCenter" style={{ flex: 2 }}>
               <div className="quantityForm">
@@ -105,11 +105,11 @@ function Cart() {
               </div>
             </div>
             <div className="cartProductTotal cartCenter" style={{ flex: 2 }}>
-              {Helper.formatDollar(item.price * item.quantity)}
+              {Helper.formatDollar(item.pirce2 * item.quantity)}
             </div>
             <button
-              className="CartProductDelete cartCenter"
-              style={{ flex: 1, backgroundColor: "pink" }}
+              className="CartProductDeletecartCenter"
+            
               onClick={() => {
                 deleteItem(item);
               }}

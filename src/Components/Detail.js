@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from "react";
 import "../css/Detail.css";
 import { callApi } from "../ultis/apiCaller";
@@ -14,6 +15,10 @@ function Detail(props) {
       console.log(res.data)
     });
   }, []);
+=======
+import React from 'react';
+import '../css/Detail.css';
+>>>>>>> origin/nhái
 
   const addToCart = () => {
     let cartData = JSON.parse(sessionStorage.getItem('myCart'));

@@ -24,27 +24,6 @@ a{
     border-bottom: 1px solid black;
 }
 
-.styleImage{
-    height: 580px;
-    width: 320px;
-    background-image: url('../image/banner.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    margin-right: 60px;
-
-}
-
-.styleImageRight{
-    height: 560px;
-    width: 320px;
-    background-image: url('../image/banner1.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    margin-left: 60px;
-}
-
 .productContStyle{
     display: flex;
     align-items: center;

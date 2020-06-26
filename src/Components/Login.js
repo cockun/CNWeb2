@@ -3,6 +3,8 @@ import "../css/Login.css";
 import {
     Link
 } from "react-router-dom";
+import swal from 'sweetalert';
+
 
 
 export default class Login extends React.Component {
@@ -19,27 +21,49 @@ export default class Login extends React.Component {
         
       }
       
+      componentDidCatch()
+      {
+        this.check();
+      }
       async check() {
-        let resp = await fetch(
-          'https://5ee5aa77ddcea00016a37721.mockapi.io/Account'
-        );
-        let respJson = await resp.json();
-        this.setState({ data: respJson });
-        let a = parseInt(respJson.length);
-    
-        for (var i = 0; i < a; i++) {
-          if (
-            String(respJson[i].name) === String(this.state.name) &&
-            String(respJson[i].password) === String(this.state.pass)
-          ) {
-            alert('Đăng nhập thành công');
-            break;
-          }
-          if (i === a - 1) {
-            alert('Sai tài khoản hoặc mật khẩu');
-            break;
+        if(this.state.name =='' || this.state.pass =='')
+        {
+          swal("Thông báo!", "Tài khoản và mật khẩu không được để trống", "error");
+        }
+        else
+        {
+          let resp = await fetch(
+            'https://5ee5aa77ddcea00016a37721.mockapi.io/Account'
+          );
+          let respJson = await resp.json();
+          this.setState({ data: respJson });
+          let a = parseInt(respJson.length);
+          let b = 0;
+      
+          for (var i = 0; i < a; i++) {
+            if (
+              String(respJson[i].name) == String(this.state.name) &&
+              String(respJson[i].password) == String(this.state.pass)
+            ) {
+              if(respJson[i].author=='1')
+              {
+                swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success");
+                break;
+              }
+              else
+              {
+                swal("Chào mừng!", "Bạn đã đăng nhập thành công với tư cách admin", "success");
+                break;
+              }
+              
+            }
+            if (i == a - 1) {
+              swal("Thông báo!", "Đăng nhập thất bại", "error");
+              break;
+            }
           }
         }
+      
       }
     
     
@@ -77,7 +101,7 @@ export default class Login extends React.Component {
                                         <input type="checkbox" id="save-pass"/>
                                         <span className="checkmark"></span>
                                     </label>
-                                    <a href="#" className="forget-pass">Forget your Password</a>
+                                    <a  className="forget-pass">Forget your Password</a>
                                 </div>
                             </div>
                             <button type="submit" className="site-btn login-btn">Sign In</button>
@@ -86,7 +110,7 @@ export default class Login extends React.Component {
                             <Link to="/Register" className="or-login">Or Create An Account</Link>
                         </div>
                       </div>
-                 
+                      
                   </div>
                 </div>
               </div>
@@ -94,6 +118,10 @@ export default class Login extends React.Component {
           </div>
 
         </div>
+        
+  
+        
+ 
     );
   }
 }
