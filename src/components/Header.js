@@ -1,4 +1,4 @@
-import React from "react";
+
 import "../css/Header.css";
 import { Switch, Route, Link } from "react-router-dom";
 import Home from "./Home";
@@ -6,9 +6,11 @@ import Cart from "./Cart";
 import Shop from "./NewProduct";
 import Contact from "./Contact";
 import Login from "./Login";
+import React, { useState, useEffect } from "react";
 import Register from "./Register";
 import Checkout from "./Checkout";
 import Detail from "./Detail";
+import Search from "./Search";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -17,6 +19,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
+  const [text,setState]=useState("");
+  const changeValue = (e) => {
+    setState(e.target.value);
+  }
+
   return (
     <div className="Header">
       <div className="intro">
@@ -26,14 +33,15 @@ function Header() {
           </div>
           <div className="inputForm">
             <div className="searchForm">
-              <input type="text" className="input" placeholder="Tìm Sản Phẩm" />
-
-              <button className="button" type="button">
-                <FontAwesomeIcon
-                  icon={faSearch}
-                  style={{ fontSize: 20, color: "white" }}
-                />
-              </button>
+              <input type="text" className="input" placeholder="Tìm Sản Phẩm" value={text} onChange={changeValue}/>
+              <Link to={`/Search/${text}`}>
+                <button className="button" type="button" >
+                  <FontAwesomeIcon
+                    icon={faSearch}
+                    style={{ fontSize: 20, color: "white" }}
+                  />
+                </button>
+              </Link>
             </div>
           </div>
           <div className="Cart">
@@ -77,6 +85,7 @@ function Header() {
         <Route path="/Home">
           <Home />
         </Route>
+        <Route path="/Search/:text" component={Search}></Route>
         <Route path="/Shop">
           <Shop />
         </Route>
