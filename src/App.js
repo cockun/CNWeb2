@@ -62,7 +62,7 @@ const routes = [
             component: Home,
           },
           {
-            path: "/reviwBill",
+            path: "/reviewBill",
             exact: true,
             component: reviewBill,
           },

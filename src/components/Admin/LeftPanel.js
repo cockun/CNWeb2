@@ -153,7 +153,7 @@ export default function LeftPanel(props) {
         </List>
         <Divider />
         <List>
-          {["Doanh thu", "Đăng xuất"].map((text, index) => (
+          {["Đăng xuất"].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

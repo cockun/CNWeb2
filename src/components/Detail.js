@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/Detail.css";
 import { callApi } from "../ultis/apiCaller";
-import { Helper } from "../ultis/Helper";
+import { Helper } from "../utils/helper";
 function Detail(props) {
   const [data, setData] = useState({});
   const [number,setNumber] = useState(1);

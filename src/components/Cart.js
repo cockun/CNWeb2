@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../css/Cart.css";
-import { Helper } from "../ultis/Helper";
+import { Helper } from "../utils/helper";
 
 
 function Cart() {

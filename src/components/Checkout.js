@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/Checkout.css";
-import { Helper } from '../ultis/Helper';
+import { Helper } from '../utils/helper';
 import { Link } from "react-router-dom";
 import { callApi } from '../ultis/apiCaller';
 import swal from 'sweetalert';
