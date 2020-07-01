@@ -3,7 +3,7 @@ import "../css/Login.css";
 import { Link, Redirect, Switch, withRouter } from "react-router-dom";
 import swal from "sweetalert";
 
-class Login extends React.Component {
+ class Login extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,7 +45,6 @@ class Login extends React.Component {
               "myAccount",
               JSON.stringify(this.state.name)
             );
-
             break;
           } else {
             swal(
@@ -61,13 +60,11 @@ class Login extends React.Component {
         }
         if (i === a - 1) {
           swal("Thông báo!", "Đăng nhập thất bại", "error");
-
           break;
         }
       }
     }
   }
-
   render() {
     if (this.state.redirect) {
       return <Redirect to="/Home" />;
