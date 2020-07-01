@@ -19,13 +19,14 @@ export function Checkout() {
     address: '',
   });
   useEffect(() => {
-    data = JSON.parse(sessionStorage.getItem("myData"));
+    data = JSON.parse(sessionStorage.getItem("myCart"));
+    
     total = JSON.parse(sessionStorage.getItem('totalBill'))
     setState({ ...state })
 
   }, [])
 
-
+  console.log(data);
   const checkoutbill = () => {
     if (state.phone != '' && state.fullname != '' && state.address != '') {
       callApi('Bill', 'POST',
@@ -36,7 +37,8 @@ export function Checkout() {
           fullname: state.fullname,
           phone: state.phone,
           address: state.address,
-
+          date: today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
+          name: JSON.parse(sessionStorage.getItem("myAccount")),
         }); 
       data.map(async item => {  
         let tmp ;

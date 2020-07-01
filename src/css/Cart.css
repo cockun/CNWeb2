@@ -43,7 +43,7 @@
 }
 
 .cartProductPrice{
-    color: #e7ab3c;
+    color: red;
     font-size: 16px;
     font-weight: 700;
 }
@@ -86,7 +86,7 @@
 }
 
 .cartProductTotal{
-    color: #e7ab3c;
+    color: red;
     font-size: 16px;
     font-weight: 700;
 }
@@ -124,8 +124,8 @@
 
 .totalCartPrice{
     font-size: 18px;
-    font-weight: 700;
-    color: #e7ab3c;
+    font-weight: bold;
+    color: red;
 }
 
 .cartCheckoutBtn{
@@ -141,17 +141,18 @@
 }
 .CartProductDeletecartCenter
 {
-    background-color: #58257b; /* Màu của Quản trị mạng ^^ */
+    background-color: white;
     border: none;
-    color: white;
-    padding: 16px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-    border-radius: 4px;
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+}
+
+.CartProductDeletecartCenter:hover{
+    transform: scale(1.5);
+    
+}
+.cartProductImage{
+    width: 80%;
+    height: 80%;
 }
