@@ -1,12 +1,11 @@
 import React from 'react';
-import '../Css/Detail.css';
-import Header from './Header';
-import Footer from './Footer'
+import '../css/Detail.css';
+
 export default class Detail extends React.Component {
   render() {
     return (
      <div>
-         <Header/>
+         
          <section className="product-shop spad page-details">
         <div className="">
             <div className="container-product">
@@ -282,7 +281,7 @@ export default class Detail extends React.Component {
         </div>
     </div>
             </div>
-            <Footer/>
+            
      </div>  
         
     );

@@ -71,7 +71,7 @@
 .register-form
 {
     width: 500px;
-    height: 600px;
+    height: auto;
     align-self: center;
 }
 .colregister
