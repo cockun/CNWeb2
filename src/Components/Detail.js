@@ -14,7 +14,7 @@ export default class Detail extends React.Component {
                     <div className="filter-widget">
                         <h4 className="fw-title">Categories</h4>
                         <ul className="filter-catagories">
-                            <li><a href="#">Men</a></li>
+                            <li><a href="./Checkout.js">Men</a></li>
                             <li><a href="#">Women</a></li>
                             <li><a href="#">Kids</a></li>
                         </ul>
