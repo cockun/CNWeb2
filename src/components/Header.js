@@ -1,16 +1,7 @@
+import { Link , Redirect} from "react-router-dom";
 import "../css/Header.css";
-import { Switch, Route, Link } from "react-router-dom";
-import Home from "./Home";
-import Cart from "./Cart";
-import Shop from "./NewProduct";
-import Contact from "./Contact";
-import Login from "./Login";
-import React, { useState, useEffect } from "react";
-import Register from "./Register";
-import Checkout from "./Checkout";
-import Detail from "./Detail";
-import Search from "./Search";
-import Bill from "./ReviewBill";
+import React, { useState , useEffect } from "react";
+import swal from "sweetalert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { renderRoutes } from "react-router-config";
 import {
@@ -21,10 +12,24 @@ import {
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-function Header({ route }) {
+function Header({ route } ) {
   const [text, setState] = useState("");
+  const [name, setName] = useState("");
+  
+  useEffect(() => {
+    setName(JSON.parse(sessionStorage.getItem("myAccount")));
+  });
+
   const changeValue = (e) => {
     setState(e.target.value);
+  };
+
+  const logOut = () => {
+    sessionStorage.clear();
+    sessionStorage.setItem("myAccount", JSON.stringify(""));
+    sessionStorage.setItem("myCart", JSON.stringify([]));
+    setName(JSON.parse(sessionStorage.getItem("myAccount")));
+    swal("Thông báo!", "Đăng xuất thành công", "success");
   };
 
   return (
@@ -57,15 +62,30 @@ function Header({ route }) {
             <Link to="/Cart">
               <FontAwesomeIcon
                 icon={faCartPlus}
-                style={{ fontSize: 25, color: "#E7AB3C", marginLeft: 10 }}
+                style={{ fontSize: 25, color: "#E7AB3C", marginLeft: 20 }}
               />
             </Link>
-            <Link to="/Login">
+            <div className="loginContainer">
               <FontAwesomeIcon
                 icon={faSignInAlt}
-                style={{ fontSize: 25, color: "#E7AB3C", marginLeft: 10 }}
+                style={{ fontSize: 25, color: "#E7AB3C" }}
               />
-            </Link>
+              {name === "" && (
+                <div className="lgOrlo">
+                  <Link to="/Login"  className="optionLg" >Đăng Nhập</Link>
+                  <Link to="/Register" className="optionLg">Đăng Ký</Link>
+                </div>
+              )}
+              {name !== "" && (
+                <div className="lgOrlo">
+                  <span onClick={logOut} className="optionLg">Đăng Xuất</span>
+                  <span>
+                    Xin chào {JSON.parse(sessionStorage.getItem("myAccount"))}!
+                  </span>
+                </div>
+             
+              )}
+            </div>
           </div>
         </div>
       </div>

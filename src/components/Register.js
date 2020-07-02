@@ -1,7 +1,6 @@
 import React from "react";
 import "../css/Register.css";
 import swal from "sweetalert";
-import "../css/Register.css";
 import { callApi } from "../ultis/apiCaller";
 import { Link, withRouter } from "react-router-dom";
 

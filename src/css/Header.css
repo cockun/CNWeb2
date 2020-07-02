@@ -101,3 +101,28 @@
     padding-right: 20px;
 
 }
+
+.loginContainer{
+    display: flex;
+    width: 200px;
+    height: 60px;
+    margin-left: 30px;
+    align-items: center;
+}
+
+.lgOrlo{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.optionLg{
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.optionLg:hover{
+    font-weight: bold;
+    transform: scale(1.1);
+    color: red;
+}
