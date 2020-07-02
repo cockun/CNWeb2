@@ -60,7 +60,7 @@ export default function ModalAccount(props) {
         await callApi("Products", "POST", data);
       } else {
         if (props.show.action === "PUT") {
-          callApi("Products/" + data.id, props.show.action, data);
+          callApi("Products/" + data._id, props.show.action, data);
         }
       }
       props.handleClose(data, props.show.action);

@@ -50,7 +50,7 @@ export default function ModalAccount(props) {
     name: "",
     fullname: "",
     author: "",
-    phone: "1234",
+    phone: "",
     address: "",
   });
   useEffect(() => {
@@ -66,26 +66,31 @@ export default function ModalAccount(props) {
   };
 
   const btnOk = async () => {
-    let tmp = props.allData.data.find((item) => {
-      if (item.name === data.name && item.id !== data.id) {
-        return item;
-      }
-    });
-    if (tmp) {
-      swal("Tên đã tồn tại", "Ấn OK để tiếp tục!", "error");
-    } else {
-      if (props.show.action === "POST") {
-        await callApi("Account", "POST", data);
-      } else {
-        if (props.show.action === "PUT") {
-          callApi("Account/" + data.id, props.show.action, data);
-        }
-      }
+    if (props.show.action === "POST") {
+      console.log(data)
+      await callApi("Account", "POST", data);
       props.handleClose(data, props.show.action);
-      swal("Good job!", "Ấn OK để tiếp tục!", "success");
+    } else {
+      let tmp = props.allData.data.find((item) => {
+        if (item.name === data.name && item._id !== data._id) {
+          return item;
+        }
+      });
+      if (tmp) {
+        swal("Tên đã tồn tại", "Ấn OK để tiếp tục!", "error");
+      } else {
+        if (props.show.action === "POST") {
+        } else {
+          if (props.show.action === "PUT") {
+            callApi("Account/" + data._id, props.show.action, data);
+          }
+        }
+        props.handleClose(data, props.show.action);
+        swal("Good job!", "Ấn OK để tiếp tục!", "success");
+      }
     }
   };
-
+  console.log(data)
   return (
     <div>
       <Modal
@@ -146,7 +151,7 @@ export default function ModalAccount(props) {
 
                   <select
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
-                    id="cars"
+                    _id="cars"
                     value={data.author}
                     onChange={handleChangeSelect}
                   >

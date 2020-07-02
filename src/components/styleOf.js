@@ -2,7 +2,6 @@ import React from 'react'
 
 import product1 from '../image/product-1.jpg'
 import '../css/styleOf.css'
-import {Helper} from '../ultis/Helper.js'
 import {Link} from 'react-router-dom'
 import { callApi } from '../ultis/apiCaller';
 
@@ -20,9 +19,10 @@ export default class styleOf extends React.Component {
       this.setState({data : a}) ;
     });
   }
+  
   render() {
     return (
-      <div>
+      <div >
         <div>
           <div className="product-shop spad">
             <div className="container4">
@@ -37,16 +37,24 @@ export default class styleOf extends React.Component {
                     </div>
                   </div>
                   <div className="product-list">
+                  <div className="loading-more">
+                 
+                    <Link to="#"> <p className="texttitle">  Sản phẩm bán chạy</p>
+                     </Link>
+                  </div>
                     <div className="item">
                     
                       {this.state.data.map( (item) => 
+                      
+                      
                             <div className="containerhome">
+                              <Link to={`/Detail/${item.id}`}>
                               <div className="containerhome1">
                                 <div  className="pic">
                                 <img src={item.src} alt="" className="pi-pic"  />
                                   </div>
                              <div className="text">
-                            <div className="textname">
+                            <div className="textname" >
                             {item.name}
                             </div>
                             <div className="textprice">
@@ -57,16 +65,14 @@ export default class styleOf extends React.Component {
                                 
                                 
                                </div>
-                            
+                               </Link>
                             </div>
+                        
                       )}
                          
                     </div>
                   </div>
-                  <div className="loading-more">
-                    <i className="icon_loading"></i>
-                    <Link to="#">Chuột gaming bán chạy</Link>
-                  </div>
+                  
                 </div>
               </div>
             </div>

@@ -1,11 +1,27 @@
 import React, { useEffect, useState } from "react";
 import classes from "../../css/Account.module.css";
+<<<<<<< HEAD
 
+=======
+import TextField from "@material-ui/core/TextField";
+>>>>>>> 77659a319900c0a3cc292d38c76b8c68d3c8e9a8
 import { callApi } from "../../utils/apiCaller";
 
 import TableData from "./TableData";
 import ModalBill from "./ModalBill";
+<<<<<<< HEAD
 
+=======
+import { Helper } from "../../utils/helper";
+
+// var date2 =
+//   today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+
+var date = Helper.parseStringToDate("16-06-2020");
+var date2 = new Date(
+  "15-05-2020".replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")
+);
+>>>>>>> 77659a319900c0a3cc292d38c76b8c68d3c8e9a8
 
 export default function Bill() {
   const [state, setState] = useState({
@@ -21,12 +37,16 @@ export default function Bill() {
     value: "",
     data: [],
   });
-  const handleOpen = (item,a) => {
+  const [date, setDate] = useState({
+    fromDate: "2018-06-28",
+    toDate: "2020-06-28",
+  });
+  const handleOpen = (item, a) => {
     setShowModal({ data: item, show: true, action: "show" });
   };
 
   const handleClose2 = () => {
-    setShowModal({ data: {billInfo:[{a:2}]}, show: false });
+    setShowModal({ data: { billInfo: [{ a: 2 }] }, show: false });
   };
   useEffect(() => {
     callApi("Bill", "GET").then((res) => {
@@ -35,9 +55,8 @@ export default function Bill() {
   }, []);
 
   const search = (e) => {
-    console.log(state.data);
     let tmp = state.data.filter((item) => {
-      return item.name.toLowerCase().includes(e.target.value.toLowerCase());
+      return item.fullname.toLowerCase().includes(e.target.value.toLowerCase());
     });
     setChangeText({ value: e.target.value, data: [...tmp] });
   };
@@ -58,10 +77,16 @@ export default function Bill() {
 
       <div className={{}}>
         <div className={classes.searchContainer}>
-          <input type="text" className={classes.textSeacch} value= {changeText.value} onChange={(e)=>{
-            search(e);
-          }} />
-          <span>Tìm kiếm:</span>
+          <input
+            type="text"
+            className={classes.textSeacch}
+            value={changeText.value}
+            onChange={(e) => {
+              search(e);
+            }}
+          />
+          <span style={{ marginLeft: 30 }}>Tìm kiếm:</span>
+         
         </div>
 
         <div>

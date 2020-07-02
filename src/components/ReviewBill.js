@@ -2,7 +2,7 @@ import "../css/Bill.css";
 import { callApi } from "../ultis/apiCaller";
 import React, { useState, useEffect } from "react";
 import error from '../image/error.jpg'
-import { Helper } from "../ultis/Helper";
+import { Helper } from "../utils/helper";
 function ReviewBill() {
   const [bill, setBill] = useState([]);
   var userName = JSON.parse(sessionStorage.getItem("myAccount"));
@@ -14,8 +14,9 @@ function ReviewBill() {
       );
       setBill(data);
     });
-  });
+  },[]);
   return (
+   
     <div className="containerBill">
     {
         (userName === "" && (

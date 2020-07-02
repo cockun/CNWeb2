@@ -96,9 +96,9 @@ export default function ModalBill(props) {
                     style={{ marginRight: "auto", height: "30px" }}
                     size="5"
                     type="text"
-                    value={data.id}
+                    value={data._id}
                     onChange={(e) => {
-                      setData({ ...data, id: e.target.value });
+                      setData({ ...data, _id: e.target.value });
                     }}
                   />
                   <div className={classes.rowText1}>

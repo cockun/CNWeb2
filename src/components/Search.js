@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 import "../styles.css";
 import { callApi } from "../ultis/apiCaller";
 import { Link } from "react-router-dom";
-import { Helper } from "../ultis/Helper";
+import { Helper } from "../utils/helper";
 import "../css/Product.css";
 
 export default class App extends Component {
