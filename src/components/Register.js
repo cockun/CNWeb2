@@ -72,7 +72,7 @@ class Register extends React.Component {
               <div class="row">
                 <div class="colregister">
                   <div class="register-form">
-                    <h2>Register</h2>
+                    <h2>Đăng ký</h2>
                     <form
                       action="#"
                       onSubmit={(e) => {
@@ -80,7 +80,7 @@ class Register extends React.Component {
                       }}
                     >
                       <div class="group-input">
-                        <label for="username">Tài khoản</label>
+                        <label for="username">Tài khoản *</label>
                         <input
                           type="text"
                           id="username"
@@ -91,7 +91,7 @@ class Register extends React.Component {
                         />
                       </div>
                       <div class="group-input">
-                        <label for="pass">Mật Khẩu </label>
+                        <label for="pass">Mật Khẩu *</label>
                         <input
                           id="username"
                           value={String(this.state.pass)}
@@ -102,7 +102,7 @@ class Register extends React.Component {
                         />
                       </div>
                       <div class="group-input">
-                        <label for="con-pass">Nhập lại mật khẩu</label>
+                        <label for="con-pass">Nhập lại mật khẩu *</label>
                         <input
                           id="username"
                           value={String(this.state.pass2)}
@@ -113,7 +113,7 @@ class Register extends React.Component {
                         />
                       </div>
                       <div class="group-input">
-                        <label for="con-pass">Họ và tên</label>
+                        <label for="con-pass">Họ và tên </label>
                         <input
                           type="text"
                           id="username"
@@ -146,12 +146,12 @@ class Register extends React.Component {
                         />
                       </div>
                       <button type="submit" class="site-btn register-btn">
-                        REGISTER
+                        ĐĂNG KÝ
                       </button>
                     </form>
                     <div class="switch-login">
                       <Link to="/Login" class="or-login">
-                        Or Login
+                        Hoặc đăng nhập
                       </Link>
                     </div>
                   </div>
