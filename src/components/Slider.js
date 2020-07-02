@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 import { Carousel } from 'react-responsive-carousel';
 import img1 from '../image/hero3.jpg'
 import img2 from '../image/hero4.png'
+import img3 from '../image/hero4.jpg'
 
 
 export default class DemoCarousel extends Component {
@@ -25,6 +26,11 @@ export default class DemoCarousel extends Component {
                     <img  src={img2} alt="" />
                    
                 </div>
+                <div>
+                    <img  src={img3} alt="" />
+                   
+                </div>
+                
 
             </Carousel>
         );
