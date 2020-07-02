@@ -20,7 +20,7 @@ export default class App extends Component {
           .bind(this);
   }
   receivedData() {
-    callApi("Products", "GET", null)
+    callApi(`Products`, "GET", null)
           .then(res => {
               const data = res.data;
               const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)

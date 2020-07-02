@@ -5,15 +5,15 @@ import {
   BrowserRouter as Router,
 } from "react-router-dom";
 import App from './App'
-
+import AccUser from './components/AccUser'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   
   <React.StrictMode>
-    <Router>
-    <App />
-    </Router>
+
+    <AccUser />
+
 
   </React.StrictMode>,
   document.getElementById('root')
