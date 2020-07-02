@@ -8,6 +8,7 @@ import HomeAdmin from "./components/Admin/HomeAdmin";
 import { renderRoutes } from "react-router-config";
 import { Helper } from "./ultis/Helper";
 
+import Search from './components/Search';
 import Home from "./components/Home";
 import Cart from "./components/Cart";
 import Shop from "./components/NewProduct";
@@ -123,6 +124,11 @@ const routes = [
             exact: true,
             component: Login,
           },
+          {
+            path:"/Search/:text",
+            exact: false,
+            component: Search,
+          }
         ],
       },
     ],

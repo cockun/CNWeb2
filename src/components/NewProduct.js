@@ -18,6 +18,7 @@ export default class App extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   receivedData() {
+<<<<<<< HEAD
     callApi("Products", "GET", null).then((res) => {
       const data = res.data;
       const slice = data.slice(
@@ -56,6 +57,43 @@ export default class App extends Component {
           </Link>
         </React.Fragment>
       ));
+=======
+    callApi(`Products`, "GET", null)
+          .then(res => {
+              const data = res.data;
+              const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
+              const postData = slice.map( (pd,index) => <React.Fragment  key={index}>
+                <Link to={`/Detail/${pd.id}`} className="Product">
+                <div className="productImgCont">
+                    <img src={pd.src} className="productImg" alt="" />
+                </div>
+                <div className="productTitleCont">
+                    <span style={{ color: "#252525", fontWeight: 400, fontSize: 15 } } className="nameofProduct">
+                    {pd.name}
+                    </span>
+                    <div className="priceofProduct">
+                        <span style={{ color: "red", fontWeight: 700, fontSize: 22 }} >
+                        {Helper.formatDollar(pd.pirce2)}đ  
+                        </span>
+                        <span style={{fontSize: 15, color: '#636363' , fontWeight: 400, textDecorationLine:'line-through' }} >
+                        {Helper.formatDollar(pd.price)}đ
+                        </span>
+                    </div>
+                </div>
+                </Link>
+              </React.Fragment>)
+
+              this.setState({
+                  pageCount: Math.ceil(data.length / this.state.perPage),
+                 
+                  postData
+              })
+          });
+  }
+  handlePageClick = (e) => {
+      const selectedPage = e.selected;
+      const offset = selectedPage * this.state.perPage;
+>>>>>>> 9c83a6f53a8e641487da67bc95507eaa255ad02b
 
       this.setState({
         pageCount: Math.ceil(data.length / this.state.perPage),
