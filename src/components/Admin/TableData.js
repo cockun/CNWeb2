@@ -120,7 +120,6 @@ export default function TableData(props) {
     } else {
       if (props.data.type === "billInfo") {
         columns = [
-        
           { id: "name", label: "Tên sản phẩm", minWidth: 190 },
           {
             id: "pirce2",
@@ -143,11 +142,11 @@ export default function TableData(props) {
   }, [props.data]);
 
   const deleteItem = async (row) => {
-    let index = state.findIndex((item) => item.id === row.id);
+    let index = state.findIndex((item) => item._id === row._id);
     state.splice(index, 1);
     setState([...state]);
     try {
-      await callApi(props.data.type + "/" + row.id, "DELETE");
+      await callApi(props.data.type + "/" + row._id, "DELETE");
       swal("Đã xóa", {
         icon: "success",
       });
@@ -160,18 +159,19 @@ export default function TableData(props) {
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  console.log(state);
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  const check =()=>{
-    if(state){
+  const check = () => {
+    if (state) {
       return state;
-    }else{
+    } else {
       return [];
     }
-  }
+  };
+
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>
@@ -187,7 +187,7 @@ export default function TableData(props) {
                   {column.label}
                 </TableCell>
               ))}
-              {[{a:4}].map(() => {
+              {[{ a: 4 }].map(() => {
                 if (props.data.type !== "billInfo") {
                   return (
                     <TableCell
@@ -204,10 +204,6 @@ export default function TableData(props) {
           </TableHead>
           <TableBody>
             {check()
-              .sort(function (a, b) {
-                return a.id - b.id;
-              })  
-              .reverse()
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -237,7 +233,7 @@ export default function TableData(props) {
                         );
                       }
                     })}
-                    {[{a:3}].map(() => {
+                    {[{ a: 3 }].map(() => {
                       if (props.data.type !== "billInfo") {
                         return (
                           <TableCell key="action" align="right">

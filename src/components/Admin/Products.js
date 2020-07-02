@@ -35,7 +35,7 @@ export default function Account() {
   const handleClose2 = (item, action) => {
     if (item) {
       let data = state.data.map((a) => {
-        if (a.id === item.id) {
+        if (a._id === item._id) {
           return item;
         } else {
           return a;
