@@ -16,8 +16,10 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Checkout from "./components/Checkout";
 import Detail from "./components/Detail";
-import Bill from "./components/ReviewBill";
+import Bill from "./components/Admin/Bill";
 import reviewBill from "./components/ReviewBill";
+import Products from "./components/Admin/Products";
+import Account from "./components/Admin/Account";
 const Both = ({ route }) => {
   return (
     <>
@@ -40,14 +42,24 @@ const routes = [
         component: HomeAdmin,
         routes: [
           {
-            path: "/bills",
+            path: "/Admin/bills",
             exact: true,
-            component: Home,
+            component: Bill,
           },
           {
-            path: "/products",
+            path: "/Admin/products",
             exact: true,
-            component: Home,
+            component: Products,
+          },
+          {
+            path: "/Admin/",
+            exact: true,
+            component: Account,
+          },
+          {
+            path: "/Admin/Account",
+            exact: true,
+            component: Account,
           },
         ],
       },

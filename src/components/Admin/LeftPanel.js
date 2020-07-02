@@ -17,11 +17,8 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
-import Bill from "./Bill";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
-import Account from "./Account";
-import Products from "./Products";
+import { renderRoutes } from "react-router-config";
+import { Link } from "react-router-dom";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -84,6 +81,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function LeftPanel(props) {
+  const { route } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -116,7 +114,7 @@ export default function LeftPanel(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Admin
           </Typography>
         </Toolbar>
       </AppBar>
@@ -176,17 +174,7 @@ export default function LeftPanel(props) {
             borderRadius: "10px",
           }}
         >
-          <Switch>
-            <Route path="/Admin/products">
-              <Products />
-            </Route>
-            <Route path="/Admin/bills">
-              <Bill />
-            </Route>
-            <Route path="/Admin/">
-              <Account />
-            </Route>
-          </Switch>
+          {renderRoutes(route.routes)}
         </div>
       </main>
     </div>

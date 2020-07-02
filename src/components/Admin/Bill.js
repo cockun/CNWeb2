@@ -14,7 +14,7 @@ var date = Helper.parseStringToDate("16-06-2020");
 var date2 = new Date(
   "15-05-2020".replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")
 );
-console.log(date < date2);
+
 export default function Bill() {
   const [state, setState] = useState({
     data: [],
