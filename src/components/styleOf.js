@@ -23,7 +23,7 @@ export default class styleOf extends React.Component {
   
   render() {
     return (
-      <div>
+      <div >
         <div>
           <div className="product-shop spad">
             <div className="container4">
@@ -39,8 +39,9 @@ export default class styleOf extends React.Component {
                   </div>
                   <div className="product-list">
                   <div className="loading-more">
-                    <i className="icon_loading"></i>
-                    <Link to="#">Chuột gaming bán chạy</Link>
+                 
+                    <Link to="#"> <p className="texttitle">  Sản phẩm bán chạy</p>
+                     </Link>
                   </div>
                     <div className="item">
                     

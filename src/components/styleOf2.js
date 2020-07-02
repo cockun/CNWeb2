@@ -36,10 +36,7 @@ export default class styleOf2 extends React.Component {
                     </div>
                   </div>
                   <div className="product-list">
-                  <div className="loading-more">
-                    <i className="icon_loading"></i>
-                    <Link to="#">Điện thoại bán chạy</Link>
-                  </div>
+                  
                     <div className="item">
 
                     
