@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 import classes from "../../css/Account.module.css";
-<<<<<<< HEAD
-
-=======
 import TextField from "@material-ui/core/TextField";
->>>>>>> 77659a319900c0a3cc292d38c76b8c68d3c8e9a8
 import { callApi } from "../../utils/apiCaller";
 
 import TableData from "./TableData";
 import ModalBill from "./ModalBill";
-<<<<<<< HEAD
-
-=======
 import { Helper } from "../../utils/helper";
 
 // var date2 =
@@ -21,7 +14,6 @@ var date = Helper.parseStringToDate("16-06-2020");
 var date2 = new Date(
   "15-05-2020".replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")
 );
->>>>>>> 77659a319900c0a3cc292d38c76b8c68d3c8e9a8
 
 export default function Bill() {
   const [state, setState] = useState({

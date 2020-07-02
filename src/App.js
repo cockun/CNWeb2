@@ -17,15 +17,12 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Checkout from "./components/Checkout";
 import Detail from "./components/Detail";
-<<<<<<< HEAD
-import Bill from "./components/ReviewBill";
+
 import AccUser from "./components/AccUser";
-=======
 import Bill from "./components/Admin/Bill";
-import reviewBill from "./components/ReviewBill";
+
 import Products from "./components/Admin/Products";
 import Account from "./components/Admin/Account";
->>>>>>> 77659a319900c0a3cc292d38c76b8c68d3c8e9a8
 const Both = ({ route }) => {
   return (
     <>
