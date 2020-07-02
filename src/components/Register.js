@@ -21,7 +21,7 @@ class Register extends React.Component {
   }
   async add(e) {
     e.preventDefault();
-    if (this.state.pass != this.state.pass2) {
+    if (this.state.pass !== this.state.pass2) {
       swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
     } else {
       if (this.state.name !== "" && this.state.pass !== "") {
@@ -35,14 +35,14 @@ class Register extends React.Component {
         let a = parseInt(respJson.length);
         let jus = 1;
         for (var i = 0; i < a; i++) {
-          if (String(this.state.name) == String(respJson[i].name)) {
+          if (String(this.state.name) === String(respJson[i].name)) {
             swal("Thông báo!", "Tên tài khoản đã tồn tại", "error");
             jus = 0;
             break;
           }
         }
         if (jus === 1) {
-          if (String(this.state.pass) == String(this.state.pass2)) {
+          if (String(this.state.pass) === String(this.state.pass2)) {
             callApi("Account", "POST", {
               id: "",
               name: this.state.name,
@@ -93,7 +93,6 @@ class Register extends React.Component {
                       <div class="group-input">
                         <label for="pass">Mật Khẩu </label>
                         <input
-                          type="text"
                           id="username"
                           value={String(this.state.pass)}
                           onChange={(txt) => {
@@ -105,7 +104,6 @@ class Register extends React.Component {
                       <div class="group-input">
                         <label for="con-pass">Nhập lại mật khẩu</label>
                         <input
-                          type="text"
                           id="username"
                           value={String(this.state.pass2)}
                           onChange={(txt) => {

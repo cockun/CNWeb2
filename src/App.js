@@ -18,7 +18,7 @@ import Register from "./components/Register";
 import Checkout from "./components/Checkout";
 import Detail from "./components/Detail";
 import Bill from "./components/ReviewBill";
-import reviewBill from "./components/ReviewBill";
+import AccUser from "./components/AccUser";
 const Both = ({ route }) => {
   return (
     <>
@@ -63,9 +63,9 @@ const routes = [
             component: Home,
           },
           {
-            path: "/reviewBill",
+            path: "/AccUser",
             exact: true,
-            component: reviewBill,
+            component: AccUser,
           },
           {
             path: "/",
@@ -125,6 +125,7 @@ const routes = [
 function App() {
   sessionStorage.setItem("myCart", JSON.stringify([]));
   sessionStorage.setItem("myAccount", JSON.stringify(""));
+  sessionStorage.setItem("myAccountID", JSON.stringify(""));
   return (
     <div className="App">
       <Router>{renderRoutes(routes)}</Router>

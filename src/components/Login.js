@@ -45,6 +45,14 @@ class Login extends React.Component {
               "myAccount",
               JSON.stringify(this.state.name)
             );
+            sessionStorage.setItem(
+              "myAccountID",
+              JSON.stringify(respJson[i].id)
+            );
+            sessionStorage.setItem(
+              "myAccount",
+              JSON.stringify(this.state.name)
+            );
 
             break;
           } else {

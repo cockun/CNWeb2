@@ -5,10 +5,9 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
 
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+
 import { Helper } from "../../utils/helper";
-import TableData from "./TableData";
-import { callApi } from "../../utils/apiCaller";
+
 import TableBill from "./TableBill";
 const useStyles = makeStyles((theme) => ({
   modal: {

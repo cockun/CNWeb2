@@ -1,4 +1,4 @@
-import { Link , Redirect} from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../css/Header.css";
 import React, { useState , useEffect } from "react";
 import swal from "sweetalert";
@@ -10,7 +10,7 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { BrowserRouter as Router } from "react-router-dom";
+
 
 function Header({ route } ) {
   const [text, setState] = useState("");
@@ -104,8 +104,8 @@ function Header({ route } ) {
           <Link to="/Contact" className="title">
             Chăm sóc khách hàng
           </Link>
-          <Link to="/reviewBill" className="title">
-            Xem Đơn Hàng
+          <Link to="/AccUser" className="title">
+            Tài Khoản
           </Link>
         </div>
       </div>

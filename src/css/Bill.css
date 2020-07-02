@@ -1,21 +1,18 @@
 .containerBill{
    
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    margin-top: 80px;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .BillPre{
     display: flex;
     flex-direction: column;
-    width: 400px;
-
+    width: 300px;
     box-shadow:  8px 10px 10px #E8E8E8;
     padding: 15px;
-    margin-right: 50px;
     margin-bottom: 50px;
 }
 
