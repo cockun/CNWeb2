@@ -20,6 +20,7 @@ export default class styleOf extends React.Component {
       this.setState({data : a}) ;
     });
   }
+  
   render() {
     return (
       <div>
@@ -37,16 +38,23 @@ export default class styleOf extends React.Component {
                     </div>
                   </div>
                   <div className="product-list">
+                  <div className="loading-more">
+                    <i className="icon_loading"></i>
+                    <Link to="#">Chuột gaming bán chạy</Link>
+                  </div>
                     <div className="item">
                     
                       {this.state.data.map( (item) => 
+                      
+                      
                             <div className="containerhome">
+                              <Link to={`/Detail/${item.id}`}>
                               <div className="containerhome1">
                                 <div  className="pic">
                                 <img src={item.src} alt="" className="pi-pic"  />
                                   </div>
                              <div className="text">
-                            <div className="textname">
+                            <div className="textname" >
                             {item.name}
                             </div>
                             <div className="textprice">
@@ -57,16 +65,14 @@ export default class styleOf extends React.Component {
                                 
                                 
                                </div>
-                            
+                               </Link>
                             </div>
+                        
                       )}
                          
                     </div>
                   </div>
-                  <div className="loading-more">
-                    <i className="icon_loading"></i>
-                    <Link to="#">Chuột gaming bán chạy</Link>
-                  </div>
+                  
                 </div>
               </div>
             </div>

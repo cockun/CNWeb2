@@ -36,10 +36,16 @@ export default class styleOf2 extends React.Component {
                     </div>
                   </div>
                   <div className="product-list">
+                  <div className="loading-more">
+                    <i className="icon_loading"></i>
+                    <Link to="#">Điện thoại bán chạy</Link>
+                  </div>
                     <div className="item">
+
                     
                       {this.state.data.map( (item) => 
                             <div className="containerhome">
+                              <Link to={`/Detail/${item.id}`}>
                               <div className="containerhome1">
                                 <div  className="pic">
                                 <img src={item.src} alt="" className="pi-pic"  />
@@ -56,16 +62,13 @@ export default class styleOf2 extends React.Component {
                                 
                                 
                                </div>
-                            
+                               </Link>
                             </div>
                       )}
                          
                     </div>
                   </div>
-                  <div className="loading-more">
-                    <i className="icon_loading"></i>
-                    <Link to="#">Điện thoại bán chạy</Link>
-                  </div>
+                  
                 </div>
               </div>
             </div>
