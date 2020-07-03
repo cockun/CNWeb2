@@ -8,7 +8,7 @@ function ChangePass() {
   const [renewPass, setRenewPass] = useState("");
   const savePass = () => {
     callApi(
-      "Account/" + JSON.parse(sessionStorage.getItem("myAccountInfo"))._id,
+      "Account/" + JSON.parse(localStorage.getItem("myAccountInfo"))._id,
       "GET"
     ).then((res) => {
       if (res.data.password !== nowPass) {
@@ -22,7 +22,7 @@ function ChangePass() {
           );
         } else {
           callApi(
-            "Account/" + JSON.parse(sessionStorage.getItem("myAccountInfo"))._id,
+            "Account/" + JSON.parse(localStorage.getItem("myAccountInfo"))._id,
             "PUT",
             { password: newPass }
           ).then(() => {

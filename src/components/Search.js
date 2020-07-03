@@ -20,12 +20,10 @@ export default class App extends Component {
   }
 
   receivedData(a) {
-    callApi("Products", "GET", null).then((res) => {
+    callApi("Products/search/name/"+a, "GET", null).then((res) => {
       const data = res.data;
-      var tmp = data.filter((item) =>
-        item.name.toLowerCase().includes(a.toLowerCase())
-      );
-      const slice = tmp.slice(
+
+      const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
       );
@@ -63,7 +61,7 @@ export default class App extends Component {
       ));
 
       this.setState({
-        pageCount: Math.ceil(tmp.length / this.state.perPage),
+        pageCount: Math.ceil(data.length / this.state.perPage),
 
         postData,
       });

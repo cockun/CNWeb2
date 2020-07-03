@@ -15,8 +15,8 @@ function Header({ route }) {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    setName(JSON.parse(sessionStorage.getItem("myAccountInfo")).name);
-  }, [JSON.parse(sessionStorage.getItem("myAccountInfo")).name]);
+    setName(JSON.parse(localStorage.getItem("myAccountInfo")).name);
+  }, [JSON.parse(localStorage.getItem("myAccountInfo")).name]);
 
   const changeValue = (e) => {
     setState(e.target.value);
@@ -24,7 +24,8 @@ function Header({ route }) {
 
   const logOut = () => {
     sessionStorage.clear();
-    sessionStorage.setItem("myAccountInfo", JSON.stringify({}));
+    localStorage.clear();
+    localStorage.setItem("myAccountInfo", JSON.stringify({}));
     sessionStorage.setItem("myCart", JSON.stringify([]));
     setName("");
     swal("Thông báo!", "Đăng xuất thành công", "success");
@@ -85,7 +86,7 @@ function Header({ route }) {
                   </span>
                   <span>
                     Xin chào{" "}
-                    {JSON.parse(sessionStorage.getItem("myAccountInfo")).name}!
+                    {JSON.parse(localStorage.getItem("myAccountInfo")).name}!
                   </span>
                 </div>
               )}

@@ -3,10 +3,10 @@ import "../css/ChangePass.css";
 import { callApi } from "../ultis/apiCaller";
 import swal from "sweetalert";
 function ChangePass() {
-  const [name, setName] = useState(JSON.parse(sessionStorage.getItem("myAccountInfo")).fullname);
-  const [phone, setPhone] = useState(JSON.parse(sessionStorage.getItem("myAccountInfo")).phone);
-  const [addr, setAddr] = useState(JSON.parse(sessionStorage.getItem("myAccountInfo")).address);
-  console.log(JSON.parse(sessionStorage.getItem("myAccountInfo")));
+  const [name, setName] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).fullname);
+  const [phone, setPhone] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).phone);
+  const [addr, setAddr] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).address);
+ 
   const savePass = () => {
     console.log(name)
     console.log(phone)
@@ -15,7 +15,7 @@ function ChangePass() {
       swal("Thông báo!", "Vui Lòng Nhập Đầy Đủ Thông Tin!!!", "error");
     } else {
       callApi(
-        "Account/" + JSON.parse(sessionStorage.getItem("myAccountInfo"))._id,
+        "Account/" + JSON.parse(localStorage.getItem("myAccountInfo"))._id,
         "PUT",
         { fullname: name,
           phone: phone,
