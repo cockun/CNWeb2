@@ -20,7 +20,7 @@ function ReviewBill() {
     <div className="containerBill">
     {
         (userName === "" && (
-            <div style={{fontSize: 30 , display: 'flex' , justifyContent: 'center' , flexDirection: 'column' , width: '60%'}}>
+            <div style={{fontSize: 30 , display: 'flex' , justifyContent: 'center' , flexDirection: 'column' ,}}>
             <div >
                 Bạn chưa đăng nhập , Vui lòng đăng nhập để xem lại đơn hàng của mình!!!
             </div>

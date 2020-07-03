@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "../../css/Account.module.css";
 import TextField from "@material-ui/core/TextField";
 import { callApi } from "../../utils/apiCaller";
-import ModalAccount from "./ModalAccount";
+
 import TableData from "./TableData";
 import ModalBill from "./ModalBill";
 import { Helper } from "../../utils/helper";

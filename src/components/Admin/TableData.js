@@ -13,7 +13,7 @@ import { callApi } from "../../utils/apiCaller";
 import { Helper } from "../../utils/helper";
 import swal from "sweetalert";
 
-var rows = [];
+
 
 const useStyles = makeStyles({
   root: {

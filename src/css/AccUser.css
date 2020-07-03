@@ -1,0 +1,39 @@
+
+.AccCont{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    margin-top: 60px;
+    
+}
+.optionAccCont{
+    flex: 1;
+}
+
+.optionAcc{
+    border: 1px solid black;
+    border-top: none;
+    padding: 20px 25px;
+}
+
+.optionAcc:hover{
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.optionAcc:first-child{
+    border-top: 1px solid black;
+}
+
+.optionAccActive{
+    background-color: black;
+    color: white;
+    font-weight: 700;
+}
+
+.contentOptCont{
+    flex: 3;
+    margin-left: 65px;
+}

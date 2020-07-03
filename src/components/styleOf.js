@@ -58,7 +58,7 @@ export default class styleOf extends React.Component {
                             {item.name}
                             </div>
                             <div className="textprice">
-                            {item.price}
+                            {item.price}đ
                             </div>
                                 </div>
                                 

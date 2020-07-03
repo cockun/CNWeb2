@@ -20,11 +20,13 @@ class Register extends React.Component {
     this.add = this.add.bind(this);
   }
   async add(e) {
+
     e.preventDefault();
-    if (this.state.pass != this.state.pass2) {
+
+    if (this.state.pass !== this.state.pass2) {
       swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
     } else {
-      if (this.state.name !== "" && this.state.pass !== "") {
+      if (this.state.name.length>=8  && this.state.pass.length >= 8) {
         let resp = await fetch(
           "https://5ee5aa77ddcea00016a37721.mockapi.io/Account"
         );
@@ -35,14 +37,14 @@ class Register extends React.Component {
         let a = parseInt(respJson.length);
         let jus = 1;
         for (var i = 0; i < a; i++) {
-          if (String(this.state.name) == String(respJson[i].name)) {
+          if (String(this.state.name) === String(respJson[i].name)) {
             swal("Thông báo!", "Tên tài khoản đã tồn tại", "error");
             jus = 0;
             break;
           }
         }
         if (jus === 1) {
-          if (String(this.state.pass) == String(this.state.pass2)) {
+          if (String(this.state.pass) === String(this.state.pass2)) {
             callApi("Account", "POST", {
               id: "",
               name: this.state.name,
@@ -58,7 +60,7 @@ class Register extends React.Component {
           }
         }
       } else {
-        swal("Thông báo!", "Vui lòng nhập đầy đủ thông tin!", "error");
+        swal("Thông báo!", "Tài khoản và mật khẩu phải trên 8 kí tự", "error");
       }
     }
   }
@@ -72,7 +74,7 @@ class Register extends React.Component {
               <div class="row">
                 <div class="colregister">
                   <div class="register-form">
-                    <h2>Register</h2>
+                    <h2>Đăng ký</h2>
                     <form
                       action="#"
                       onSubmit={(e) => {
@@ -80,7 +82,7 @@ class Register extends React.Component {
                       }}
                     >
                       <div class="group-input">
-                        <label for="username">Tài khoản</label>
+                        <label for="username">Tài khoản *</label>
                         <input
                           type="text"
                           id="username"
@@ -91,9 +93,8 @@ class Register extends React.Component {
                         />
                       </div>
                       <div class="group-input">
-                        <label for="pass">Mật Khẩu </label>
+                        <label for="pass">Mật Khẩu *</label>
                         <input
-                          type="text"
                           id="username"
                           value={String(this.state.pass)}
                           onChange={(txt) => {
@@ -103,9 +104,8 @@ class Register extends React.Component {
                         />
                       </div>
                       <div class="group-input">
-                        <label for="con-pass">Nhập lại mật khẩu</label>
+                        <label for="con-pass">Nhập lại mật khẩu *</label>
                         <input
-                          type="text"
                           id="username"
                           value={String(this.state.pass2)}
                           onChange={(txt) => {
@@ -115,7 +115,7 @@ class Register extends React.Component {
                         />
                       </div>
                       <div class="group-input">
-                        <label for="con-pass">Họ và tên</label>
+                        <label for="con-pass">Họ và tên </label>
                         <input
                           type="text"
                           id="username"
@@ -148,12 +148,12 @@ class Register extends React.Component {
                         />
                       </div>
                       <button type="submit" class="site-btn register-btn">
-                        REGISTER
+                        ĐĂNG KÝ
                       </button>
                     </form>
                     <div class="switch-login">
                       <Link to="/Login" class="or-login">
-                        Or Login
+                        Hoặc đăng nhập
                       </Link>
                     </div>
                   </div>

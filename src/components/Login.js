@@ -45,6 +45,14 @@ class Login extends React.Component {
               "myAccount",
               JSON.stringify(this.state.name)
             );
+            sessionStorage.setItem(
+              "myAccountID",
+              JSON.stringify(respJson[i].id)
+            );
+            sessionStorage.setItem(
+              "myAccount",
+              JSON.stringify(this.state.name)
+            );
 
             break;
           } else {
@@ -81,11 +89,11 @@ class Login extends React.Component {
                 <div className="collogin">
                   <form>
                     <div className="login-form">
-                      <h2>Login</h2>
+                      <h2>Đăng nhập</h2>
                       <form action="#" className="form" onSubmit={this.check}>
                         <div className="group-input">
                           <label for="username">
-                            Username or email address *
+                            Tên tài khoản hoặc email *
                           </label>
                           <input
                             type="text"
@@ -97,7 +105,7 @@ class Login extends React.Component {
                           />
                         </div>
                         <div className="group-input">
-                          <label for="pass">Password *</label>
+                          <label for="pass">Mật khẩu *</label>
                           <input
                             type="text"
                             id="pass"
@@ -109,35 +117,22 @@ class Login extends React.Component {
                           />
                         </div>
                         <div className="group-input gi-check">
-                          <div className="gi-more">
-                            <label for="save-pass">
-                              Save Password
-                              <input type="checkbox" id="save-pass" />
-                              <span className="checkmark"></span>
-                            </label>
-                            <a className="forget-pass">Forget your Password</a>
-                          </div>
+                          
                         </div>
                         <button type="submit" className="site-btn login-btn">
-                          Sign In
+                          ĐĂNG NHẬP 
                         </button>
                       </form>
                       <div className="switch-login">
                         <Link to="/Register" className="or-login">
-                          Or Create An Account
+                          Hoặc Tạo tài khoản mới
                         </Link>
                       </div>
                     </div>
 
-                    <button type="submit" className="site-btn login-btn">
-                      Sign In
-                    </button>
+                    
                   </form>
-                  <div className="switch-login">
-                    <Link to="/Register" className="or-login">
-                      Or Create An Account
-                    </Link>
-                  </div>
+                  
                 </div>
               </div>
             </div>

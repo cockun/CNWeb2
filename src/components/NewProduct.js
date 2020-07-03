@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "../styles.css";
-import { callApi } from "../utils/apiCaller";
+import { callApi } from "../ultis/apiCaller";
 import { Link } from "react-router-dom";
 import { Helper } from "../utils/helper";
 import "../css/Product.css";

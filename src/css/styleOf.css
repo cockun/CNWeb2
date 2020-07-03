@@ -93,24 +93,30 @@ a{
     justify-content: space-between;
 }
 .pic{
-    height: auto;
+    height: 60%;
     width: 100%;
-   
+
 }
 .text
 {
-    height: 30%;
+    
+   
+    height: 40%;
 }
 .textname
 {
     padding-left: 10px;
-    font-size: 20;
+    height: '20%';
+    
     font-weight: bold;
 }
 .textprice
 {
+    height: 20%;
+    
+    padding: 10px;
     padding-left: 10px;
-    font-size: 25;
+    font-size: 20px;
     font-weight: bolder;
     color: red;
 }
