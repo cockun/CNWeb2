@@ -63,7 +63,7 @@ function Detail(props) {
                 +</span>
             </div>
             <div className="addtoCartDT">
-                <span style={{fontSize: 16 , color: 'white' , fontWeight: 700}} onClick={addToCart}>ADD TO CART</span>
+                <span style={{fontSize: 16 , color: 'white' , fontWeight: 700}} onClick={addToCart}>THÊM VÀO GIỎ HÀNG</span>
             </div>
           </div>
         </div>
