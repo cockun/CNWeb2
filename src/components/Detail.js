@@ -20,7 +20,7 @@ function Detail(props) {
     let cartData = JSON.parse(sessionStorage.getItem('myCart'));
     let check =0;
     cartData.map( (item) => {
-      if(data.id === item.id){
+      if(data._id === item._id){
         item.quantity+=number;
         check =1;
         sessionStorage.setItem('myCart',JSON.stringify(cartData));
@@ -63,7 +63,7 @@ function Detail(props) {
                 +</span>
             </div>
             <div className="addtoCartDT">
-                <span style={{fontSize: 16 , color: 'white' , fontWeight: 700}} onClick={addToCart}>ADD TO CART</span>
+                <span style={{fontSize: 16 , color: 'white' , fontWeight: 700}} onClick={addToCart}>THÊM VÀO GIỎ HÀNG</span>
             </div>
           </div>
         </div>

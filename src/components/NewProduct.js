@@ -5,6 +5,8 @@ import { callApi } from "../ultis/apiCaller";
 import { Link } from "react-router-dom";
 import { Helper } from "../utils/helper";
 import "../css/Product.css";
+
+var lengthD = 0
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -12,20 +14,17 @@ export default class App extends Component {
       offset: 0,
       data: [],
       perPage: 12,
-      currentPage: 0,
+      currentPage: 1,
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   receivedData() {
-    callApi(`Products`, "GET", null).then((res) => {
+    callApi(`Products/page/`+(this.state.currentPage+1)+'/'+this.state.perPage, "GET", null).then((res) => {
       const data = res.data;
-      const slice = data.slice(
-        this.state.offset,
-        this.state.offset + this.state.perPage
-      );
-      const postData = slice.map((pd, index) => (
+
+      const postData = data.map((pd, index) => (
         <React.Fragment key={index}>
-          <Link to={`/Detail/${pd.id}`} className="Product">
+          <Link to={`/Detail/${pd._id}`} className="Product">
             <div className="productImgCont">
               <img src={pd.src} className="productImg" alt="" />
             </div>
@@ -51,13 +50,13 @@ export default class App extends Component {
                   {Helper.formatDollar(pd.price)}đ
                 </span>
               </div>
-            </div>
+            </div> 
           </Link>
         </React.Fragment>
       ));
 
       this.setState({
-        pageCount: Math.ceil(data.length / this.state.perPage),
+        pageCount: Math.ceil(lengthD/this.state.perPage),
 
         postData,
       });
@@ -66,6 +65,7 @@ export default class App extends Component {
 
   handlePageClick = (e) => {
     const selectedPage = e.selected;
+    console.log(selectedPage);
     const offset = selectedPage * this.state.perPage;
 
     this.setState(
@@ -80,9 +80,16 @@ export default class App extends Component {
   };
 
   componentDidMount() {
+     var lengthData = () => {
+      callApi(`Products/get/length`, "GET", null).then((res) => {
+       lengthD =  res.data;
+      });
+    };
+    lengthData();
     this.receivedData();
   }
   render() {
+  
     return (
       <div className="productContainer">
         <div className="productMainPage">{this.state.postData}</div>

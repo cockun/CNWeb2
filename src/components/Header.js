@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "../css/Header.css";
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import swal from "sweetalert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { renderRoutes } from "react-router-config";
@@ -10,15 +10,13 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-
-
-function Header({ route } ) {
+function Header({ route }) {
   const [text, setState] = useState("");
   const [name, setName] = useState("");
-  
+
   useEffect(() => {
-    setName(JSON.parse(sessionStorage.getItem("myAccount")));
-  });
+    setName(JSON.parse(sessionStorage.getItem("myAccountInfo")).name);
+  }, [JSON.parse(sessionStorage.getItem("myAccountInfo")).name]);
 
   const changeValue = (e) => {
     setState(e.target.value);
@@ -26,9 +24,9 @@ function Header({ route } ) {
 
   const logOut = () => {
     sessionStorage.clear();
-    sessionStorage.setItem("myAccount", JSON.stringify(""));
+    sessionStorage.setItem("myAccountInfo", JSON.stringify({}));
     sessionStorage.setItem("myCart", JSON.stringify([]));
-    setName(JSON.parse(sessionStorage.getItem("myAccount")));
+    setName("");
     swal("Thông báo!", "Đăng xuất thành công", "success");
   };
 
@@ -70,20 +68,26 @@ function Header({ route } ) {
                 icon={faSignInAlt}
                 style={{ fontSize: 25, color: "#E7AB3C" }}
               />
-              {name === "" && (
+              {name === undefined && (
                 <div className="lgOrlo">
-                  <Link to="/Login"  className="optionLg" >Đăng Nhập</Link>
-                  <Link to="/Register" className="optionLg">Đăng Ký</Link>
+                  <Link to="/Login" className="optionLg">
+                    Đăng Nhập
+                  </Link>
+                  <Link to="/Register" className="optionLg">
+                    Đăng Ký
+                  </Link>
                 </div>
               )}
-              {name !== "" && (
+              {name !== undefined && (
                 <div className="lgOrlo">
-                  <span onClick={logOut} className="optionLg">Đăng Xuất</span>
+                  <span onClick={logOut} className="optionLg">
+                    Đăng Xuất
+                  </span>
                   <span>
-                    Xin chào {JSON.parse(sessionStorage.getItem("myAccount"))}!
+                    Xin chào{" "}
+                    {JSON.parse(sessionStorage.getItem("myAccountInfo")).name}!
                   </span>
                 </div>
-             
               )}
             </div>
           </div>

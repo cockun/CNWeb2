@@ -1,7 +1,6 @@
 import React from 'react'
 
-import product1 from '../image/product-1.jpg'
-import '../css/styleOf.css'
+
 import {Link} from 'react-router-dom'
 import { callApi } from '../ultis/apiCaller';
 
@@ -48,7 +47,7 @@ export default class styleOf extends React.Component {
                       
                       
                             <div className="containerhome">
-                              <Link to={`/Detail/${item.id}`}>
+                              <Link to={`/Detail/${item._id}`}>
                               <div className="containerhome1">
                                 <div  className="pic">
                                 <img src={item.src} alt="" className="pi-pic"  />

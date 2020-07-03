@@ -34,7 +34,7 @@ export function Checkout() {
           phone: state.phone,
           address: state.address,
           date: today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
-          name: JSON.parse(sessionStorage.getItem("myAccount")),
+          name: JSON.parse(sessionStorage.getItem("myAccountInfo")).name,
         }); 
       data.map(async item => {  
         let tmp ;
@@ -62,10 +62,10 @@ export function Checkout() {
               <div className="colleftcheckout">
                 <div className="checkout-content">
                   <Link to="/Login" className="content-btn">
-                    Click Here To Login
+                    Nhấn vào đây để đăng nhập
                   </Link>
                 </div>
-                <h4 className="billh4"> Biiling Details</h4>
+                <h4 className="billh4"> Chi tiết đơn hàng</h4>
                 <div className="rowleft">
                   <div className="col-lg-6">
                     <label htmlFor="fir">
@@ -101,11 +101,11 @@ export function Checkout() {
                   <input type="text" placeholder="Enter Your Coupon Code" />
                 </div>
                 <div className="place-order">
-                  <h4 className="billh4r">Your Order</h4>
+                  <h4 className="billh4r">Đơn hàng của bạn</h4>
                   <div className="order-total">
                     <ul className="order-table">
                       <li>
-                        Product <span>Total</span>
+                        Sản phẩm <span>Tổng cộng</span>
                       </li>
                       {data.length !== 0 && data.map((item, index) => (
                         <li className="fw-normal" key={index}>
@@ -113,16 +113,16 @@ export function Checkout() {
                         </li>
                       ))}
                       <li className="fw-normal">
-                        Subtotal <span>{Helper.formatDollar(total)}</span>
+                        Gía trước khi giảm <span>{Helper.formatDollar(total)}</span>
                       </li>
                       <li className="total-price">
-                        Total <span>{Helper.formatDollar(total)}</span>
+                        Tổng cộng <span>{Helper.formatDollar(total)}</span>
                       </li>
                     </ul>
                     <div className="payment-check">
                       <div className="pc-item">
                         <label htmlFor="pc-check">
-                          Cheque Payment
+                          Kiểm tra thanh toán
                           <input type="checkbox" id="pc-check" />
                           <span className="checkmark"></span>
                         </label>
@@ -137,7 +137,7 @@ export function Checkout() {
                     </div>
                     <div className="order-btn">
                       <button type="button" onClick={checkoutbill} className="site-btn place-btn">
-                        Place Order
+                        ĐẶT HÀNG
                       </button>
                     </div>
                   </div>

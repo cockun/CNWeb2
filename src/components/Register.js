@@ -22,47 +22,54 @@ class Register extends React.Component {
   async add(e) {
 
     e.preventDefault();
-
-    if (this.state.pass !== this.state.pass2) {
-      swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
-    } else {
-      if (this.state.name.length>=8  && this.state.pass.length >= 8) {
-        let resp = await fetch(
-          "https://5ee5aa77ddcea00016a37721.mockapi.io/Account"
-        );
-        let respJson = await resp.json();
-
-        this.setState({ data: respJson });
-
-        let a = parseInt(respJson.length);
-        let jus = 1;
-        for (var i = 0; i < a; i++) {
-          if (String(this.state.name) === String(respJson[i].name)) {
-            swal("Thông báo!", "Tên tài khoản đã tồn tại", "error");
-            jus = 0;
-            break;
-          }
-        }
-        if (jus === 1) {
-          if (String(this.state.pass) === String(this.state.pass2)) {
-            callApi("Account", "POST", {
-              id: "",
-              name: this.state.name,
-              password: this.state.pass,
-              fullname: this.state.fullname,
-              phone: this.state.phone,
-              address: this.state.address,
-              author: "1",
-            });
-            swal("Thông báo!", "Đăng ký thành công", "success").then(() => {
-              this.props.history.push("/Login");
-            });
-          }
-        }
+    const a = parseInt(this.state.phone);
+    if(a>=0 && this.state.phone >=8)
+    {
+      if (this.state.pass !== this.state.pass2) {
+        swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
       } else {
-        swal("Thông báo!", "Tài khoản và mật khẩu phải trên 8 kí tự", "error");
+        if (this.state.name.length>=8  && this.state.pass.length >= 8) {
+          let resp = await fetch(
+            "https://my-appcoc.herokuapp.com/Account"
+          );
+          let respJson = await resp.json();
+  
+          this.setState({ data: respJson });
+  
+          let a = parseInt(respJson.length);
+          let jus = 1;
+          for (var i = 0; i < a; i++) {
+            if (String(this.state.name) === String(respJson[i].name)) {
+              swal("Thông báo!", "Tên tài khoản đã tồn tại", "error");
+              jus = 0;
+              break;
+            }
+          }
+          if (jus === 1) {
+            if (String(this.state.pass) === String(this.state.pass2)) {
+              callApi("Account", "POST", {
+                id: "",
+                name: this.state.name,
+                password: this.state.pass,
+                fullname: this.state.fullname,
+                phone: this.state.phone,
+                address: this.state.address,
+                author: "1",
+              });
+              swal("Thông báo!", "Đăng ký thành công", "success").then(() => {
+                this.props.history.push("/Login");
+              });
+            }
+          }
+        } else {
+          swal("Thông báo!", "Tài khoản và mật khẩu phải trên 8 kí tự", "error");
+        }
       }
     }
+    else{
+      swal("Thông báo!", "SĐT phải là chữ số và trên 8 ký tự", "error");
+    }
+   
   }
   render() {
     return (

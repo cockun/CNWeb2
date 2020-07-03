@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "../css/AccUser.css";
-import Bill from './ReviewBill' 
-import ChangePass from './ChangePass'
-
-function AccUser() {
+import { withRouter } from "react-router-dom";
+import Bill from "./ReviewBill";
+import ChangePass from "./ChangePass";
+import ChangeInfo from "./ChangeInfo";
+function AccUser(props) {
   const [option, setOption] = useState("Bill");
-  
+
   return (
     <div className="AccCont">
       <div className="optionAccCont">
@@ -37,19 +38,21 @@ function AccUser() {
           className={
             option !== "LogOut" ? "optionAcc" : "optionAcc optionAccActive"
           }
-          onClick={() => setOption("LogOut")}
+          onClick={() => {
+            props.history.push("/");
+          }}
         >
           Đăng Xuất
         </div>
       </div>
-      
+
       <div className="contentOptCont">
         {option === "Bill" && <Bill />}
         {option === "Pass" && <ChangePass />}
-        
+        {option === "Info" && <ChangeInfo />}
       </div>
     </div>
   );
 }
 
-export default AccUser;
+export default withRouter(AccUser);

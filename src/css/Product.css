@@ -10,13 +10,14 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    
 }
 .Product{
+
     height: 400px;
     width: 250px;
     margin-bottom: 70px;
-    padding: 20px;
+    padding: 20px 20px 20px 30px;
     box-shadow:  8px 10px 10px #E8E8E8;
 }
 
