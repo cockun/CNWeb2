@@ -89,9 +89,9 @@ function Header({ route }) {
               )}
               {name !==undefined && (
                 <div className="lgOrlo">
-                  <span onClick={logOut} className="optionLg">
+                  <Link to="/" onClick={logOut} className="optionLg">
                     Đăng Xuất
-                  </span>
+                  </Link>
                   <span>
                     Xin chào
                     
