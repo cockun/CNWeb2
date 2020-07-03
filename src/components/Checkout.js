@@ -38,12 +38,12 @@ export function Checkout() {
         }); 
       data.map(async item => {  
         let tmp ;
-        await callApi('Products/' +item.id, "GET").then((res)=>{
+        await callApi('Products/' +item._id, "GET").then((res)=>{
           tmp = res.data.sold;
         });
       
        
-        callApi('Products/'+item.id , "PUT" , {...item, sold : item.quantity +tmp})
+        callApi('Products/'+item._id , "PUT" , {...item, sold : item.quantity +tmp})
         console.log({...item, sold : item.quantity + tmp});
       })
       swal("Thông báo!", "Đặt hàng thành công", "success");
