@@ -34,13 +34,14 @@ export default function TableData(props) {
 
   const [count, setCount] = useState(0);
 
+  // useEffect(() => {
+    
+  // }, [props.data]);
+
   useEffect(() => {
     callApi(props.data.type + "/get/length", "GET").then((res) => {
       setCount(res.data);
     });
-  }, [props.data.type]);
-
-  useEffect(() => {
     if (props.data.type === "Products") {
       columns = [
         { id: "src", label: "Hình ảnh", minWidth: 120 },
@@ -263,6 +264,7 @@ export default function TableData(props) {
                               }).then((willDelete) => {
                                 if (willDelete) {
                                   deleteItem(row);
+                                  setCount(count-1)
                                 }
                               });
                             }}
