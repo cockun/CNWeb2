@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../css/Detail.css";
 import { callApi } from "../ultis/apiCaller";
 import { Helper } from "../utils/helper";
+import swal from "sweetalert";
 function Detail(props) {
   const [data, setData] = useState({});
   const [number,setNumber] = useState(1);
@@ -23,16 +24,15 @@ function Detail(props) {
         item.quantity+=number;
         check =1;
         sessionStorage.setItem('myCart',JSON.stringify(cartData));
-        alert("Thêm Thành Công!!!")
+        swal("", "Thêm vào giỏ hàng thành công", "success")
       } 
     })
     if(check==0){
       cartData.push({...data,quantity: number});
       sessionStorage.setItem('myCart',JSON.stringify(cartData));
-      alert("Thêm Thành Công!!!")
+      swal("", "Thêm vào giỏ hàng thành công", "success")
     }
   }
-
   return (
     <div className="DetailContainer">
       <div className="DetailProduct">

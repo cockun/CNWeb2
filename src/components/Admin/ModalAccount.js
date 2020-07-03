@@ -49,7 +49,7 @@ export default function ModalAccount(props) {
   const [data, setData] = useState({
     name: "",
     fullname: "",
-    author: "",
+    author: "1",
     phone: "",
     address: "",
   });
@@ -68,7 +68,9 @@ export default function ModalAccount(props) {
   const btnOk = async () => {
     if (props.show.action === "POST") {
       console.log(data)
-      await callApi("Account", "POST", data);
+      await callApi("Account", "POST", data).catch((error)=>{
+        console.log(error)
+      });
       props.handleClose(data, props.show.action);
     } else {
       let tmp = props.allData.data.find((item) => {

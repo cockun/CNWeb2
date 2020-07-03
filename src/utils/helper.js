@@ -13,8 +13,17 @@ export class Helper {
     return reg.test(string);
   }
   static parseStringToDate(string) {
-    return new Date(
-      string.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")
-    );
+    return new Date(string.replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+  }
+  static convertDateToString(date) {
+    const dateString = date.toJSON();
+    const dateData = new Date(dateString);
+    return `${dateData.getFullYear()}-${
+      dateData.getMonth() < 9
+        ? "0" + (dateData.getMonth() + 1)
+        : dateData.getMonth() + 1
+    }-${
+      dateData.getDate() < 10 ? "0" + dateData.getDate() : dateData.getDate()
+    }`;
   }
 }

@@ -43,3 +43,13 @@
     display: flex;
     justify-content: space-between;
 }
+.container{
+    display: flex;
+    flex:wrap;
+    flex-direction: row;
+}
+.textField{
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 100px;
+}

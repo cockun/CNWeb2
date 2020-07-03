@@ -19,6 +19,28 @@ export default function Account() {
     value: "",
     data: [],
   });
+
+  const [page, setPage] = useState({
+    page: 1,
+    limit: 10,
+  });
+
+  const handleChangeRowsPerPage = (rowsPerPage) => {
+    setPage({ ...page, limit: rowsPerPage });
+    callApi("Account/page/" + (page.page + 1) + "/" + rowsPerPage, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+  };
+  const handleChangePage = (newPage) => {
+    callApi("Account/page/" + (newPage + 1) + "/" + page.limit, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+    setPage({ ...page, page: newPage });
+  };
   const handleOpen = (item, a) => {
     setShowModal({ data: item, show: true, action: a });
   };
@@ -35,27 +57,43 @@ export default function Account() {
       setState({ ...state, data: data });
     }
     if (action === "POST") {
-      callApi("Account", "GET").then((res) => {
+      callApi("Account/page/" + 1 + "/" + 10, "GET").then((res) => {
         setState({ ...state, data: res.data });
+      });
+      setPage({
+        page: 1,
+        limit: 10,
       });
     }
 
     setShowModal({ data: {}, show: false });
   };
   useEffect(() => {
-    callApi("Account", "GET").then((res) => {
-      setState({ ...state, data: res.data });
-    });
+    callApi("Account/page/" + page.page + "/" + page.limit, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
   }, []);
+
   const search = (e) => {
-    console.log(state.data);
-    let tmp = state.data.filter((item) => {
-      return item.fullname.toLowerCase().includes(e.target.value.toLowerCase());
-    });
-    console.log(tmp);
-    setChangeText({ value: e.target.value, data: [...tmp] });
+    if (e.target.value !== "") {
+      callApi("Account/search/name" + "/" + e.target.value, "GET").then(
+        (res) => {
+          setState({ ...state, data: res.data });
+        }
+      );
+    } else {
+      callApi("Account/page/" + page.page + "/" + page.limit, "GET").then(
+        (res) => {
+          setState({ ...state, data: res.data });
+        }
+      );
+    }
+
+    setChangeText({ value: e.target.value });
   };
-  console.log(changeText.data);
+
   return (
     <div className={classes.container}>
       <div
@@ -98,18 +136,33 @@ export default function Account() {
           <span>Tìm kiếm:</span>
         </div>
         <div>
-          {[{ a: 2 }].map(() => {
+          <TableData
+            handleOpen2={handleOpen}
+            handleChangePage={handleChangePage}
+            data={state}
+            handleChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+          {/* {[{ a: 2 }].map(() => {
             if (changeText.value === "") {
-              return <TableData handleOpen2={handleOpen} data={state} />;
+              return (
+                <TableData
+                  handleOpen2={handleOpen}
+                  handleChangePage={handleChangePage}
+                  data={state}
+                  handleChangeRowsPerPage={handleChangeRowsPerPage}
+                />
+              );
             } else {
               return (
                 <TableData
                   handleOpen2={handleOpen}
+                  handleChangePage={handleChangePage}
+                  handleChangeRowsPerPage={handleChangeRowsPerPage}
                   data={{ data: changeText.data, type: "Account" }}
                 />
               );
             }
-          })}
+          })} */}
         </div>
       </div>
 

@@ -20,11 +20,13 @@ class Register extends React.Component {
     this.add = this.add.bind(this);
   }
   async add(e) {
+
     e.preventDefault();
+
     if (this.state.pass !== this.state.pass2) {
       swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
     } else {
-      if (this.state.name !== "" && this.state.pass !== "") {
+      if (this.state.name.length>=8  && this.state.pass.length >= 8) {
         let resp = await fetch(
           "https://my-appcoc.herokuapp.com/Account"
         );
@@ -58,7 +60,7 @@ class Register extends React.Component {
           }
         }
       } else {
-        swal("Thông báo!", "Vui lòng nhập đầy đủ thông tin!", "error");
+        swal("Thông báo!", "Tài khoản và mật khẩu phải trên 8 kí tự", "error");
       }
     }
   }

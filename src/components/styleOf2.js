@@ -15,7 +15,7 @@ export default class styleOf2 extends React.Component {
   componentDidMount() {
     callApi('Products', 'GET', null).then((res) => {
        const data = res.data;
-       const a= data.splice(30,4)
+       const a= data.splice(29,4)
       this.setState({data : a}) ;
     });
   }
@@ -50,9 +50,10 @@ export default class styleOf2 extends React.Component {
                              <div className="text">
                             <div className="textname">
                             {item.name}
+
                             </div>
                             <div className="textprice">
-                            {item.price}
+                            {item.price}đ
                             </div>
                                 </div>
                                 

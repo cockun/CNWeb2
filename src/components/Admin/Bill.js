@@ -6,16 +6,19 @@ import { callApi } from "../../utils/apiCaller";
 import TableData from "./TableData";
 import ModalBill from "./ModalBill";
 import { Helper } from "../../utils/helper";
+import { faNetworkWired } from "@fortawesome/free-solid-svg-icons";
 
 // var date2 =
 //   today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
 
-var date = Helper.parseStringToDate("16-06-2020");
-var date2 = new Date(
-  "15-05-2020".replace(/(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3")
-);
+var date2 = new Date();
+console.log(Helper.convertDateToString(date2));
 
 export default function Bill() {
+  const [page, setPage] = useState({
+    page: 1,
+    limit: 10,
+  });
   const [state, setState] = useState({
     data: [],
     type: "Bill",
@@ -41,16 +44,55 @@ export default function Bill() {
     setShowModal({ data: { billInfo: [{ a: 2 }] }, show: false });
   };
   useEffect(() => {
-    callApi("Bill", "GET").then((res) => {
+    callApi("Bill/page/" + page.page + "/" + page.limit, "GET").then((res) => {
       setState({ ...state, data: res.data });
     });
   }, []);
 
+  const filterDate = (e) => {
+    let fromDate = document.getElementById("fromDate");
+    let toDate = document.getElementById("toDate");
+    if (toDate.value !== "" && fromDate !== "") {
+      callApi("Bill/filter/" + fromDate + "/" + toDate, "GET").then((res) => {
+        setState({ ...state, data: res.data });
+      });
+    }
+    console.log(toDate.value);
+    console.log("a");
+  };
   const search = (e) => {
-    let tmp = state.data.filter((item) => {
-      return item.fullname.toLowerCase().includes(e.target.value.toLowerCase());
-    });
-    setChangeText({ value: e.target.value, data: [...tmp] });
+    if (e.target.value !== "") {
+      callApi("Bill/search/fullname" + "/" + e.target.value, "GET").then(
+        (res) => {
+          setState({ ...state, data: res.data });
+        }
+      );
+    } else {
+      callApi("Bill/page/" + page.page + "/" + page.limit, "GET").then(
+        (res) => {
+          setState({ ...state, data: res.data });
+        }
+      );
+    }
+
+    setChangeText({ value: e.target.value });
+  };
+
+  const handleChangeRowsPerPage = (rowsPerPage) => {
+    setPage({ ...page, limit: rowsPerPage });
+    callApi("Bill/page/" + (page.page + 1) + "/" + rowsPerPage, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+  };
+  const handleChangePage = (newPage) => {
+    callApi("Bill/page/" + (newPage + 1) + "/" + page.limit, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+    setPage({ ...page, page: newPage });
   };
 
   return (
@@ -77,12 +119,48 @@ export default function Bill() {
               search(e);
             }}
           />
+
           <span style={{ marginLeft: 30 }}>Tìm kiếm:</span>
-         
+          <form className={{ flex: 1, marginRight: 20 }} noValidate>
+            <TextField
+              id="toDate"
+              label="Đến ngày"
+              type="date"
+              defaultValue=""
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={() => {
+                filterDate();
+              }}
+            />
+          </form>
+          <form className={{ flex: 1, marginLeft: 20 }} noValidate>
+            <TextField
+              id="fromDate"
+              label="Từ ngày"
+              type="date"
+              defaultValue=""
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={(e) => {
+                filterDate();
+              }}
+            />
+          </form>
         </div>
 
         <div>
-          {[{ a: 2 }].map(() => {
+          <TableData
+            handleOpen2={handleOpen}
+            handleChangePage={handleChangePage}
+            data={state}
+            handleChangeRowsPerPage={handleChangeRowsPerPage}
+          />
+          {/* {[{ a: 2 }].map(() => {
             if (changeText.value === "") {
               return <TableData handleOpen2={handleOpen} data={state} />;
             } else {
@@ -93,7 +171,7 @@ export default function Bill() {
                 />
               );
             }
-          })}
+          })} */}
         </div>
       </div>
       <ModalBill allData={state} show={showModal} handleClose={handleClose2} />
