@@ -66,10 +66,13 @@ export default function ModalAccount(props) {
   };
 
   const btnOk = async () => {
+    let z;
+    if (data.author === "") {
+      z = { ...data, author: "1" };
+    }
     if (props.show.action === "POST") {
-      console.log(data)
-      await callApi("Account", "POST", data).catch((error)=>{
-        console.log(error)
+      await callApi("Account", "POST", z).catch((error) => {
+        console.log(error);
       });
       props.handleClose(data, props.show.action);
     } else {
@@ -84,7 +87,7 @@ export default function ModalAccount(props) {
         if (props.show.action === "POST") {
         } else {
           if (props.show.action === "PUT") {
-            callApi("Account/" + data._id, props.show.action, data);
+            callApi("Account/" + data._id, props.show.action, z);
           }
         }
         props.handleClose(data, props.show.action);
@@ -92,7 +95,7 @@ export default function ModalAccount(props) {
       }
     }
   };
-  console.log(data)
+  console.log(data);
   return (
     <div>
       <Modal

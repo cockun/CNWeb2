@@ -50,15 +50,15 @@ export default function Bill() {
   }, []);
 
   const filterDate = (e) => {
-    let fromDate = document.getElementById("fromDate");
-    let toDate = document.getElementById("toDate");
-    if (toDate.value !== "" && fromDate !== "") {
+    let fromDate = document.getElementById("fromDate").value;
+    let toDate = document.getElementById("toDate").value;
+
+    if (toDate !== "" && fromDate !== "") {
       callApi("Bill/filter/" + fromDate + "/" + toDate, "GET").then((res) => {
         setState({ ...state, data: res.data });
       });
     }
-    console.log(toDate.value);
-    console.log("a");
+
   };
   const search = (e) => {
     if (e.target.value !== "") {
