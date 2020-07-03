@@ -22,8 +22,8 @@ class Register extends React.Component {
   async add(e) {
 
     e.preventDefault();
-    const a = parseInt(this.state.phone);
-    if(a>=0 && this.state.phone >=8)
+    const a = this.state.phone;
+    if(parseInt(a)>=0 && this.state.phone.length >=8)
     {
       if (this.state.pass !== this.state.pass2) {
         swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
@@ -33,7 +33,7 @@ class Register extends React.Component {
             "Account/checkUser/" + this.state.name,
             "GET"
           ).then((res) => {
-            if(res.data == 1)
+            if(res.data !== 1)
             {
               if (String(this.state.pass) === String(this.state.pass2)) {
                 callApi("Account", "POST", {

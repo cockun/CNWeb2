@@ -45,8 +45,9 @@ function Detail(props) {
             <h3 style={{fontSize: 30, color: '#252525' , fontWeight: 700 }}>{data.name}</h3>
             <p style={{fontSize: 16, color: '#636363' , fontWeight: 400, lineHeight: '26px', }}>{data.description}</p>
             <h4 style={{fontSize: 26, color: 'red' , fontWeight: 'bold', lineHeight: '26px', }}>
-              {data.pirce2}
-              <span style={{fontSize: 18, color: '#636363' , fontWeight: 400, textDecorationLine:'line-through', marginLeft: 13 }}>{data.price}</span>
+            {Helper.formatDollar(parseFloat(data.pirce2))}đ
+              <span style={{fontSize: 18, color: '#636363' , fontWeight: 400, textDecorationLine:'line-through', marginLeft: 13 }}>
+                {Helper.formatDollar(parseFloat(data.price))}đ</span>
             </h4>
             <div className="detailQuantity"> 
               <span 
