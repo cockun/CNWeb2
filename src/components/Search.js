@@ -31,7 +31,7 @@ export default class App extends Component {
       );
       const postData = slice.map((pd, index) => (
         <React.Fragment key={index}>
-          <Link to={`/Detail/${pd.id}`} className="Product">
+          <Link to={`/Detail/${pd._id}`} className="Product">
             <div className="productImgCont">
               <img src={pd.src} className="productImg" alt="" />
             </div>

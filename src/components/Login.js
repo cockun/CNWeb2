@@ -2,7 +2,7 @@ import React from "react";
 import "../css/Login.css";
 import { Link, Redirect, Switch, withRouter } from "react-router-dom";
 import swal from "sweetalert";
-
+import { callApi } from "../ultis/apiCaller";
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -22,38 +22,22 @@ class Login extends React.Component {
     if (this.state.name == "" || this.state.pass == "") {
       swal("Thông báo!", "Tài khoản và mật khẩu không được để trống", "error");
     } else {
-      let resp = await fetch(
-        "https://my-appcoc.herokuapp.com/Account"
-      );
-      let respJson = await resp.json();
-      this.setState({ data: respJson });
-      let a = parseInt(respJson.length);
-      let b = 0;
-
-      for (var i = 0; i < a; i++) {
-        if (
-          String(respJson[i].name) === String(this.state.name) &&
-          String(respJson[i].password) === String(this.state.pass)
-        ) {
-          if (respJson[i].author === "1") {
+      callApi(
+        "Account/checkUser/" + this.state.name + "/" + this.state.pass,
+        "GET"
+      ).then((res) => {
+        console.log(res.data);
+        if (res.data) {
+          if (res.data.author === "1") {
             swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success").then(
               () => {
                 this.props.history.push("/");
               }
             );
 
-            sessionStorage.setItem(
-              "myAccountInfo",
-              JSON.stringify(respJson[i])
-            );
-            console.log(JSON.parse(sessionStorage.getItem("myAccountInfo")))
-
-            break;
+            sessionStorage.setItem("myAccountInfo", JSON.stringify(res.data));
           } else {
-            sessionStorage.setItem(
-              "myAccountInfo",
-              JSON.stringify(respJson[i])
-            );
+            sessionStorage.setItem("myAccountInfo", JSON.stringify(res.data));
             swal(
               "Chào mừng!",
               "Bạn đã đăng nhập thành công với tư cách admin",
@@ -61,23 +45,17 @@ class Login extends React.Component {
             ).then(() => {
               this.props.history.push("/Admin");
             });
-         
-            break;
           }
         }
-        if (i === a - 1) {
+        else
+        {
           swal("Thông báo!", "Đăng nhập thất bại", "error");
-
-          break;
         }
-      }
+      });
     }
   }
 
   render() {
-    if (this.state.redirect) {
-      return <Redirect to="/Home" />;
-    }
     return (
       <div>
         <div>
@@ -114,11 +92,9 @@ class Login extends React.Component {
                             type="password"
                           />
                         </div>
-                        <div className="group-input gi-check">
-                          
-                        </div>
+                        <div className="group-input gi-check"></div>
                         <button type="submit" className="site-btn login-btn">
-                          ĐĂNG NHẬP 
+                          ĐĂNG NHẬP
                         </button>
                       </form>
                       <div className="switch-login">
@@ -127,10 +103,7 @@ class Login extends React.Component {
                         </Link>
                       </div>
                     </div>
-
-                    
                   </form>
-                  
                 </div>
               </div>
             </div>

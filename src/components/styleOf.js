@@ -47,7 +47,7 @@ export default class styleOf extends React.Component {
                       
                       
                             <div className="containerhome">
-                              <Link to={`/Detail/${item.id}`}>
+                              <Link to={`/Detail/${item._id}`}>
                               <div className="containerhome1">
                                 <div  className="pic">
                                 <img src={item.src} alt="" className="pi-pic"  />
