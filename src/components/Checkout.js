@@ -11,9 +11,9 @@ var today = new Date();
 
 export function Checkout() {
   const [state, setState] = useState({
-    phone: '',
-    fullname: '',
-    address: '',
+    phone: JSON.parse(localStorage.getItem("myAccountInfo")).phone,
+    fullname: JSON.parse(localStorage.getItem("myAccountInfo")).fullname,
+    address: JSON.parse(localStorage.getItem("myAccountInfo")).address,
   });
   useEffect(() => {
     data = JSON.parse(sessionStorage.getItem("myCart"));
@@ -72,7 +72,9 @@ export function Checkout() {
 
                       Họ và Tên<span>*</span>
                     </label>
-                    <input type="text" id="fir" onChange={(e) => {
+                    <input 
+                    value={state.fullname}
+                    type="text" id="fir" onChange={(e) => {
                       setState({ ...state, fullname: e.target.value })
                     }} />
                   </div>
@@ -81,7 +83,9 @@ export function Checkout() {
                     <label htmlFor="cun">
                       Địa chỉ<span>*</span>
                     </label>
-                    <input type="text" onChange={(e) => {
+                    <input 
+                    value={state.address}
+                    type="text" onChange={(e) => {
                       setState({ ...state, address: e.target.value })
                     }} id="cun" />
                   </div>
@@ -89,7 +93,9 @@ export function Checkout() {
                     <label htmlFor="street">
                       Số điện thoại<span>*</span>
                     </label>
-                    <input type="text" id="phone" className="street-first" onChange={(e) => {
+                    <input 
+                    value={state.phone}
+                    type="text" id="phone" className="street-first" onChange={(e) => {
                       setState({ ...state, phone: e.target.value })
                     }} />
                   </div>
@@ -109,7 +115,7 @@ export function Checkout() {
                       </li>
                       {data.length !== 0 && data.map((item, index) => (
                         <li className="fw-normal" key={index}>
-                          {item.name} x {item.quantity} <span>{Helper.formatDollar(item.price * item.quantity)}</span>
+                          {item.name} x {item.quantity} <span>{Helper.formatDollar(item.pirce2 * item.quantity)}</span>
                         </li>
                       ))}
                       <li className="fw-normal">
