@@ -58,10 +58,9 @@ export default class Footer extends React.Component {
                   <h5>Information</h5>
                   <div className="border">
                     <ul >
-                      <li className="info"><Link to="#">About Us</Link></li>
-                      <li className="info"><Link to="#">Checkout</Link></li>
-                      <li className="info"><Link to="#">Contact</Link></li>
-                      <li> <Link to="#">Serivius</Link></li>
+                      <li className="info"><Link to="/Contact">About Us</Link></li>
+                      <li className="info"><Link to="/Checkout">Checkout</Link></li>
+                      <li className="info"><Link to="/Contact">Contact</Link></li>
                     </ul>
 
                   </div>
@@ -72,10 +71,10 @@ export default class Footer extends React.Component {
                 <div className="footer-widget">
                   <h5>My Account</h5>
                   <ul>
-                    <li><Link to="#">My Account</Link></li>
-                    <li><Link to="#">Contact</Link></li>
-                    <li><Link to="#">Shopping Cart</Link></li>
-                    <li><Link to="#">Shop</Link></li>
+                    <li><Link to="/AccUser">My Account</Link></li>
+                    <li><Link to="/Contact">Contact</Link></li>
+                    <li><Link to="/Cart">Shopping Cart</Link></li>
+                    <li><Link to="/Shop">Shop</Link></li>
                   </ul>
                 </div>
               </div>
