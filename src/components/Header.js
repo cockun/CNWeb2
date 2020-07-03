@@ -33,9 +33,12 @@ function Header({ route }) {
   const logOut = () => {
     sessionStorage.clear();
     localStorage.clear();
+    sessionStorage.setItem("myCart",JSON.stringify([]));
+    localStorage.setItem("myAccountInfo",JSON.stringify({}));
+    setName("");
     swal("Thông báo!", "Đăng xuất thành công", "success");
   };
-
+  console.log(name);
   return (
     <div className="Header">
       <div className="intro">
@@ -74,7 +77,7 @@ function Header({ route }) {
                 icon={faSignInAlt}
                 style={{ fontSize: 25, color: "#E7AB3C" }}
               />
-              {name ===""&& (
+              {name === undefined&& (
                 <div className="lgOrlo">
                   <Link to="/Login" className="optionLg">
                     Đăng Nhập
@@ -84,7 +87,7 @@ function Header({ route }) {
                   </Link>
                 </div>
               )}
-              {name !=="" && (
+              {name !==undefined && (
                 <div className="lgOrlo">
                   <span onClick={logOut} className="optionLg">
                     Đăng Xuất

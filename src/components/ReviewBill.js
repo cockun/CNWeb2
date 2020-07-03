@@ -1,35 +1,45 @@
 import "../css/Bill.css";
 import { callApi } from "../ultis/apiCaller";
 import React, { useState, useEffect } from "react";
-import error from '../image/error.jpg'
+import error from "../image/error.jpg";
 import { Helper } from "../utils/helper";
 function ReviewBill() {
   const [bill, setBill] = useState([]);
-  var userName = JSON.parse(localStorage.getItem("myAccountInfo")).name;
+  let userName;
+  if (JSON.parse(localStorage.getItem("myAccountInfo"))) {
+    userName = JSON.parse(localStorage.getItem("myAccountInfo")).name;
+  } else {
+    userName = "";
+  }
+
   useEffect(() => {
     callApi("Bill", "GET", null).then((res) => {
       let data = res.data;
-      data = data.filter(
-        (item) => item.name === userName
-      );
+      data = data.filter((item) => item.name === userName);
       setBill(data);
     });
-  },[]);
+  }, []);
   return (
-   
     <div className="containerBill">
-    {
-        (userName === undefined && (
-            <div style={{fontSize: 30 , display: 'flex' , justifyContent: 'center' , flexDirection: 'column' ,}}>
-            <div >
-                Bạn chưa đăng nhập , Vui lòng đăng nhập để xem lại đơn hàng của mình!!!
-            </div>
-             <img src={error} alt=""/>
-             </div>
-        ))
-    }
-      { (bill.length !== 0 && userName !== "") &&
-        bill.map( (item ,index) => (
+      {userName === undefined && (
+        <div
+          style={{
+            fontSize: 30,
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <div>
+            Bạn chưa đăng nhập , Vui lòng đăng nhập để xem lại đơn hàng của
+            mình!!!
+          </div>
+          <img src={error} alt="" />
+        </div>
+      )}
+      {bill.length !== 0 &&
+        userName !== "" &&
+        bill.map((item, index) => (
           <div className="BillPre" key={index}>
             <span className="mainTitle">ĐƠN HÀNG</span>
             <div
@@ -54,12 +64,20 @@ function ReviewBill() {
             </div>
             <span className="billTitle">Sản Phẩm:</span>
             <div className="listItemBought">
-            {item.billinfo !== 0 && item.billinfo.map((itemB,index) => (
+              {item.billinfo !== 0 &&
+                item.billinfo.map((itemB, index) => (
                   <div className="itemBought">
-                  <span style={{maxWidth: 250}}>{itemB.name} x {itemB.quantity}</span>
-                  <span>{Helper.formatDollar(parseFloat(itemB.pirce2)*parseFloat(itemB.quantity))}đ</span>
-                </div>
-            ))}
+                    <span style={{ maxWidth: 250 }}>
+                      {itemB.name} x {itemB.quantity}
+                    </span>
+                    <span>
+                      {Helper.formatDollar(
+                        parseFloat(itemB.pirce2) * parseFloat(itemB.quantity)
+                      )}
+                      đ
+                    </span>
+                  </div>
+                ))}
             </div>
             <div className="reviewBillTotal">
               <span style={{ fontWeight: "bold", fontStyle: "italic" }}>
