@@ -23,7 +23,7 @@ class Login extends React.Component {
       swal("Thông báo!", "Tài khoản và mật khẩu không được để trống", "error");
     } else {
       let resp = await fetch(
-        "https://5ee5aa77ddcea00016a37721.mockapi.io/Account"
+        "https://my-appcoc.herokuapp.com/Account"
       );
       let respJson = await resp.json();
       this.setState({ data: respJson });
@@ -41,21 +41,19 @@ class Login extends React.Component {
                 this.props.history.push("/");
               }
             );
+
             sessionStorage.setItem(
-              "myAccount",
-              JSON.stringify(this.state.name)
+              "myAccountInfo",
+              JSON.stringify(respJson[i])
             );
-            sessionStorage.setItem(
-              "myAccountID",
-              JSON.stringify(respJson[i].id)
-            );
-            sessionStorage.setItem(
-              "myAccount",
-              JSON.stringify(this.state.name)
-            );
+            console.log(JSON.parse(sessionStorage.getItem("myAccountInfo")))
 
             break;
           } else {
+            sessionStorage.setItem(
+              "myAccountInfo",
+              JSON.stringify(respJson[i])
+            );
             swal(
               "Chào mừng!",
               "Bạn đã đăng nhập thành công với tư cách admin",
@@ -63,7 +61,7 @@ class Login extends React.Component {
             ).then(() => {
               this.props.history.push("/Admin");
             });
-
+         
             break;
           }
         }

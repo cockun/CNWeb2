@@ -24,7 +24,7 @@ function Cart() {
   getFinalTotal();
   const deleteItem = (item) => {
     let arrItem = JSON.parse(sessionStorage.getItem("myCart"));
-    let index = arrItem.findIndex((items) => items.id === item.id);
+    let index = arrItem.findIndex((items) => items._id === item._id);
     arrItem.splice(index, 1);
     sessionStorage.setItem("myCart", JSON.stringify(arrItem));
     setData(arrItem);
@@ -32,7 +32,7 @@ function Cart() {
 
   const increaseQuantity = (item) => {
     let arrItem = JSON.parse(sessionStorage.getItem("myCart"));
-    let temp = arrItem.find((items) => items.id === item.id);
+    let temp = arrItem.find((items) => items._id === item._id);
     temp.quantity++;
     sessionStorage.setItem("myCart", JSON.stringify(arrItem));
     setData(arrItem);
@@ -42,7 +42,7 @@ function Cart() {
     if (item.quantity === 1) return;
     else {
       let arrItem = JSON.parse(sessionStorage.getItem("myCart"));
-      let temp = arrItem.find((items) => items.id === item.id);
+      let temp = arrItem.find((items) => items._id === item._id);
       temp.quantity--;
       sessionStorage.setItem("myCart", JSON.stringify(arrItem));
       setData(arrItem);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/AccUser.css";
 import Bill from './ReviewBill' 
 import ChangePass from './ChangePass'
-
+import ChangeInfo from './ChangeInfo'
 function AccUser() {
   const [option, setOption] = useState("Bill");
   
@@ -46,6 +46,7 @@ function AccUser() {
       <div className="contentOptCont">
         {option === "Bill" && <Bill />}
         {option === "Pass" && <ChangePass />}
+        {option === "Info" && <ChangeInfo />}
         
       </div>
     </div>

@@ -5,12 +5,12 @@ import error from '../image/error.jpg'
 import { Helper } from "../utils/helper";
 function ReviewBill() {
   const [bill, setBill] = useState([]);
-  var userName = JSON.parse(sessionStorage.getItem("myAccount"));
+  var userName = JSON.parse(sessionStorage.getItem("myAccountInfo")).name;
   useEffect(() => {
-    callApi("Bill/", "GET", null).then((res) => {
+    callApi("Bill", "GET", null).then((res) => {
       let data = res.data;
       data = data.filter(
-        (item) => item.name === JSON.parse(sessionStorage.getItem("myAccount"))
+        (item) => item.name === userName
       );
       setBill(data);
     });
@@ -19,7 +19,7 @@ function ReviewBill() {
    
     <div className="containerBill">
     {
-        (userName === "" && (
+        (userName === undefined && (
             <div style={{fontSize: 30 , display: 'flex' , justifyContent: 'center' , flexDirection: 'column' ,}}>
             <div >
                 Bạn chưa đăng nhập , Vui lòng đăng nhập để xem lại đơn hàng của mình!!!

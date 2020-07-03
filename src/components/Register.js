@@ -26,7 +26,7 @@ class Register extends React.Component {
     } else {
       if (this.state.name !== "" && this.state.pass !== "") {
         let resp = await fetch(
-          "https://5ee5aa77ddcea00016a37721.mockapi.io/Account"
+          "https://my-appcoc.herokuapp.com/Account"
         );
         let respJson = await resp.json();
 

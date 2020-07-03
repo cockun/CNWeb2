@@ -1,7 +1,6 @@
 import React from 'react'
 
-import product1 from '../image/product-1.jpg'
-import '../css/styleOf.css'
+
 import {Link} from 'react-router-dom'
 import { callApi } from '../ultis/apiCaller';
 

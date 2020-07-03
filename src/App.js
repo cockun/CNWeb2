@@ -138,8 +138,7 @@ const routes = [
 ];
 function App() {
   sessionStorage.setItem("myCart", JSON.stringify([]));
-  sessionStorage.setItem("myAccount", JSON.stringify(""));
-  sessionStorage.setItem("myAccountID", JSON.stringify(""));
+  sessionStorage.setItem("myAccountInfo", JSON.stringify({}));
   return (
     <div className="App">
       <Router>{renderRoutes(routes)}</Router>

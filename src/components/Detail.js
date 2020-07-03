@@ -19,7 +19,7 @@ function Detail(props) {
     let cartData = JSON.parse(sessionStorage.getItem('myCart'));
     let check =0;
     cartData.map( (item) => {
-      if(data.id === item.id){
+      if(data._id === item._id){
         item.quantity+=number;
         check =1;
         sessionStorage.setItem('myCart',JSON.stringify(cartData));
