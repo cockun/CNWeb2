@@ -44,6 +44,13 @@ export default function Account() {
   const handleOpen = (item, a) => {
     setShowModal({ data: item, show: true, action: a });
   };
+  const deleteItem = () => {
+    callApi(state.type + "/page/" + page.page + "/" + page.limit, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+  };
 
   const handleClose2 = (item, action) => {
     if (item) {
@@ -140,6 +147,7 @@ export default function Account() {
             handleOpen2={handleOpen}
             handleChangePage={handleChangePage}
             data={state}
+            deleteItem2={deleteItem}
             handleChangeRowsPerPage={handleChangeRowsPerPage}
           />
           {/* {[{ a: 2 }].map(() => {

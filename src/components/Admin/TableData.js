@@ -151,9 +151,8 @@ export default function TableData(props) {
   }, [props.data]);
 
   const deleteItem = async (row) => {
-    let index = state.findIndex((item) => item._id === row._id);
-    state.splice(index, 1);
-    setState([...state]);
+
+   
     try {
       await callApi(props.data.type + "/" + row._id, "DELETE");
       swal("Đã xóa", {
@@ -164,6 +163,7 @@ export default function TableData(props) {
         icon: "Warning",
       });
     }
+    props.deleteItem2();
   };
 
   console.log(state);

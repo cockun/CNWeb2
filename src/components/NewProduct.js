@@ -65,7 +65,6 @@ export default class App extends Component {
 
   handlePageClick = (e) => {
     const selectedPage = e.selected;
-    console.log(selectedPage);
     const offset = selectedPage * this.state.perPage;
 
     this.setState(
@@ -80,8 +79,8 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-     var lengthData = () => {
-      callApi(`Products/get/length`, "GET", null).then((res) => {
+     var lengthData = async () => {
+      await callApi(`Products/get/length`, "GET", null).then((res) => {
        lengthD =  res.data;
       });
     };

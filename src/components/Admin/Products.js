@@ -63,6 +63,15 @@ export default function Account() {
 
     setChangeText({ value: e.target.value });
   };
+
+  const deleteItem = () => {
+    callApi( state.type +  "/page/" + page.page + "/" + page.limit, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+  };
+
   const handleClose2 = (item, action) => {
     if (item) {
       let data = state.data.map((a) => {
@@ -136,6 +145,7 @@ export default function Account() {
           handleOpen2={handleOpen}
           handleChangePage={handleChangePage}
           data={state}
+          deleteItem2 ={deleteItem}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
         />
 

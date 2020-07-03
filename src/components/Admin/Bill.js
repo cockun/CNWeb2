@@ -86,6 +86,14 @@ export default function Bill() {
       }
     );
   };
+  const deleteItem = () => {
+    callApi( state.type +  "/page/" + page.page + "/" + page.limit, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+  };
+
   const handleChangePage = (newPage) => {
     callApi("Bill/page/" + (newPage + 1) + "/" + page.limit, "GET").then(
       (res) => {
@@ -158,6 +166,7 @@ export default function Bill() {
             handleOpen2={handleOpen}
             handleChangePage={handleChangePage}
             data={state}
+            deleteItem2={deleteItem}
             handleChangeRowsPerPage={handleChangeRowsPerPage}
           />
           {/* {[{ a: 2 }].map(() => {
