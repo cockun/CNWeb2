@@ -24,13 +24,44 @@ export default function Account() {
     data: [],
   });
 
+  const [page, setPage] = useState({
+    page: 1,
+    limit: 10,
+  });
+
+  const handleChangeRowsPerPage = (rowsPerPage) => {
+    setPage({ ...page, limit: rowsPerPage });
+    callApi("Products/page/" + (page.page + 1) + "/" + rowsPerPage, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+  };
+  const handleChangePage = (newPage) => {
+    callApi("Products/page/" + (newPage + 1) + "/" + page.limit, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
+    setPage({ ...page, page: newPage });
+  };
+
   const search = (e) => {
-    console.log(state.data);
-    let tmp = state.data.filter((item) => {
-      return item.name.toLowerCase().includes(e.target.value.toLowerCase());
-    });
-    console.log(tmp);
-    setChangeText({ value: e.target.value, data: [...tmp] });
+    if (e.target.value !== "") {
+      callApi("Products/search/name" + "/" + e.target.value, "GET").then(
+        (res) => {
+          setState({ ...state, data: res.data });
+        }
+      );
+    } else {
+      callApi("Products/page/" + page.page + "/" + page.limit, "GET").then(
+        (res) => {
+          setState({ ...state, data: res.data });
+        }
+      );
+    }
+
+    setChangeText({ value: e.target.value });
   };
   const handleClose2 = (item, action) => {
     if (item) {
@@ -44,17 +75,23 @@ export default function Account() {
       setState({ ...state, data: data });
     }
     if (action === "POST") {
-      callApi("Products", "GET").then((res) => {
+      callApi("Products/page/" + 1 + "/" + 10, "GET").then((res) => {
         setState({ ...state, data: res.data });
+      });
+      setPage({
+        page: 1,
+        limit: 10,
       });
     }
 
     setShowModal({ data: {}, show: false });
   };
   useEffect(() => {
-    callApi("Products", "GET").then((res) => {
-      setState({ ...state, data: res.data });
-    });
+    callApi("Products/page/" + page.page + "/" + page.limit, "GET").then(
+      (res) => {
+        setState({ ...state, data: res.data });
+      }
+    );
   }, []);
 
   return (
@@ -85,24 +122,44 @@ export default function Account() {
 
       <div className={{}}>
         <div className={classes.searchContainer}>
-          <input type="text" className={classes.textSeacch} value ={changeText.value} onChange={(e)=>{
-            search(e)
-          }} />
+          <input
+            type="text"
+            className={classes.textSeacch}
+            value={changeText.value}
+            onChange={(e) => {
+              search(e);
+            }}
+          />
           <span>Tìm kiếm:</span>
         </div>
+        <TableData
+          handleOpen2={handleOpen}
+          handleChangePage={handleChangePage}
+          data={state}
+          handleChangeRowsPerPage={handleChangeRowsPerPage}
+        />
 
-        {[{ a: 2 }].map(() => {
+        {/* {[{ a: 2 }].map(() => {
           if (changeText.value === "") {
-            return <TableData handleOpen2={handleOpen} data={state} />;
+            return (
+              <TableData
+                handleOpen2={handleOpen}
+                handleChangePage={handleChangePage}
+                data={state}
+                handleChangeRowsPerPage={handleChangeRowsPerPage}
+              />
+            );
           } else {
             return (
               <TableData
                 handleOpen2={handleOpen}
+                handleChangePage={handleChangePage}
                 data={{ data: changeText.data, type: "Products" }}
+                handleChangeRowsPerPage={handleChangeRowsPerPage}
               />
             );
           }
-        })}
+        })} */}
       </div>
       <ModalProduct show={showModal} handleClose={handleClose2} />
     </div>

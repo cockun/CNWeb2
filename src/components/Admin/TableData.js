@@ -29,8 +29,16 @@ var columns = [];
 export default function TableData(props) {
   const classes = useStyles();
   const [state, setState] = useState([]);
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    callApi(props.data.type + "/get/length", "GET").then((res) => {
+      setCount(res.data);
+    });
+  }, [props.data.type]);
 
   useEffect(() => {
     if (props.data.type === "Products") {
@@ -85,7 +93,7 @@ export default function TableData(props) {
     }
     if (props.data.type === "Bill") {
       columns = [
-        { id: "id", label: "ID", minWidth: 100 },
+        { id: "name", label: "ID", minWidth: 100 },
         { id: "fullname", label: "Người mua", minWidth: 120 },
 
         {
@@ -156,13 +164,11 @@ export default function TableData(props) {
       });
     }
   };
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
+
   console.log(state);
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage2 = (event) => {
     setRowsPerPage(+event.target.value);
-    setPage(0);
+    setPage(1);
   };
   const check = () => {
     if (state) {
@@ -203,90 +209,95 @@ export default function TableData(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {check()
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
+            {check().map((row) => {
+              return (
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                  {columns.map((column) => {
+                    const value = row[column.id];
 
-                      if (column.id === "src") {
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            <div style={{ width: "90px", height: "90px" }}>
-                              <img
-                                style={{ width: "100%", height: "100%" }}
-                                src={value}
-                                alt=""
-                              />
-                            </div>
-                          </TableCell>
-                        );
-                      } else {
-                        return (
-                          <TableCell key={column.id} align={column.align}>
-                            {typeof value === "number"
-                              ? Helper.formatDollar(value)
-                              : value}
-                          </TableCell>
-                        );
-                      }
-                    })}
-                    {[{ a: 3 }].map(() => {
-                      if (props.data.type !== "billInfo") {
-                        return (
-                          <TableCell key="action" align="right">
-                            <Button
-                              style={{ margin: "3px" }}
-                              variant="contained"
-                              size="small"
-                              color="primary"
-                              onClick={() => {
-                                props.handleOpen2(row, "PUT");
-                              }}
-                            >
-                              {props.data.type === "Bill" ? "View" : "Edit"}
-                            </Button>
-                            <Button
-                              onClick={() => {
-                                swal({
-                                  title: "Bạn có chắc là muốn xóa???",
-                                  text: "Ấn ok để tiếp tục!",
-                                  icon: "warning",
-                                  buttons: true,
-                                  dangerMode: true,
-                                }).then((willDelete) => {
-                                  if (willDelete) {
-                                    deleteItem(row);
-                                  }
-                                });
-                              }}
-                              style={{ margin: "3px" }}
-                              variant="contained"
-                              size="small"
-                              color="secondary"
-                            >
-                              Delete
-                            </Button>
-                          </TableCell>
-                        );
-                      }
-                    })}
-                  </TableRow>
-                );
-              })}
+                    if (column.id === "src") {
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          <div style={{ width: "90px", height: "90px" }}>
+                            <img
+                              style={{ width: "100%", height: "100%" }}
+                              src={value}
+                              alt=""
+                            />
+                          </div>
+                        </TableCell>
+                      );
+                    } else {
+                      return (
+                        <TableCell key={column.id} align={column.align}>
+                          {typeof value === "number"
+                            ? Helper.formatDollar(value)
+                            : value}
+                        </TableCell>
+                      );
+                    }
+                  })}
+                  {[{ a: 3 }].map(() => {
+                    if (props.data.type !== "billInfo") {
+                      return (
+                        <TableCell key="action" align="right">
+                          <Button
+                            style={{ margin: "3px" }}
+                            variant="contained"
+                            size="small"
+                            color="primary"
+                            onClick={() => {
+                              props.handleOpen2(row, "PUT");
+                            }}
+                          >
+                            {props.data.type === "Bill" ? "View" : "Edit"}
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              swal({
+                                title: "Bạn có chắc là muốn xóa???",
+                                text: "Ấn ok để tiếp tục!",
+                                icon: "warning",
+                                buttons: true,
+                                dangerMode: true,
+                              }).then((willDelete) => {
+                                if (willDelete) {
+                                  deleteItem(row);
+                                }
+                              });
+                            }}
+                            style={{ margin: "3px" }}
+                            variant="contained"
+                            size="small"
+                            color="secondary"
+                          >
+                            Delete
+                          </Button>
+                        </TableCell>
+                      );
+                    }
+                  })}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={check().length}
+        count={count}
         rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
+        page={page - 1}
+        onChangePage={(event, newPage) => {
+          props.handleChangePage(newPage);
+          setPage(newPage + 1);
+        }}
+        onChangeRowsPerPage={(event) => {
+          handleChangeRowsPerPage2(event);
+
+          props.handleChangeRowsPerPage(+event.target.value);
+        }}
       />
     </Paper>
   );

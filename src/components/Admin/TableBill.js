@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   container: {
     width: "100%",
     height: "100%",
-    maxHeight: 600,
+    maxHeight: 200,
   },
 });
 var columns = [];
@@ -281,15 +281,7 @@ export default function TableBill(props) {
           </TableBody>
         </Table>
       </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[3 , 25, 100]}
-        component="div"
-        count={check().length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onChangePage={handleChangePage}
-        onChangeRowsPerPage={handleChangeRowsPerPage}
-      />
+     
     </Paper>
   );
 }
