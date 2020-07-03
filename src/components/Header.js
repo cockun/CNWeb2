@@ -10,14 +10,21 @@ import {
   faSignInAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
+
+var user ;
+
 function Header({ route }) {
   const [text, setState] = useState("");
   const [name, setName] = useState("");
 
   
   useEffect(() => {
-    setName(JSON.parse(localStorage.getItem("myAccountInfo")).name);
-  }, [JSON.parse(localStorage.getItem("myAccountInfo")).name]);
+     user = JSON.parse(localStorage.getItem("myAccountInfo"));
+    if(user){
+      setName(user.name);
+    }
+   
+  });
 
   const changeValue = (e) => {
     setState(e.target.value);
@@ -67,7 +74,7 @@ function Header({ route }) {
                 icon={faSignInAlt}
                 style={{ fontSize: 25, color: "#E7AB3C" }}
               />
-              {name === undefined && (
+              {name ===""&& (
                 <div className="lgOrlo">
                   <Link to="/Login" className="optionLg">
                     Đăng Nhập
@@ -77,14 +84,15 @@ function Header({ route }) {
                   </Link>
                 </div>
               )}
-              {name !== undefined && (
+              {name !=="" && (
                 <div className="lgOrlo">
                   <span onClick={logOut} className="optionLg">
                     Đăng Xuất
                   </span>
                   <span>
-                    Xin chào{" "}
-                    {JSON.parse(localStorage.getItem("myAccountInfo")).name}!
+                    Xin chào
+                    
+                    {name}!
                   </span>
                 </div>
               )}
