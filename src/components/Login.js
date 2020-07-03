@@ -35,9 +35,9 @@ class Login extends React.Component {
               }
             );
 
-            sessionStorage.setItem("myAccountInfo", JSON.stringify(res.data));
+            localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
           } else {
-            sessionStorage.setItem("myAccountInfo", JSON.stringify(res.data));
+            localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
             swal(
               "Chào mừng!",
               "Bạn đã đăng nhập thành công với tư cách admin",

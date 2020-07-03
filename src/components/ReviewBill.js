@@ -5,7 +5,7 @@ import error from '../image/error.jpg'
 import { Helper } from "../utils/helper";
 function ReviewBill() {
   const [bill, setBill] = useState([]);
-  var userName = JSON.parse(sessionStorage.getItem("myAccountInfo")).name;
+  var userName = JSON.parse(localStorage.getItem("myAccountInfo")).name;
   useEffect(() => {
     callApi("Bill", "GET", null).then((res) => {
       let data = res.data;

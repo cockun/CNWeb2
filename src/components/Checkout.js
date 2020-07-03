@@ -34,7 +34,7 @@ export function Checkout() {
           phone: state.phone,
           address: state.address,
           date: today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
-          name: JSON.parse(sessionStorage.getItem("myAccountInfo")).name,
+          name: JSON.parse(localStorage.getItem("myAccountInfo")).name,
         }); 
       data.map(async item => {  
         let tmp ;

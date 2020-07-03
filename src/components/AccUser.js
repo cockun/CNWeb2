@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import Bill from "./ReviewBill";
 import ChangePass from "./ChangePass";
 import ChangeInfo from "./ChangeInfo";
+import swal from "sweetalert";
 function AccUser(props) {
   const [option, setOption] = useState("Bill");
 
@@ -39,7 +40,12 @@ function AccUser(props) {
             option !== "LogOut" ? "optionAcc" : "optionAcc optionAccActive"
           }
           onClick={() => {
-            props.history.push("/");
+            sessionStorage.clear();
+            localStorage.clear();
+            localStorage.setItem("myAccountInfo", JSON.stringify({}));
+            sessionStorage.setItem("myCart", JSON.stringify([]));
+            swal("Thông báo!", "Đăng xuất thành công", "success").then( () => props.history.push("/") );
+            
           }}
         >
           Đăng Xuất
