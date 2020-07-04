@@ -19,6 +19,8 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { renderRoutes } from "react-router-config";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
+import { withRouter } from "react-router-dom";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -80,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LeftPanel(props) {
+function LeftPanel(props) {
   const { route } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -94,6 +96,15 @@ export default function LeftPanel(props) {
     setOpen(false);
   };
 
+  const logOut = () => {
+    sessionStorage.clear();
+    localStorage.clear();
+    sessionStorage.setItem("myCart", JSON.stringify([]));
+    localStorage.setItem("myAccountInfo", JSON.stringify({}));
+
+    swal("Thông báo!", "Đăng xuất thành công", "success");
+    props.history.push("/");
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -151,14 +162,18 @@ export default function LeftPanel(props) {
         </List>
         <Divider />
         <List>
-          {["Đăng xuất"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem
+            button
+            key="User"
+            onClick={() => {
+              props.history.push("/");
+            }}
+          >
+            <ListItemText primary="User" />
+          </ListItem>
+          <ListItem button key="Đăng xuất" onClick={logOut}>
+            <ListItemText primary="Đăng xuất" />
+          </ListItem>
         </List>
       </Drawer>
       <main
@@ -180,3 +195,4 @@ export default function LeftPanel(props) {
     </div>
   );
 }
+export default withRouter(LeftPanel);
