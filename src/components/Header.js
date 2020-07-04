@@ -93,7 +93,7 @@ function Header({ route }) {
                     Đăng Xuất
                   </Link>
                   <span>
-                    Xin chào
+                    Xin chào {" "}
                     
                     {name}!
                   </span>

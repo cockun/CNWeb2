@@ -27,6 +27,7 @@ export default class App extends Component {
           <Link to={`/Detail/${pd._id}`} className="Product">
             <div className="productImgCont">
               <img src={pd.src} className="productImg" alt="" />
+              <span style={{fontWeight: 'bold'}}>Hello World</span>
             </div>
             <div className="productTitleCont">
               <span

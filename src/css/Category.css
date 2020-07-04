@@ -12,17 +12,20 @@
     height: 100%;
     display: flex;  
    justify-content: space-between;
+   margin-bottom: 40px;
 }
 
 .catImgCont{
     display: flex;
     position: relative;
-    height: 100%;
+    height: 125%;
+    padding-right: 39px;
+    
 }
 
 .catImg{
     height: 100%;
-    width: 380px;
+    width: 100%;
 }
 
 .catName{
