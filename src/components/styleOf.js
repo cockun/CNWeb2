@@ -12,9 +12,9 @@ export default class styleOf extends React.Component {
     };
   }
   componentDidMount() {
-    callApi('Products', 'GET', null).then((res) => {
-       const data = res.data;
-       const a= data.splice(10,4)
+    callApi().then((res) => {
+       const a = res.data;
+       console.log(a);
       this.setState({data : a}) ;
     });
   }

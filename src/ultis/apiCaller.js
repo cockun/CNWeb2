@@ -1,10 +1,9 @@
 import axios from "axios";
-const a = "https://5ee5aa77ddcea00016a37721.mockapi.io";
-const API_URL = "https://my-appcoc.herokuapp.com";
-export function callApi(endpoint, method = "GET", body) {
+
+export function callApi( ) {
   return axios({
-    method: method,
-    url: `${API_URL}/${endpoint}`,
-    data: body,
+    method: "GET",
+    url: `localhost:3000/api/products/all`,
+    
   });
 }
