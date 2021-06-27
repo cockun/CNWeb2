@@ -12,8 +12,9 @@ export default class styleOf extends React.Component {
     };
   }
   componentDidMount() {
-    callApi().then((res) => {
-       const a = res.data;
+    callApi('products/all', 'GET', null).then((res) => {
+       const b = res.data.products.data;
+       const a= b.splice(1,4)
        console.log(a);
       this.setState({data : a}) ;
     });
@@ -43,21 +44,19 @@ export default class styleOf extends React.Component {
                   </div>
                     <div className="item">
                     
-                      {this.state.data.map( (item) => 
-                      
-                      
+                      {this.state.data.map( (item) =>                      
                             <div className="containerhome">
-                              <Link to={`/Detail/${item._id}`}>
+                              <Link>
                               <div className="containerhome1">
                                 <div  className="pic">
-                                <img src={item.src} alt="" className="pi-pic"  />
+                                <img src={item.IMGSRC} alt="" className="pi-pic"  />
                                   </div>
                              <div className="text">
                             <div className="textname" >
-                            {item.name}
+                            {item.NAME}
                             </div>
                             <div className="textprice">
-                            {item.price}đ
+                            {item.PRICE}đ
                             </div>
                                 </div>
                                 
