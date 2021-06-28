@@ -27,13 +27,12 @@ export default class styleOf extends React.Component {
         }
       
       }
-      const obj = JSON.stringify(coc);
-      console.log(obj)
-      
+      const obj = JSON.stringify(coc);   
     callApi('products/filter','GET',obj).then((res) => {
-       const b = res.data;
-       console.log(b);
-      this.setState({data : b}) ;
+       const data = res.data.data;
+       const a = data.splice(1,4)
+       console.log(a);
+      this.setState({data : a}) ;
     });
 
    

@@ -10,9 +10,9 @@ function Detail(props) {
     match: { params },
   } = props;
   useEffect(() => {
-    callApi("Products/" + params.id, "GET", null).then((res) => {
-      setData(res.data);
-      console.log(res.data)
+    callApi("products/getid/" + params.id, "GET", null).then((res) => {
+      setData(res.data.data);
+      console.log(res.data.data)
     });
   }, []);
 
@@ -37,18 +37,18 @@ function Detail(props) {
     <div className="DetailContainer">
       <div className="DetailProduct">
         <div className="imgDetailCont">
-          <img src={data.src} alt="" className="imgDetail"/>
-          <span style={{fontWeight: 'bold'}}>Hello World</span>
+          <img src={data.IMGSRC} alt="" className="imgDetail"/>
+          <span style={{fontWeight: 'bold'}}></span>
         </div>
         <div className="titleDetailProduct">
           <div className="contentTitle">
-            <span style={{fontSize: 12, color: '#b2b2b2' , fontWeight: 700 , letterSpacing: 2}}>NHÓM 2</span>
-            <h3 style={{fontSize: 30, color: '#252525' , fontWeight: 700 }}>{data.name}</h3>
-            <p style={{fontSize: 16, color: '#636363' , fontWeight: 400, lineHeight: '26px', }}>{data.description}</p>
+            <span style={{fontSize: 12, color: '#b2b2b2' , fontWeight: 700 , letterSpacing: 2}}></span>
+            <h3 style={{fontSize: 30, color: '#252525' , fontWeight: 700 }}>{data.NAME}</h3>
+            <p style={{fontSize: 16, color: '#636363' , fontWeight: 400, lineHeight: '26px', }}>{data.DESCRIPTION}</p>
             <h4 style={{fontSize: 26, color: 'red' , fontWeight: 'bold', lineHeight: '26px', }}>
-            {Helper.formatDollar(parseFloat(data.pirce2))}đ
+            {Helper.formatDollar(parseFloat(data.DISCOUNT))}đ
               <span style={{fontSize: 18, color: 'yellow' , fontWeight: 400, textDecorationLine:'line-through', marginLeft: 13 }}>
-                {Helper.formatDollar(parseFloat(data.price))}đ</span>
+                {Helper.formatDollar(parseFloat(data.PRICE))}đ</span>
             </h4>
             <div className="detailQuantity"> 
               <span 

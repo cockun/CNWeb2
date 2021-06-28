@@ -1,10 +1,37 @@
 import axios from "axios";
-const a = "https://5ee5aa77ddcea00016a37721.mockapi.io";
-const API_URL = "https://my-appcoc.herokuapp.com";
-export function callApi(endpoint, method = "GET", body) {
-  return axios({
-    method: method,
-    url: `${API_URL}/${endpoint}`,
-    data: body,
-  });
+
+const API_URL = "http://localhost:3000/api";
+
+export async function callApi(endpoint, method = "GET", body) {
+  if(method ==="GET"){
+    try{
+     return await axios.get( `${API_URL}/${endpoint}`,{params:  body})
+    }catch(e){
+      return null;
+    }
+  }
+  
+  if(method ==="POST"){
+    try{
+     return await axios.post( `${API_URL}/${endpoint}`,  {data:body})
+    }catch(e){
+      return null;
+    }
+  }
+
+  if(method ==="UPDATE"){
+    try{
+     return await axios.put( `${API_URL}/${endpoint}`,   {data:body})
+    }catch(e){
+      return null;
+    }
+  }
+  if(method ==="DELETE"){
+    try{
+     return await axios.delete( `${API_URL}/${endpoint}`,  {params:  body})
+    }catch(e){
+      return null;
+    }
+  }
+ 
 }

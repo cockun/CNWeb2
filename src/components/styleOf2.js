@@ -13,13 +13,31 @@ export default class styleOf2 extends React.Component {
     };
   }
   componentDidMount() {
-    callApi('products/all', 'GET', null).then((res) => {
-       const b = res.data.products.data;
-       const a= b.splice(5,4)
+    
+    
+    const coc =
+      {
+      "data":
+      
+        {
+          "ORDERBYNAME": false,
+          "ORDERBYASC":"SOLD",
+          "PAGEINDEX": 1,
+          "PAGESIZE": 8
+  
+        }
+      
+      }
+      const obj = JSON.stringify(coc);   
+    callApi('products/filter','GET',obj).then((res) => {
+       const data = res.data.data;
+       const a = data.splice(6,4)
        console.log(a);
       this.setState({data : a}) ;
     });
-  }
+
+ 
+}
   render() {
     return (
       <div>
