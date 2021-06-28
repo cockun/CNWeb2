@@ -3,7 +3,7 @@ import React from 'react'
 
 import {Link} from 'react-router-dom'
 import { callApi } from '../ultis/apiCaller';
-
+import axios from 'axios';
 export default class styleOf extends React.Component {
   constructor(props) {
     super(props);
@@ -12,12 +12,31 @@ export default class styleOf extends React.Component {
     };
   }
   componentDidMount() {
-    callApi('products/all', 'GET', null).then((res) => {
-       const b = res.data.products.data;
-       const a= b.splice(1,4)
-       console.log(a);
-      this.setState({data : a}) ;
+    
+    
+      const coc =
+      {
+      "data":
+      
+        {
+          "ORDERBYNAME": false,
+          "ORDERBYASC":"SOLD",
+          "PAGEINDEX": 1,
+          "PAGESIZE": 8
+  
+        }
+      
+      }
+      const obj = JSON.stringify(coc);
+      console.log(obj)
+      
+    callApi('products/filter','GET',obj).then((res) => {
+       const b = res.data;
+       console.log(b);
+      this.setState({data : b}) ;
     });
+
+   
   }
   
   render() {
@@ -46,7 +65,7 @@ export default class styleOf extends React.Component {
                     
                       {this.state.data.map( (item) =>                      
                             <div className="containerhome">
-                              <Link>
+                              <Link to={`/Detail/${item.ID}`}>
                               <div className="containerhome1">
                                 <div  className="pic">
                                 <img src={item.IMGSRC} alt="" className="pi-pic"  />

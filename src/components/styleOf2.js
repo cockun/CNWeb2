@@ -43,7 +43,7 @@ export default class styleOf2 extends React.Component {
                     
                       {this.state.data.map( (item) => 
                             <div className="containerhome">
-                              <Link>
+                              <Link to={`/Detail/${item.ID}`}>
                               <div className="containerhome1">
                                 <div  className="pic">
                                 <img src={item.IMGSRC} alt="" className="pi-pic"  />
