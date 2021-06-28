@@ -10,6 +10,7 @@ function Detail(props) {
     match: { params },
   } = props;
   useEffect(() => {
+    // get by id 
     callApi("products/getid/" + params.id, "GET", null).then((res) => {
       setData(res.data.data);
       console.log(res.data.data)

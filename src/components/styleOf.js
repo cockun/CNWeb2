@@ -19,14 +19,18 @@ export default class styleOf extends React.Component {
       "data":
       
         {
+          // chọn 8 sản phẩm 1 trang cột SOLD với đk tăng dần
           "ORDERBYNAME": false,
+          
           "ORDERBYASC":"SOLD",
+          
           "PAGEINDEX": 1,
           "PAGESIZE": 8
   
         }
       
       }
+    
       const obj = JSON.stringify(coc);   
     callApi('products/filter','GET',obj).then((res) => {
        const data = res.data.data;
@@ -64,6 +68,7 @@ export default class styleOf extends React.Component {
                     
                       {this.state.data.map( (item) =>                      
                             <div className="containerhome">
+                              {/* TRUYỀN ID QUA CHO TRANG DETAIL (ĐỔ PRODUCT XONG COPY DC) */}
                               <Link to={`/Detail/${item.ID}`}>
                               <div className="containerhome1">
                                 <div  className="pic">

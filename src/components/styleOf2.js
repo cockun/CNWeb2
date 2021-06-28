@@ -20,6 +20,7 @@ export default class styleOf2 extends React.Component {
       "data":
       
         {
+           // chọn 8 sản phẩm 1 trang cột SOLD với đk tăng dần
           "ORDERBYNAME": false,
           "ORDERBYASC":"SOLD",
           "PAGEINDEX": 1,
