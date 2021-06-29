@@ -3,6 +3,7 @@ import "../css/Login.css";
 import { Link, Redirect, Switch, withRouter } from "react-router-dom";
 import swal from "sweetalert";
 import { callApi } from "../utils/apiCaller";
+import axios from "axios";
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -24,41 +25,46 @@ class Login extends React.Component {
     } else {
 
       const coc = {
-        "data":
-        {
-          "USERNAME":this.state.name,
-          "PASSWORD":this.state.pass
-        }
+        
+        
+          USERNAME:this.state.name,
+          PASSWORD:this.state.pass
+        
       }
-      const obj = JSON.stringify(coc);
-      console.log(obj);
-      callApi(
-        "accounts/login", "POST", obj).then((res) => {
+      // axios({
+      //   method: 'POST',
+      //   url: 'http://localhost:3000/api/accounts/login',
+      //   data: coc
+      // })
+      //   .then(function (response) {
+      //     console.log(response.data);
+      //   });
+      callApi('accounts/login', 'POST', coc).then((res) => {
         console.log(res.data);
-        // if (res.data) {
-        //   if (res.data.author === "1") {
-        //     swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success").then(
-        //       () => {
-        //         this.props.history.push("/");
-        //       }
-        //     );
+        if (res.data) {
+          if (res.data.author === "1") {
+            swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success").then(
+              () => {
+                this.props.history.push("/");
+              }
+            );
 
-        //     localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
-        //   } else {
-        //     localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
-        //     swal(
-        //       "Chào mừng!",
-        //       "Bạn đã đăng nhập thành công với tư cách admin",
-        //       "success"
-        //     ).then(() => {
-        //       this.props.history.push("/Admin");
-        //     });
-        //   }
-        // }
-        // else
-        // {
-        //   swal("Thông báo!", "Đăng nhập thất bại", "error");
-        // }
+            localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
+          } else {
+            localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
+            swal(
+              "Chào mừng!",
+              "Bạn đã đăng nhập thành công với tư cách admin",
+              "success"
+            ).then(() => {
+              this.props.history.push("/Admin");
+            });
+          }
+        }
+        else
+        {
+          swal("Thông báo!", "Đăng nhập thất bại", "error");
+        }
       });
     }
   }
