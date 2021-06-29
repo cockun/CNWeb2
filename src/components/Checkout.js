@@ -10,49 +10,49 @@ var today = new Date();
 
 
 export function Checkout() {
-  const [state, setState] = useState({
-    phone: JSON.parse(localStorage.getItem("myAccountInfo")).phone,
-    fullname: JSON.parse(localStorage.getItem("myAccountInfo")).fullname,
-    address: JSON.parse(localStorage.getItem("myAccountInfo")).address,
-  });
+  // const [state, setState] = useState({
+  //   phone: JSON.parse(localStorage.getItem("myAccountInfo")).phone,
+  //   fullname: JSON.parse(localStorage.getItem("myAccountInfo")).fullname,
+  //   address: JSON.parse(localStorage.getItem("myAccountInfo")).address,
+  // });
   useEffect(() => {
     data = JSON.parse(sessionStorage.getItem("myCart"));
     
     total = JSON.parse(sessionStorage.getItem('totalBill'))
-    setState({ ...state })
+    // setState({ ...state })
 
   }, [])
 
   console.log(data);
-  const checkoutbill = () => {
-    if (state.phone !== '' && state.fullname !== '' && state.address !== '') {
-      callApi('Bill', 'POST',
-        {
-          billinfo: data,
-          total: total,
-          fullname: state.fullname,
-          phone: state.phone,
-          address: state.address,
-          date: today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
-          name: JSON.parse(localStorage.getItem("myAccountInfo")).name,
-        }); 
-      data.map(async item => {  
-        let tmp ;
-        await callApi('Products/' +item._id, "GET").then((res)=>{
-          tmp = res.data.sold;
-        });
+  // const checkoutbill = () => {
+  //   if (state.phone !== '' && state.fullname !== '' && state.address !== '') {
+  //     callApi('Bill', 'POST',
+  //       {
+  //         billinfo: data,
+  //         total: total,
+  //         fullname: state.fullname,
+  //         phone: state.phone,
+  //         address: state.address,
+  //         date: today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
+  //         name: JSON.parse(localStorage.getItem("myAccountInfo")).name,
+  //       }); 
+  //     data.map(async item => {  
+  //       let tmp ;
+  //       await callApi('Products/' +item._id, "GET").then((res)=>{
+  //         tmp = res.data.sold;
+  //       });
       
        
-        callApi('Products/'+item._id , "PUT" , {...item, sold : item.quantity +tmp})
-        console.log({...item, sold : item.quantity + tmp});
-      })
-      swal("Thông báo!", "Đặt hàng thành công", "success");
-    }
-    else {
-      swal("Thông báo!", "Vui lòng nhập đầy đủ", "error");
-    }
+  //       callApi('Products/'+item._id , "PUT" , {...item, sold : item.quantity +tmp})
+  //       console.log({...item, sold : item.quantity + tmp});
+  //     })
+  //     swal("Thông báo!", "Đặt hàng thành công", "success");
+  //   }
+  //   else {
+  //     swal("Thông báo!", "Vui lòng nhập đầy đủ", "error");
+  //   }
 
-  }
+  // }
   return (
     <div>
       <section className="checkout-section spad">
@@ -72,32 +72,32 @@ export function Checkout() {
 
                       Họ và Tên<span>*</span>
                     </label>
-                    <input 
+                    {/* <input 
                     value={state.fullname}
                     type="text" id="fir" onChange={(e) => {
                       setState({ ...state, fullname: e.target.value })
-                    }} />
+                    }} /> */}
                   </div>
 
                   <div className="col-lg-12">
                     <label htmlFor="cun">
                       Địa chỉ<span>*</span>
                     </label>
-                    <input 
+                    {/* <input 
                     value={state.address}
                     type="text" onChange={(e) => {
                       setState({ ...state, address: e.target.value })
-                    }} id="cun" />
+                    }} id="cun" /> */}
                   </div>
                   <div className="col-lg-12">
                     <label htmlFor="street">
                       Số điện thoại<span>*</span>
                     </label>
-                    <input 
+                    {/* <input 
                     value={state.phone}
                     type="text" id="phone" className="street-first" onChange={(e) => {
                       setState({ ...state, phone: e.target.value })
-                    }} />
+                    }} /> */}
                   </div>
                 </div>
               </div>
@@ -115,7 +115,7 @@ export function Checkout() {
                       </li>
                       {data.length !== 0 && data.map((item, index) => (
                         <li className="fw-normal" key={index}>
-                          {item.name} x {item.quantity} <span>{Helper.formatDollar(item.pirce2 * item.quantity)}</span>
+                          {item.NAME} x {item.quantity} <span>{Helper.formatDollar(item.pirce2 * item.quantity)}</span>
                         </li>
                       ))}
                       <li className="fw-normal">
@@ -142,7 +142,7 @@ export function Checkout() {
                       </div>
                     </div>
                     <div className="order-btn">
-                      <button type="button" onClick={checkoutbill} className="site-btn place-btn">
+                      <button type="button"  className="site-btn place-btn">
                         ĐẶT HÀNG
                       </button>
                     </div>

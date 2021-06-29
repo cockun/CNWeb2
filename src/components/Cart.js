@@ -15,7 +15,7 @@ function Cart() {
   const getFinalTotal = () => {
     if (data) {
       data.map((item) => {
-       return total += item.pirce2 * item.quantity;
+       return total += item.DISCOUNT * item.quantity;
 
       });
       sessionStorage.setItem("totalBill", total);
@@ -24,7 +24,7 @@ function Cart() {
   getFinalTotal();
   const deleteItem = (item) => {
     let arrItem = JSON.parse(sessionStorage.getItem("myCart"));
-    let index = arrItem.findIndex((items) => items._id === item._id);
+    let index = arrItem.findIndex((items) => items.ID === item.ID);
     arrItem.splice(index, 1);
     sessionStorage.setItem("myCart", JSON.stringify(arrItem));
     setData(arrItem);
@@ -32,7 +32,7 @@ function Cart() {
 
   const increaseQuantity = (item) => {
     let arrItem = JSON.parse(sessionStorage.getItem("myCart"));
-    let temp = arrItem.find((items) => items._id === item._id);
+    let temp = arrItem.find((items) => items.ID === item.ID);
     temp.quantity++;
     sessionStorage.setItem("myCart", JSON.stringify(arrItem));
     setData(arrItem);
@@ -42,7 +42,7 @@ function Cart() {
     if (item.quantity === 1) return;
     else {
       let arrItem = JSON.parse(sessionStorage.getItem("myCart"));
-      let temp = arrItem.find((items) => items._id === item._id);
+      let temp = arrItem.find((items) => items.ID === item.ID);
       temp.quantity--;
       sessionStorage.setItem("myCart", JSON.stringify(arrItem));
       setData(arrItem);
@@ -75,13 +75,13 @@ function Cart() {
         {data.map((item, index) => (
           <div className="cartProduct" key={index}>
             <div className="cartCenter" style={{ flex: 3 }}>
-              <img src={item.src} className="cartProductImage" alt="" />
+              <img src={item.IMGSRC} className="cartProductImage" alt="" />
             </div>
             <div className="cartProductName cartCenter" style={{ flex: 4 }}>
-              {item.name}
+              {item.NAME}
             </div>
             <div className="cartProductPrice cartCenter" style={{ flex: 2 }}>
-              {Helper.formatDollar(item.pirce2)}
+              {Helper.formatDollar(item.DISCOUNT)}
             </div>
             <div className="cartProductQuantity cartCenter" style={{ flex: 2 }}>
               <div className="quantityForm">
@@ -106,7 +106,7 @@ function Cart() {
               </div>
             </div>
             <div className="cartProductTotal cartCenter" style={{ flex: 2 }}>
-              {Helper.formatDollar(item.pirce2 * item.quantity)}
+              {Helper.formatDollar(item.DISCOUNT * item.quantity)}
             </div>
             <div style={{flex:1 , display: 'flex' , justifyContent: 'center'}}>
             <button
