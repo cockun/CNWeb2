@@ -45,13 +45,14 @@ class Login extends React.Component {
         console.log(data.ROLENAME);
         if (res.data) {
           if (data.ROLENAME=== "1") {
+            localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
             swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success").then(
               () => {
                 this.props.history.push("/");
               }
             );
 
-            localStorage.setItem("myAccountInfo", JSON.stringify(data));
+            
           } else {
             localStorage.setItem("myAccountInfo", JSON.stringify(data));
             swal(

@@ -20,8 +20,8 @@ function Header({ route }) {
   
   useEffect(() => {
      user = JSON.parse(localStorage.getItem("myAccountInfo"));
-    if(user){
-      setName(user.name);
+    if(user.data){
+      setName(user.data.FULLNAME);
     }
    
   });
@@ -77,7 +77,7 @@ function Header({ route }) {
                 icon={faSignInAlt}
                 style={{ fontSize: 25, color: "#E7AB3C" }}
               />
-              {name === undefined&& (
+              {name === ""&& (
                 <div className="lgOrlo">
                   <Link to="/Login" className="optionLg">
                     Đăng Nhập
@@ -87,7 +87,7 @@ function Header({ route }) {
                   </Link>
                 </div>
               )}
-              {name !==undefined && (
+              {name !== "" && (
                 <div className="lgOrlo">
                   <Link to="/" onClick={logOut} className="optionLg">
                     Đăng Xuất
