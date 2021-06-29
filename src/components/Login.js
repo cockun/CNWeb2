@@ -44,7 +44,7 @@ class Login extends React.Component {
         const data = res.data.data;
         console.log(data.ROLENAME);
         if (res.data) {
-          if (data.ROLENAME=== "1") {
+          if (data.ROLENAME=== "User") {
             localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
             swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success").then(
               () => {
