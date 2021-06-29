@@ -2,7 +2,7 @@ import React from "react";
 import "../css/Login.css";
 import { Link, Redirect, Switch, withRouter } from "react-router-dom";
 import swal from "sweetalert";
-import { callApi } from "../ultis/apiCaller";
+import { callApi } from "../utils/apiCaller";
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -22,10 +22,18 @@ class Login extends React.Component {
     if (this.state.name == "" || this.state.pass == "") {
       swal("Thông báo!", "Tài khoản và mật khẩu không được để trống", "error");
     } else {
+
+      const coc = {
+        "data":
+        {
+          "USERNAME":this.state.name,
+          "PASSWORD":this.state.pass
+        }
+      }
+      const obj = JSON.stringify(coc);
+      console.log(obj);
       callApi(
-        "Account/checkUser/" + this.state.name + "/" + this.state.pass,
-        "GET"
-      ).then((res) => {
+        "accounts/login", "POST", obj).then((res) => {
         console.log(res.data);
         if (res.data) {
           if (res.data.author === "1") {
