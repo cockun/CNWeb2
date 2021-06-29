@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/Register.css";
 import swal from "sweetalert";
-import { callApi } from "../ultis/apiCaller";
+import { callApi } from "../utils/apiCaller";
 import { Link, withRouter } from "react-router-dom";
 
 class Register extends React.Component {
@@ -23,48 +23,51 @@ class Register extends React.Component {
 
     e.preventDefault();
     const a = this.state.phone;
-    if(parseInt(a)>=0 && this.state.phone.length >=8)
-    {
+    if (parseInt(a) >= 0 && this.state.phone.length >= 8) {
       if (this.state.pass !== this.state.pass2) {
         swal("Thông báo!", "Nhập lại mật khẩu sai", "error");
       } else {
-        if (this.state.name.length>=8  && this.state.pass.length >= 8) {
-          callApi(
-            "Account/checkUser/" + this.state.name,
-            "GET"
-          ).then((res) => {
-            if(res.data !== 1)
+        if (String(this.state.pass) === String(this.state.pass2)) {
+          const obj = {
+            "ID": "",
+            "USERNAME": this.state.name,
+            "PASSWORD": this.state.pass,
+            "FULLNAME": this.state.fullname,
+            "ADDRESS": this.state.address,
+            "PHONE": this.state.phone,
+            "ROLE": "1"
+          }
+          callApi("accounts/add", "POST", obj).then((res) => {
+            const check = res.data;
+            console.log(check.data);
+            var a = check.data;
+            if(a == null)
             {
-              if (String(this.state.pass) === String(this.state.pass2)) {
-                callApi("Account", "POST", {
-                  id: "",
-                  name: this.state.name,
-                  password: this.state.pass,
-                  fullname: this.state.fullname,
-                  phone: this.state.phone,
-                  address: this.state.address,
-                  author: "1",
-                });
-                swal("Thông báo!", "Đăng ký thành công", "success").then(() => {
-                  this.props.history.push("/Login");
-                });
-              }
+            swal("Thông báo!", "Lỗi", "error")
             }
             else
             {
-              swal("Thông báo!", "Tài khoản đẵ tồn tại", "error")
+              if (a === String("Success")) {
+                swal("Thông báo!", "Đăng ký thành công", "success").then(() => {
+                  this.props.history.push("/Login");
+                }
+                );
+              }
+              
             }
-          });
-          
-        } else {
-          swal("Thông báo!", "Tài khoản và mật khẩu phải trên 8 kí tự", "error");
+            
+            
+          })
+
+
         }
+
       }
     }
-    else{
+    else {
       swal("Thông báo!", "SĐT phải là chữ số và trên 8 ký tự", "error");
     }
-   
+
   }
   render() {
     return (
