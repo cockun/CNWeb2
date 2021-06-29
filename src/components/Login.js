@@ -35,30 +35,30 @@ class Login extends React.Component {
       callApi(
         "accounts/login", "POST", obj).then((res) => {
         console.log(res.data);
-        if (res.data) {
-          if (res.data.author === "1") {
-            swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success").then(
-              () => {
-                this.props.history.push("/");
-              }
-            );
+        // if (res.data) {
+        //   if (res.data.author === "1") {
+        //     swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success").then(
+        //       () => {
+        //         this.props.history.push("/");
+        //       }
+        //     );
 
-            localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
-          } else {
-            localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
-            swal(
-              "Chào mừng!",
-              "Bạn đã đăng nhập thành công với tư cách admin",
-              "success"
-            ).then(() => {
-              this.props.history.push("/Admin");
-            });
-          }
-        }
-        else
-        {
-          swal("Thông báo!", "Đăng nhập thất bại", "error");
-        }
+        //     localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
+        //   } else {
+        //     localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
+        //     swal(
+        //       "Chào mừng!",
+        //       "Bạn đã đăng nhập thành công với tư cách admin",
+        //       "success"
+        //     ).then(() => {
+        //       this.props.history.push("/Admin");
+        //     });
+        //   }
+        // }
+        // else
+        // {
+        //   swal("Thông báo!", "Đăng nhập thất bại", "error");
+        // }
       });
     }
   }
