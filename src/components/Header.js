@@ -38,7 +38,6 @@ function Header({ route }) {
     setName("");
     swal("Thông báo!", "Đăng xuất thành công", "success");
   };
-  console.log(name);
   return (
     <div className="Header">
       <div className="intro">

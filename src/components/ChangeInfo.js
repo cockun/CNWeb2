@@ -3,9 +3,9 @@ import "../css/ChangePass.css";
 import { callApi } from "../ultis/apiCaller";
 import swal from "sweetalert";
 function ChangePass() {
-  const [name, setName] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).fullname);
-  const [phone, setPhone] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).phone);
-  const [addr, setAddr] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).address);
+  const [name, setName] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).data.FULLNAME);
+  const [phone, setPhone] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).data.PHONE);
+  const [addr, setAddr] = useState(JSON.parse(localStorage.getItem("myAccountInfo")).data.ADDRESS);
  
   const savePass = () => {
     console.log(name)
