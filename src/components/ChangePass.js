@@ -8,10 +8,11 @@ function ChangePass() {
   const [renewPass, setRenewPass] = useState("");
   const savePass = () => {
     callApi(
-      "Account/" + JSON.parse(localStorage.getItem("myAccountInfo"))._id,
+      "accounts/getid/" + JSON.parse(localStorage.getItem("myAccountInfo")).data.ACCOUNTID,
       "GET"
     ).then((res) => {
-      if (res.data.password !== nowPass) {
+      console.log(res.data);
+      if (res.data.data.PASSWORD !== nowPass) {
         swal("Thông báo!", "Sai Mật Khẩu! Vui Lòng Kiểm Tra Lại!", "error");
       } else {
         if (newPass !== renewPass) {
@@ -22,9 +23,15 @@ function ChangePass() {
           );
         } else {
           callApi(
-            "Account/" + JSON.parse(localStorage.getItem("myAccountInfo"))._id,
+            "accounts/update",
             "PUT",
-            { password: newPass }
+            { 
+              data:{
+                ID: JSON.parse(localStorage.getItem("myAccountInfo")).data.ACCOUNTID,
+                USERNAME: JSON.parse(localStorage.getItem("myAccountInfo")).data.USERNAME,
+                PASSWORD: newPass
+              }
+            }
           ).then(() => {
             swal("Thông báo!", "Đổi Mật Khẩu Thành Công", "success");
           });
