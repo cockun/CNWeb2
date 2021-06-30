@@ -7,18 +7,29 @@ function ReviewBill() {
   const [bill, setBill] = useState([]);
   let accountID;
   if (JSON.parse(localStorage.getItem("myAccountInfo"))) {
-    accountID = JSON.parse(localStorage.getItem("myAccountInfo")).ACCOUNTID;
+    accountID = JSON.parse(localStorage.getItem("myAccountInfo")).data.ACCOUNTID;
   } else {
     accountID = "";
   }
 
-  // useEffect(() => {
-  //   callApi("Bill", "GET", null).then((res) => {
-  //     let data = res.data;
-  //     data = data.filter((item) => item.name === userName);
-  //     setBill(data);
-  //   });
-  // }, []);
+  const findPD = (pdID) => {
+    {
+      callApi("products/getid/"+pdID, "GET", null).then((res) => {
+        console.log( res.data.data.NAME);
+        return res.data.data.NAME;
+      })
+    }
+  }
+
+
+  useEffect(() => {
+
+    callApi("bills/filter?ACCOUNTID="+accountID, "GET", null).then((res) => {
+      setBill(res.data.data);
+    });
+  }, []);
+
+
   return (
     <div className="containerBill">
       {accountID === "" && (
@@ -45,12 +56,12 @@ function ReviewBill() {
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "space-around",
                 marginBottom: "7px",
               }}
             >
               <span className="billTitle">Ngày mua hàng: </span>
-              <span className="billTitle">{item.date}</span>
+              <span className="billTitle">{item.DATEBUY}</span>
             </div>
             <div
               style={{
@@ -60,30 +71,36 @@ function ReviewBill() {
               }}
             >
               <span className="billTitle">Tên Khách Hàng:</span>
-              <span className="billTitle">{item.fullname}</span>
+              <span className="billTitle">{item.FULLNAME}</span>
             </div>
             <span className="billTitle">Sản Phẩm:</span>
             <div className="listItemBought">
-              {item.billinfo !== 0 &&
-                item.billinfo.map((itemB, index) => (
+              {item.BILLINFOS !== 0 &&
+                item.BILLINFOS.map((itemB, index) => (
+                  
                   <div className="itemBought">
                     <span style={{ maxWidth: 250 }}>
-                      {itemB.name} x {itemB.quantity}
+
+                      {findPD(itemB.PRODUCTID)} x {itemB.QUANTITY}
                     </span>
                     <span>
                       {Helper.formatDollar(
-                        parseFloat(itemB.pirce2) * parseFloat(itemB.quantity)
+                        parseFloat(itemB.PRICE) * parseFloat(itemB.QUANTITY)
                       )}
                       đ
                     </span>
                   </div>
                 ))}
             </div>
+            <div className="billStatus">
+              <span>Trạng Thái</span>
+              <span style={{color:"red"}}>{item.BILLSTATUS}</span>
+            </div>
             <div className="reviewBillTotal">
               <span style={{ fontWeight: "bold", fontStyle: "italic" }}>
                 Thành Tiền:
               </span>
-              <span>{Helper.formatDollar(item.total)}đ</span>
+              <span>{Helper.formatDollar(item.TOTAL)}đ</span>
             </div>
           </div>
         ))}
