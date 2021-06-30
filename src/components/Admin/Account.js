@@ -4,12 +4,13 @@ import Button from "@material-ui/core/Button";
 import { callApi } from "../../utils/apiCaller";
 import ModalAccount from "./ModalAccount";
 import TableData from "./TableData";
+import swal from "sweetalert";
 
 export default function Account() {
   const [state, setState] = useState({
     data: [],
     type: "Account",
-    count:0
+    count: 0,
   });
   const [showModal, setShowModal] = useState({
     show: false,
@@ -22,70 +23,71 @@ export default function Account() {
   });
 
   const [page, setPage] = useState({
-    page: 1,
-    limit: 10,
+    PAGEINDEX: 1,
+    PAGESIZE: 10,
   });
 
   const handleChangeRowsPerPage = (rowsPerPage) => {
-    setPage({ ...page, limit: rowsPerPage });
-    callApi("Account/page/" + (page.page + 1) + "/" + rowsPerPage, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
+    setPage({ ...page, PAGESIZE: rowsPerPage });
+    const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage };
+    callApi("api/accounts/filter", "GET", obj).then((res) => {
+      setState({ ...state, data: res.data.data });
+    });
   };
   const handleChangePage = (newPage) => {
-    callApi("Account/page/" + (newPage + 1) + "/" + page.limit, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
-    setPage({ ...page, page: newPage });
+    const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE };
+    callApi("api/accounts/filter", "GET", obj).then((res) => {
+      setState({ ...state, data: res.data.data });
+    });
+    setPage({ ...page, PAGEINDEX: newPage });
   };
   const handleOpen = (item, a) => {
     setShowModal({ data: item, show: true, action: a });
   };
-  const deleteItem = () => {
-    callApi(state.type + "/page/" + page.page + "/" + page.limit, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
+  const deleteItem = (id) => {
+    try {
+      callApi("accounts/delete/" + id, "DELETE");
+      swal("Đã xóa", {
+        icon: "success",
+      });
+    } catch (e) {
+      swal("Error", {
+        icon: "Warning",
+      });
+    }
+
+    callApi("accounts/filter", "GET", { ...page }).then((res) => {
+      setState({ ...state, data: res.data.data });
+    });
   };
 
   const handleClose2 = (item, action) => {
-    if (item) {
-      let data = state.data.map((a) => {
-        if (a._id === item._id) {
-          return item;
-        } else {
-          return a;
-        }
-      });
-      setState({ ...state, data: data });
-    }
-    if (action === "POST") {
-      callApi("api/accounts/filter", "GET", {}).then((res) => {
-        var z  = res.data;
-        setState({ ...state, data: res.data });
-      });
-      setPage({
-        page: 1,
-        limit: 10,
-      });
-    }
+    // if (item) {
+    //   let data = state.data.map((a) => {
+    //     if (a.ACCOUNTID === item.ACCOUNTID) {
+    //       return item;
+    //     } else {
+    //       return a;
+    //     }
+    //   });
+    //   setState({ ...state, data: data });
+    // }
+    // if (action === "POST") {
+    //   callApi("api/accounts/filter", "GET", {}).then((res) => {
+    //     setState({ ...state, data: res.data.data });
+    //   });
+    //   setPage({
+    //     PAGEINDEX: 1,
+    //     PAGESIZE: 10,
+    //   });
+    // }
 
     setShowModal({ data: {}, show: false });
   };
   useEffect(() => {
-    callApi("accounts/filter" , "GET", {}).then(
-      (res) => {
-        setState({ ...state, data: res.data.data , count:res.data.count});
-      }
-    );
-
-
-   
+    callApi("accounts/filter", "GET", { ...page }).then((res) => {
+      setState({ ...state, data: res.data.data, count: res.data.count });
+    });
   }, []);
 
   const search = (e) => {
@@ -96,11 +98,12 @@ export default function Account() {
         }
       );
     } else {
-      callApi("Account/page/" + page.page + "/" + page.limit, "GET").then(
-        (res) => {
-          setState({ ...state, data: res.data });
-        }
-      );
+      callApi(
+        "Account/page/" + page.PAGEINDEX + "/" + page.PAGESIZE,
+        "GET"
+      ).then((res) => {
+        setState({ ...state, data: res.data });
+      });
     }
 
     setChangeText({ value: e.target.value });
@@ -125,7 +128,7 @@ export default function Account() {
             className={classes.button}
             onClick={() => {
               handleOpen(
-                { name: "", fullname: "", author: "", phone: "", address: "" },
+                { NAME: "", FULLNAME: "", author: "", PHONE: "", ADDRESS: "" },
                 "POST"
               );
             }}
