@@ -20,9 +20,10 @@ export default class App extends Component {
   }
 
   receivedData(a) {
+    
     callApi("products/filter?NAME="+a, "GET").then((res) => {
       const data = res.data.data;
-  
+      console.log(data);
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
@@ -88,8 +89,7 @@ export default class App extends Component {
   }
 
   componentDidUpdate(){
-    const { match: { params } } = this.props;
-    this.receivedData(params.text);
+    
   }
   render() {
     return (
