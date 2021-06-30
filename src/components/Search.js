@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
 import "../styles.css";
-import { callApi } from "../ultis/apiCaller";
+import { callApi } from "../utils/apiCaller";
 import { Link } from "react-router-dom";
 import { Helper } from "../utils/helper";
 import "../css/Product.css";
@@ -20,29 +20,30 @@ export default class App extends Component {
   }
 
   receivedData(a) {
-    callApi("Products/search/name/"+a, "GET", null).then((res) => {
-      const data = res.data;
-
+    
+    callApi("products/filter?NAME="+a, "GET").then((res) => {
+      const data = res.data.data;
+      console.log(data);
       const slice = data.slice(
         this.state.offset,
         this.state.offset + this.state.perPage
       );
       const postData = slice.map((pd, index) => (
         <React.Fragment key={index}>
-          <Link to={`/Detail/${pd._id}`} className="Product">
+          <Link to={`/Detail/${pd.ID}`} className="Product">
             <div className="productImgCont">
-              <img src={pd.src} className="productImg" alt="" />
+              <img src={pd.IMGSRC} className="productImg" alt="" />
             </div>
             <div className="productTitleCont">
               <span
                 style={{ color: "#252525", fontWeight: 400, fontSize: 15 }}
                 className="nameofProduct"
               >
-                {pd.name}
+                {pd.NAME}
               </span>
               <div className="priceofProduct">
                 <span style={{ color: "red", fontWeight: 700, fontSize: 22 }}>
-                  {Helper.formatDollar(pd.pirce2)}đ
+                  {Helper.formatDollar(pd.DISCOUNT)}đ
                 </span>
                 <span
                   style={{
@@ -52,7 +53,7 @@ export default class App extends Component {
                     textDecorationLine: "line-through",
                   }}
                 >
-                  {Helper.formatDollar(pd.price)}đ
+                  {Helper.formatDollar(pd.PRICE)}đ
                 </span>
               </div>
             </div>
@@ -83,7 +84,6 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-      console.log(1);
     const { match: { params } } = this.props;
     this.receivedData(params.text);
   }
