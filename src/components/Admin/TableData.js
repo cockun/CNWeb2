@@ -87,6 +87,20 @@ export default function TableData(props) {
             align: "right",
             format: (value) => value.toLocaleString("en-US"),
           },
+          {
+            id: "POINTS",
+            label: "Điểm",
+            minWidth: 250,
+            align: "right",
+            format: (value) => value.toLocaleString("en-US"),
+          },
+          {
+            id: "CREATEDATE",
+            label: "Ngày tạo",
+            minWidth: 250,
+            align: "right",
+            format: (value) => value.toLocaleString("en-US"),
+          }
         ];
       }
     }
@@ -149,19 +163,12 @@ export default function TableData(props) {
   }, [props.data]);
 
   const deleteItem = async (row) => {
-
-   
-    try {
-      await callApi(props.data.type + "/" + row._id, "DELETE");
-      swal("Đã xóa", {
-        icon: "success",
-      });
-    } catch (e) {
-      swal("Error", {
-        icon: "Warning",
-      });
+    if(props.data.type === "Account"){
+      props.deleteItem2(row.ACCOUNTID);
+    }else{
+      props.deleteItem2(row.ID);
     }
-    props.deleteItem2();
+   
   };
 
   console.log(state);
