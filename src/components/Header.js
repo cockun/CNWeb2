@@ -20,10 +20,10 @@ function Header({ route }) {
   
   useEffect(() => {
      user = JSON.parse(localStorage.getItem("myAccountInfo"));
-    if(user.data){
+    if(user?.data){
       setName(user.data.FULLNAME);
     }
-   
+    setName("User");
   });
 
   const changeValue = (e) => {

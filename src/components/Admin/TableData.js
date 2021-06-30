@@ -39,9 +39,7 @@ export default function TableData(props) {
   // }, [props.data]);
 
   useEffect(() => {
-    callApi(props.data.type + "/get/length", "GET").then((res) => {
-      setCount(res.data);
-    });
+    setCount(props.data.count);
     if (props.data.type === "Products") {
       columns = [
         { id: "src", label: "Hình ảnh", minWidth: 120 },
@@ -72,18 +70,18 @@ export default function TableData(props) {
     } else {
       if (props.data.type === "Account") {
         columns = [
-          { id: "name", label: "ID", minWidth: 100 },
-          { id: "fullname", label: "Tên tài khoản", minWidth: 120 },
+          { id: "NAME", label: "ID", minWidth: 100 },
+          { id: "FULLNAME", label: "Tên tài khoản", minWidth: 120 },
 
           {
-            id: "phone",
+            id: "PHONE",
             label: "Số điện thoại",
             minWidth: 170,
             align: "right",
             format: (value) => value.toLocaleString("en-US"),
           },
           {
-            id: "address",
+            id: "ADDRESS",
             label: "Địa chỉ",
             minWidth: 250,
             align: "right",
