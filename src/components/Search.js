@@ -20,12 +20,7 @@ export default class App extends Component {
   }
 
   receivedData(a) {
-<<<<<<< HEAD
-    
-    callApi("products/filter?NAME:"+a, "GET",null).then((res) => {
-=======
     callApi("products/filter?NAME=" + a, "GET").then((res) => {
->>>>>>> a930879f2a7d05bf0fc5d59c5802b6bd23de903d
       const data = res.data.data;
       console.log(data);
       const slice = data.slice(
