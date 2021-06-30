@@ -47,11 +47,11 @@ export default function ModalAccount(props) {
   const [open, setOpen] = React.useState(false);
 
   const [data, setData] = useState({
-    name: "",
-    fullname: "",
-    author: "1",
-    phone: "",
-    address: "",
+    NAME: "",
+    FULLNAME: "",
+    ROLE: "1",
+    PHONE: "",
+    ADDRESS: "",
   });
   useEffect(() => {
     setOpen(props.show.show);
@@ -62,13 +62,13 @@ export default function ModalAccount(props) {
   }, [props.show]);
 
   const handleChangeSelect = (event) => {
-    setData({ ...data, author: event.target.value });
+    setData({ ...data, ROLE: event.target.value });
   };
 
   const btnOk = async () => {
     let z;
-    if (data.author === "") {
-      z = { ...data, author: "1" };
+    if (data.ROLE === "") {
+      z = { ...data, ROLE: "1" };
     }
     if (props.show.action === "POST") {
       await callApi("Account", "POST", z).catch((error) => {
@@ -77,18 +77,15 @@ export default function ModalAccount(props) {
       props.handleClose(data, props.show.action);
     } else {
       let tmp = props.allData.data.find((item) => {
-        if (item.name === data.name && item._id !== data._id) {
+        if (item.NAME === data.NAME && item.ACCOUNTID !== data.ACCOUNTID) {
           return item;
         }
       });
       if (tmp) {
         swal("Tên đã tồn tại", "Ấn OK để tiếp tục!", "error");
       } else {
-        if (props.show.action === "POST") {
-        } else {
-          if (props.show.action === "PUT") {
-            callApi("Account/" + data._id, props.show.action, z);
-          }
+        if (props.show.action === "PUT") {
+          callApi("Account/" + data.ACCOUNTID, "PUT", z);
         }
         props.handleClose(data, props.show.action);
         swal("Good job!", "Ấn OK để tiếp tục!", "success");
@@ -125,9 +122,9 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.name}
+                    value={data.NAME}
                     onChange={(e) => {
-                      setData({ ...data, name: e.target.value });
+                      setData({ ...data, NAME: e.target.value });
                     }}
                   />
                 </div>
@@ -141,9 +138,9 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.fullname}
+                    value={data.FULLNAME}
                     onChange={(e) => {
-                      setData({ ...data, fullname: e.target.value });
+                      setData({ ...data, FULLNAME: e.target.value });
                     }}
                   />
                 </div>
@@ -156,8 +153,8 @@ export default function ModalAccount(props) {
 
                   <select
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
-                    _id="cars"
-                    value={data.author}
+                    ACCOUNTID="cars"
+                    value={data.ROLE}
                     onChange={handleChangeSelect}
                   >
                     <option value="1">User</option>
@@ -175,15 +172,15 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.phone}
+                    value={data.PHONE}
                     onChange={(e) => {
                       console.log(e.target.value);
                       if (e.target.value !== "") {
                         if (Helper.checkNumber(e.target.value)) {
-                          setData({ ...data, phone: e.target.value });
+                          setData({ ...data, PHONE: e.target.value });
                         }
                       } else {
-                        setData({ ...data, phone: "" });
+                        setData({ ...data, PHONE: "" });
                       }
                     }}
                   />
@@ -200,9 +197,9 @@ export default function ModalAccount(props) {
                     aria-label="maximum height"
                     rowsMin={10}
                     placeholder="Nhập địa chỉ "
-                    value={data.address}
+                    value={data.ADDRESS}
                     onChange={(e) => {
-                      setData({ ...data, address: e.target.value });
+                      setData({ ...data, ADDRESS: e.target.value });
                     }}
                   />
                 </div>
@@ -214,11 +211,11 @@ export default function ModalAccount(props) {
                   onClick={() => {
                     props.handleClose();
                     setData({
-                      name: "",
-                      fullname: "",
-                      author: "",
-                      phone: "",
-                      address: "",
+                      NAME: "",
+                      FULLNAME: "",
+                      ROLE: "",
+                      PHONE: "",
+                      ADDRESS: "",
                     });
                   }}
                 >
