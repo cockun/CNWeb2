@@ -41,9 +41,11 @@ class Login extends React.Component {
       //   });
       callApi('accounts/login', 'POST', coc).then((res) => {
         console.log(res.data);
+      
         const data = res.data.data;
-        console.log(data.ROLENAME);
-        if (res.data) {
+    
+
+        if (data!=null) {
           if (data.ROLENAME=== "User") {
             localStorage.setItem("myAccountInfo", JSON.stringify(res.data));
             swal("Chào mừng!", "Bạn đã đăng nhập thành công!", "success").then(
