@@ -9,6 +9,7 @@ export default function Account() {
   const [state, setState] = useState({
     data: [],
     type: "Account",
+    count:0
   });
   const [showModal, setShowModal] = useState({
     show: false,
@@ -64,7 +65,8 @@ export default function Account() {
       setState({ ...state, data: data });
     }
     if (action === "POST") {
-      callApi("Account/page/" + 1 + "/" + 10, "GET").then((res) => {
+      callApi("api/accounts/filter", "GET", {}).then((res) => {
+        var z  = res.data;
         setState({ ...state, data: res.data });
       });
       setPage({
@@ -76,11 +78,14 @@ export default function Account() {
     setShowModal({ data: {}, show: false });
   };
   useEffect(() => {
-    callApi("Account/page/" + page.page + "/" + page.limit, "GET").then(
+    callApi("accounts/filter" , "GET", {}).then(
       (res) => {
-        setState({ ...state, data: res.data });
+        setState({ ...state, data: res.data.data , count:res.data.count});
       }
     );
+
+
+   
   }, []);
 
   const search = (e) => {

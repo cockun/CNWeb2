@@ -5,13 +5,15 @@ import LeftPanel from "./LeftPanel";
 export default function HomeAdmin({ route }) {
   const checkAdmin = () => {
     let myAccount = JSON.parse(localStorage.getItem("myAccountInfo"));
-    if (myAccount) {
-      if (myAccount.author !== null && myAccount.author === "0") {
-        return <LeftPanel data2={listTasks2} route={route} />;
-      } else {
-        alert("Lỗi");
-      }
-    }
+    // if (myAccount) {
+    //   if (myAccount.author !== null && myAccount.author === "0") {
+    //     return <LeftPanel data2={listTasks2} route={route} />;
+    //   } else {
+    //     alert("Lỗi");
+    //   }
+    // }
+    return <LeftPanel data2={listTasks2} route={route} />;
+    
   };
   const listTasks2 = [
     { name: "Tài khoản", toLink: "/Admin/Account" },

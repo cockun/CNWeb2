@@ -20,8 +20,12 @@ export default class App extends Component {
   }
 
   receivedData(a) {
+<<<<<<< HEAD
     
     callApi("products/filter?NAME:"+a, "GET",null).then((res) => {
+=======
+    callApi("products/filter?NAME=" + a, "GET").then((res) => {
+>>>>>>> a930879f2a7d05bf0fc5d59c5802b6bd23de903d
       const data = res.data.data;
       console.log(data);
       const slice = data.slice(
@@ -84,13 +88,21 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    const { match: { params } } = this.props;
+    const {
+      match: { params },
+    } = this.props;
     this.receivedData(params.text);
   }
 
-  componentDidUpdate(){
-    const { match: { params } } = this.props;
-    this.receivedData(params.text);
+  componentDidUpdate(prevProp) {
+    const {
+      match: { params },
+    } = this.props;
+    console.log(params);
+    console.log(prevProp.match.params.text);
+    if (params.text !== prevProp.match.params.text) {
+      this.receivedData(params.text);
+    }
   }
   render() {
     return (
