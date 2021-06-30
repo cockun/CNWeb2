@@ -5,23 +5,23 @@ import error from "../image/error.jpg";
 import { Helper } from "../utils/helper";
 function ReviewBill() {
   const [bill, setBill] = useState([]);
-  let userName;
+  let accountID;
   if (JSON.parse(localStorage.getItem("myAccountInfo"))) {
-    userName = JSON.parse(localStorage.getItem("myAccountInfo")).name;
+    accountID = JSON.parse(localStorage.getItem("myAccountInfo")).ACCOUNTID;
   } else {
-    userName = "";
+    accountID = "";
   }
 
-  useEffect(() => {
-    callApi("Bill", "GET", null).then((res) => {
-      let data = res.data;
-      data = data.filter((item) => item.name === userName);
-      setBill(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   callApi("Bill", "GET", null).then((res) => {
+  //     let data = res.data;
+  //     data = data.filter((item) => item.name === userName);
+  //     setBill(data);
+  //   });
+  // }, []);
   return (
     <div className="containerBill">
-      {userName === undefined && (
+      {accountID === "" && (
         <div
           style={{
             fontSize: 30,
@@ -38,7 +38,7 @@ function ReviewBill() {
         </div>
       )}
       {bill.length !== 0 &&
-        userName !== "" &&
+        accountID !== "" &&
         bill.map((item, index) => (
           <div className="BillPre" key={index}>
             <span className="mainTitle">ĐƠN HÀNG</span>
