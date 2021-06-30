@@ -89,7 +89,8 @@ export default class App extends Component {
   }
 
   componentDidUpdate(){
-    
+    const { match: { params } } = this.props;
+    this.receivedData(params.text);
   }
   render() {
     return (
