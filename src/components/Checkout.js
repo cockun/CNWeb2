@@ -14,6 +14,7 @@ export function Checkout() {
     phone: JSON.parse(localStorage.getItem("myAccountInfo")).data.PHONE,
     fullname: JSON.parse(localStorage.getItem("myAccountInfo")).data.FULLNAME,
     address: JSON.parse(localStorage.getItem("myAccountInfo")).data.ADDRESS,
+    accountId: JSON.parse(localStorage.getItem("myAccountInfo")).data.ACCOUNTID,
   });
   useEffect(() => {
     data = JSON.parse(sessionStorage.getItem("myCart"));
@@ -23,29 +24,32 @@ export function Checkout() {
 
   }, [])
 
-  console.log(data);
+  var billInfoReq = [];
+  data.map((item)=>{
+        let tmp = {"PRODUCTID":item.ID , "QUANTITY":item.quantity};
+        billInfoReq.push(tmp);
+      })
   const checkoutbill = () => {
     if (state.phone !== '' && state.fullname !== '' && state.address !== '') {
-      callApi('Bill', 'POST',
-        {
-          billinfo: data,
-          total: total,
-          fullname: state.fullname,
-          phone: state.phone,
-          address: state.address,
-          date: today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear(),
-          name: JSON.parse(localStorage.getItem("myAccountInfo")).name,
-        }); 
-      data.map(async item => {  
-        let tmp ;
-        await callApi('Products/' +item._id, "GET").then((res)=>{
-          tmp = res.data.sold;
-        });
       
-       
-        callApi('Products/'+item._id , "PUT" , {...item, sold : item.quantity +tmp})
-        console.log({...item, sold : item.quantity + tmp});
-      })
+      const req = {"data":
+        {
+          TOTAL: total,
+          DATEBUY:"",
+          FULLNAME:state.fullname,
+          PHONE:state.phone,
+          ADDRESS:state.address,
+          ACCOUNTID:state.accountId,
+          BILLSTATUS:"1",
+          BILLINFOS:billInfoReq
+        }
+      }
+      console.log(req);
+
+      callApi('bills/add', 'POST', req).then((res) => {
+        console.log(res);
+      }); 
+
       swal("Thông báo!", "Đặt hàng thành công", "success");
     }
     else {
@@ -142,7 +146,7 @@ export function Checkout() {
                       </div>
                     </div>
                     <div className="order-btn">
-                      <button type="button"  className="site-btn place-btn">
+                      <button type="button" onClick={checkoutbill} className="site-btn place-btn">
                         ĐẶT HÀNG
                       </button>
                     </div>
