@@ -101,6 +101,15 @@ export default class App extends Component {
   
     return (
       <div className="productContainer">
+        <div class="dropdown">
+          <button class="dropbtn">Filter</button>
+            <div class="dropdown-content">
+              <a href="#">Sort By Default</a>
+              <a href="#">Sort By Price Desc</a>
+              <a href="#">Sort By Price Aesc</a>
+              <a href="#">Sort By Popularity</a>
+            </div>
+        </div>
         <div className="productMainPage">{this.state.postData}</div>
         <ReactPaginate
           previousLabel={"prev"}
