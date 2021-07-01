@@ -160,11 +160,13 @@ class Register extends React.Component {
                       <div class="group-input">
                         <label for="con-pass">Giới tính</label>
                         <label for="vehicle1"> Nữ </label><br />
-                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Nữ" onChange={(txt) => {
+                        <input type="checkbox" id="girl" name="vehicle1" value="Nữ" onChange={(txt) => {
+                          document.getElementById("boy").checked = false;
                             this.setState({ sex: txt.target.value });
                           }} />
                         <label for="vehicle1"> Nam</label><br />
-                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Nam" onChange={(txt) => {
+                        <input type="checkbox" id="boy" name="vehicle1" value="Nam" onChange={(txt) => {
+                            document.getElementById("girl").checked = false;
                             this.setState({ sex: txt.target.value });
                           }} />
                         
