@@ -15,6 +15,9 @@ class Register extends React.Component {
       fullname: "",
       phone: "",
       address: "",
+      sex:"",
+      birthday:"",
+      email:"",
     };
 
     this.add = this.add.bind(this);
@@ -29,17 +32,21 @@ class Register extends React.Component {
       } else {
         if (String(this.state.pass) === String(this.state.pass2)) {
           const obj = {
-            "ID": "",
+          
             "USERNAME": this.state.name,
             "PASSWORD": this.state.pass,
             "FULLNAME": this.state.fullname,
             "ADDRESS": this.state.address,
             "PHONE": this.state.phone,
-            "ROLE": "1"
+            "ROLE": "1",
+            "BIRTHDAY":this.state.birthday,
+            "EMAIL":this.state.email,
+            "SEX":this.state.sex,      
           }
           callApi("accounts/add", "POST", obj).then((res) => {
             const check = res.data;
             console.log(check.data);
+            console.log(this.state.birthday);
             var a = check.data;
             if(a == null)
             {
@@ -47,7 +54,7 @@ class Register extends React.Component {
             }
             else
             {
-              if (a === String("Success")) {
+              if (res.data) {
                 swal("Thông báo!", "Đăng ký thành công", "success").then(() => {
                   this.props.history.push("/Login");
                 }
@@ -149,6 +156,39 @@ class Register extends React.Component {
                           value={String(this.state.address)}
                           onChange={(txt) => {
                             this.setState({ address: txt.target.value });
+                          }}
+                        />
+                      </div>
+                      <div class="group-input">
+                        <label for="con-pass">Giới tính</label>
+                        <input
+                          type="text"
+                          id="username"
+                          value={String(this.state.sex)}
+                          onChange={(txt) => {
+                            this.setState({ sex: txt.target.value });
+                          }}
+                        />
+                      </div>
+                      <div class="group-input">
+                        <label for="con-pass">Email</label>
+                        <input
+                          type="text"
+                          id="username"
+                          value={String(this.state.email)}
+                          onChange={(txt) => {
+                            this.setState({ email: txt.target.value });
+                          }}
+                        />
+                      </div>
+                      <div class="group-input">
+                        <label for="con-pass">Ngày sinh</label>
+                        <input
+                          type="datetime-local"
+                          id="username"
+                          value={(this.state.birthday)}
+                          onChange={(txt) => {
+                            this.setState({ birthday: txt.target.value });
                           }}
                         />
                       </div>

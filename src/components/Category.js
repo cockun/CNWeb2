@@ -17,7 +17,7 @@ function Category() {
           <img src={Laptop} className="catImg" alt="" />
           <div className="catName">Laptop</div>
         </Link>
-        <Link to="/Search/Điện Thoại" className="catImgCont">
+        <Link to="/Search/Iphone" className="catImgCont">
           <img src={Phone} className="catImg" alt="" />
           <div className="catName">Điện thoại</div>
         </Link>
