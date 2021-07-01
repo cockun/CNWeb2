@@ -19,6 +19,9 @@ function Header({ route }) {
 
   
   useEffect(() => {
+    if (localStorage.getItem("myAccountInfo") === null) {
+      localStorage.setItem("myAccountInfo",JSON.stringify({}));
+    }
      user = JSON.parse(localStorage.getItem("myAccountInfo"));
     if(user.data){
       setName(user.data.FULLNAME);
