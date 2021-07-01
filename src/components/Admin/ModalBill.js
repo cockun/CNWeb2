@@ -4,7 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import Button from "@material-ui/core/Button";
-
+import { callApi } from "../../utils/apiCaller";
 
 import { Helper } from "../../utils/helper";
 
@@ -69,9 +69,21 @@ export default function ModalBill(props) {
 
   const btnOk = async () => {
     props.handleClose(data, props.show.action);
-  };
-  console.log(data);
+    console.log(data);
+  //   callApi("bills/update","PUT",
+  //     {
+  //       data:
+  //       {
+  //         data
+  //       }
+  //     }
+  //   ).then((res) => {
+  //     console.log(res);
+  //   })
 
+  // };
+  // console.log(data);
+  }
   return (
     <div>
       <Modal
@@ -204,7 +216,7 @@ export default function ModalBill(props) {
                   style={{ width: "100%", height: "270px" }}
                 >
                   <TableBill
-                    data={{ type: "billInfo", data: props.show.data.billinfo }}
+                    data={{ type: "billInfo", data: props.show.data.BILLINFOS }}
                   />
                 </div>
               </div>
