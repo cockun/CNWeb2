@@ -9,7 +9,7 @@ var total = 0;
 var today = new Date();
 
 
-export function Checkout() {
+export function Checkout(props) {
   const [state, setState] = useState({
     phone: JSON.parse(localStorage.getItem("myAccountInfo")).data.PHONE,
     fullname: JSON.parse(localStorage.getItem("myAccountInfo")).data.FULLNAME,
@@ -49,6 +49,7 @@ export function Checkout() {
         swal("Thông báo!", "Đặt hàng thành công", "success");
         sessionStorage.setItem("myCart",JSON.stringify([]));
         sessionStorage.setItem("totalBill",0);
+        props.history.push("/");
       }); 
 
       
