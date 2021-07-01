@@ -47,10 +47,12 @@ export function Checkout() {
       console.log(req);
 
       callApi('bills/add', 'POST', req).then((res) => {
-        console.log(res);
+        swal("Thông báo!", "Đặt hàng thành công", "success");
+        sessionStorage.removeItem("myCart");
+        sessionStorage.removeItem("totalBill");
       }); 
 
-      swal("Thông báo!", "Đặt hàng thành công", "success");
+      
     }
     else {
       swal("Thông báo!", "Vui lòng nhập đầy đủ", "error");
