@@ -66,7 +66,9 @@ export default function ModalAccount(props) {
   const btnOk = async () => {
     try {
       if (props.show.action === "POST") {
-        await callApi("products/add", "POST", data);
+        await callApi("products/add", "POST", data).then((res)=>{
+          console.log(res.data)
+      });;
       } 
       else {
           callApi("products/update" ,"UPDATE" , data).then((res)=>{
@@ -151,15 +153,26 @@ export default function ModalAccount(props) {
                   >
                     Loại sản phẩm
                   </span>
-
-                  <input
+                  <input type="checkbox" id="vehicle1" name="vehicle1" value="19192717-650c-4b17-930c-75127f7fff5f" onChange={(e) => {
+                      setData({ ...data, CATEGORYID: e.target.value });
+                    }}/>
+                  <label for="vehicle1"> Điện thoại </label><br/>
+                  <input type="checkbox" id="vehicle1" name="vehicle1" value="0ad8ad20-6f71-40a7-9d5a-a82969c8d244" onChange={(e) => {
+                      setData({ ...data, CATEGORYID: e.target.value });
+                    }}/>
+                  <label for="vehicle1"> Laptop</label><br/>
+                  <input type="checkbox" id="vehicle1" name="vehicle1" value="595b5923-9e08-43b0-bbde-be16bf29fbe6" onChange={(e) => {
+                      setData({ ...data, CATEGORYID: e.target.value });
+                    }}/>
+                  <label for="vehicle1"> Bàn phím</label><br/>
+                  {/* <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
                     value={data.CATEGORYID}
                     onChange={(e) => {
                       setData({ ...data, CATEGORYID: e.target.value });
                     }}
-                  />
+                  /> */}
                 </div>
                 <div className={classes.rowText}>
                   <div style={{ width: "33%" }}>

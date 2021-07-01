@@ -15,9 +15,9 @@ class Register extends React.Component {
       fullname: "",
       phone: "",
       address: "",
-      sex:"",
-      birthday:"",
-      email:"",
+      sex: "",
+      birthday: "",
+      email: "",
     };
 
     this.add = this.add.bind(this);
@@ -32,38 +32,36 @@ class Register extends React.Component {
       } else {
         if (String(this.state.pass) === String(this.state.pass2)) {
           const obj = {
-          
+
             "USERNAME": this.state.name,
             "PASSWORD": this.state.pass,
             "FULLNAME": this.state.fullname,
             "ADDRESS": this.state.address,
             "PHONE": this.state.phone,
             "ROLE": "1",
-            "BIRTHDAY":this.state.birthday,
-            "EMAIL":this.state.email,
-            "SEX":this.state.sex,      
+            "BIRTHDAY": this.state.birthday,
+            "EMAIL": this.state.email,
+            "SEX": this.state.sex,
           }
           callApi("accounts/add", "POST", obj).then((res) => {
             const check = res.data;
             console.log(check.data);
             console.log(this.state.birthday);
             var a = check.data;
-            if(a == null)
-            {
-            swal("Thông báo!", "Lỗi", "error")
+            if (a == null) {
+              swal("Thông báo!", "Lỗi", "error")
             }
-            else
-            {
+            else {
               if (res.data) {
                 swal("Thông báo!", "Đăng ký thành công", "success").then(() => {
                   this.props.history.push("/Login");
                 }
                 );
               }
-              
+
             }
-            
-            
+
+
           })
 
 
@@ -161,14 +159,17 @@ class Register extends React.Component {
                       </div>
                       <div class="group-input">
                         <label for="con-pass">Giới tính</label>
-                        <input
-                          type="text"
-                          id="username"
-                          value={String(this.state.sex)}
-                          onChange={(txt) => {
+                        <label for="vehicle1"> Nữ </label><br />
+                        <input type="checkbox" id="girl" name="vehicle1" value="Nữ" onChange={(txt) => {
+                          document.getElementById("boy").checked = false;
                             this.setState({ sex: txt.target.value });
-                          }}
-                        />
+                          }} />
+                        <label for="vehicle1"> Nam</label><br />
+                        <input type="checkbox" id="boy" name="vehicle1" value="Nam" onChange={(txt) => {
+                            document.getElementById("girl").checked = false;
+                            this.setState({ sex: txt.target.value });
+                          }} />
+                        
                       </div>
                       <div class="group-input">
                         <label for="con-pass">Email</label>
