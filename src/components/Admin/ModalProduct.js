@@ -47,7 +47,6 @@ export default function ModalAccount(props) {
     ID:"",
     NAME: "",
     PRICE: "",
-    CATEGORYID: "",
     IMGSRC: "",
     DISCOUNT: "",
     DESCRIPTION:"",
@@ -70,11 +69,23 @@ export default function ModalAccount(props) {
       if (props.show.action === "POST") {
         await callApi("products/add", "POST", data);
       } else {
-        if (props.show.action === "PUT") {
-          callApi("products/update" ,"PUT" , data).then((res)=>{
-            
+        
+          
+            const obj ={
+              "ID":"07644b2e-5d84-493e-91be-018f214bea3f",
+              "NAME": "t là mèo ngu hehe nhất",
+              "PRICE": 1459000,
+              "CATEGORYID": "123",
+              "IMGSRC": "https://i.pinimg.com/236x/35/bc/17/35bc17efbab4c6bbd11262641530160b.jpg",
+              "DISCOUNT": 13200000,
+              "DESCRIPTION": "ngu học mèo con nhất",
+              "SOLD": 13,
+              "CREATEDATE": null
+          }
+          callApi("products/update" ,"PUT" , obj).then((res)=>{
+              console.log(res.data)
           });
-        }
+        
       }
       props.handleClose(data, props.show.action);
     swal("Good job!", "Ấn OK để tiếp tục!", "success");
@@ -244,12 +255,12 @@ export default function ModalAccount(props) {
                   style={{ marginRight: 10 }}
                   variant="outlined"
                   onClick={() => {
-                    props.handleClose();
+                    
                     setData({
                       ID:"",
                       NAME:"",
                       PRICE:"",
-                      CATEGORYID: "",
+        
                       IMGSRC: "",             
                       DISCOUNT: "",
                       DESCRIPTION: "",
