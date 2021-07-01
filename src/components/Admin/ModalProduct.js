@@ -47,11 +47,10 @@ export default function ModalAccount(props) {
     ID:"",
     NAME: "",
     PRICE: "",
+    CATEGORYID:"",
     IMGSRC: "",
     DISCOUNT: "",
     DESCRIPTION:"",
-    SOLD:"",
-    CREATEDATE:null
 
 });
   useEffect(() => {
@@ -71,18 +70,8 @@ export default function ModalAccount(props) {
       } else {
         
           
-            const obj ={
-              "ID":"07644b2e-5d84-493e-91be-018f214bea3f",
-              "NAME": "t là mèo ngu hehe nhất",
-              "PRICE": 1459000,
-              "CATEGORYID": "123",
-              "IMGSRC": "https://i.pinimg.com/236x/35/bc/17/35bc17efbab4c6bbd11262641530160b.jpg",
-              "DISCOUNT": 13200000,
-              "DESCRIPTION": "ngu học mèo con nhất",
-              "SOLD": 13,
-              "CREATEDATE": null
-          }
-          callApi("products/update" ,"PUT" , obj).then((res)=>{
+            
+          callApi("products/update" ,"UPDATE" , data).then((res)=>{
               console.log(res.data)
           });
         
@@ -264,8 +253,7 @@ export default function ModalAccount(props) {
                       IMGSRC: "",             
                       DISCOUNT: "",
                       DESCRIPTION: "",
-                      SOLD:"",   
-                      CREATEDATE:null
+                    
                     });
                   }}
                 >
