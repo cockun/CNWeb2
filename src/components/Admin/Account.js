@@ -35,8 +35,9 @@ export default function Account() {
     });
   };
   const handleChangePage = (newPage) => {
-    const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE };
-    callApi("api/accounts/filter", "GET", obj).then((res) => {
+    console.log(newPage);
+    const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE ,FULLNAME :  changeText.value};
+    callApi("accounts/filter", "GET", obj).then((res) => {
       setState({ ...state, data: res.data.data });
     });
     setPage({ ...page, PAGEINDEX: newPage });
@@ -46,12 +47,12 @@ export default function Account() {
   };
   const deleteItem = (id) => {
     try {
-      callApi("accounts/delete/" + id, "DELETE").then((res)=>{
-        if(res.data!=null)
-        {
-          window.location.reload();
-        }   
-      });;
+      callApi("accounts/delete/" + id, "DELETE").then((res) => {
+        const obj = { PAGEINDEX: page.PAGEINDEX, PAGESIZE: page.PAGESIZE };
+        callApi("accounts/filter", "GET", obj).then((res) => {
+          setState({ ...state, data: res.data.data });
+        });
+      });
       swal("Đã xóa", {
         icon: "success",
       });
@@ -96,20 +97,13 @@ export default function Account() {
   }, []);
 
   const search = (e) => {
-    if (e.target.value !== "") {
-      callApi("Account/search/name" + "/" + e.target.value, "GET").then(
-        (res) => {
-          setState({ ...state, data: res.data });
-        }
-      );
-    } else {
-      callApi(
-        "Account/page/" + page.PAGEINDEX + "/" + page.PAGESIZE,
-        "GET"
-      ).then((res) => {
-        setState({ ...state, data: res.data });
-      });
-    }
+    setPage({ PAGEINDEX: 1, PAGESIZE: 10 });
+    const obj = { PAGEINDEX: 1, PAGESIZE: 10, FULLNAME: e.target.value };
+    callApi("accounts/filter", "GET", obj).then((res) => {
+      setState({ ...state, data: res.data.data , count : res.data.count });
+    });
+
+    
 
     setChangeText({ value: e.target.value });
   };

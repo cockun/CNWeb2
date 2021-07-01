@@ -24,21 +24,21 @@ export default function Account() {
 
   const [page, setPage] = useState({
     PAGEINDEX: 1,
-    PAGESIZE: 40,
+    PAGESIZE: 10,
   });
 
 
   const handleChangeRowsPerPage = (rowsPerPage) => {
     setPage({ ...page, PAGESIZE: rowsPerPage });
     const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage };
-    callApi("api/products/filter", "GET", obj).then((res) => {
+    callApi("products/filter", "GET", obj).then((res) => {
       console.log(res.data)
       setState({ ...state, data: res.data.data });
     });
   };
   const handleChangePage = (newPage) => {
     const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE };
-    callApi("api/products/filter", "GET", obj).then((res) => {
+    callApi("products/filter", "GET", obj).then((res) => {
      
       setState({ ...state, data: res.data.data });
     });
