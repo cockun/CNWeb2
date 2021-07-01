@@ -39,14 +39,14 @@ class Register extends React.Component {
             "ADDRESS": this.state.address,
             "PHONE": this.state.phone,
             "ROLE": "1",
-            "BIRTHDAY": this.state.birthday,
+            "BIRTHDAY": new Date(this.state.birthday) ,
             "EMAIL": this.state.email,
             "SEX": this.state.sex,
           }
           callApi("accounts/add", "POST", obj).then((res) => {
             const check = res.data;
             console.log(check.data);
-            console.log(this.state.birthday);
+            console.log( this.state.birthday);
             var a = check.data;
             if (a == null) {
               swal("Thông báo!", "Lỗi", "error")
