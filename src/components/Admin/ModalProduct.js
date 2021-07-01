@@ -77,7 +77,9 @@ export default function ModalAccount(props) {
         
       }
       props.handleClose(data, props.show.action);
-    swal("Good job!", "Ấn OK để tiếp tục!", "success");
+    swal("Good job!", "Thành công hãy đợi trang reload!", "success");
+
+    setTimeout(function(){ window.location.reload(); }, 3000);
     }catch (e){
       swal("Error", "Ấn OK để tiếp tục!", "warning");
     }
