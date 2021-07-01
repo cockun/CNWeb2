@@ -52,6 +52,10 @@ export default function ModalAccount(props) {
     ROLE: "1",
     PHONE: "",
     ADDRESS: "",
+    BIRTHDAY:"",
+    SEX:"",
+    PASSWORD:"",
+    EMAIL:"",
   });
   useEffect(() => {
     setOpen(props.show.show);
@@ -141,6 +145,54 @@ export default function ModalAccount(props) {
                     value={data.FULLNAME}
                     onChange={(e) => {
                       setData({ ...data, FULLNAME: e.target.value });
+                    }}
+                  />
+                </div>
+                <div className={classes.rowText}>
+                  <span
+                    style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
+                  >
+                    Mật khẩu:
+                  </span>
+
+                  <input
+                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
+                    type="text"
+                    value={data.PASSWORD}
+                    onChange={(e) => {
+                      setData({ ...data, PASSWORD: e.target.value });
+                    }}
+                  />
+                </div>
+                <div className={classes.rowText}>
+                  <span
+                    style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
+                  >
+                    Email:
+                  </span>
+
+                  <input
+                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
+                    type="text"
+                    value={data.EMAIL}
+                    onChange={(e) => {
+                      setData({ ...data, EMAIL: e.target.value });
+                    }}
+                  />
+                </div>
+                <div className={classes.rowText}>
+                  <span
+                    style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
+                  >
+                    Ngày sinh:
+                  </span>
+
+                  <input
+                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
+                    type="datetime-local"
+                    value={data.BIRTHDAY}
+                    onChange={(e) => {
+                      setData({ ...data, BIRTHDAY: e.target.value });
                     }}
                   />
                 </div>
