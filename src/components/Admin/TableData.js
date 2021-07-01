@@ -106,32 +106,32 @@ export default function TableData(props) {
     }
     if (props.data.type === "Bill") {
       columns = [
-        { id: "name", label: "ID", minWidth: 100 },
-        { id: "fullname", label: "Người mua", minWidth: 120 },
+        { id: "NAME", label: "ID", minWidth: 100 },
+        { id: "FULLNAME", label: "Người mua", minWidth: 120 },
 
         {
-          id: "date",
+          id: "DATEBUY",
           label: "Ngày thanh toán",
           minWidth: 170,
           align: "left",
           format: (value) => value.toLocaleString("en-US"),
         },
         {
-          id: "phone",
+          id: "PHONE",
           label: "Số điện thoại",
           minWidth: 100,
           align: "left",
           format: (value) => value.toLocaleString("en-US"),
         },
         {
-          id: "address",
+          id: "ADDRESS",
           label: "Địa chỉ",
           minWidth: 250,
           align: "left",
           format: (value) => value.toLocaleString("en-US"),
         },
         {
-          id: "total",
+          id: "TOTAL",
           label: "Tổng tiền",
           minWidth: 100,
           align: "right",
@@ -141,16 +141,16 @@ export default function TableData(props) {
     } else {
       if (props.data.type === "billInfo") {
         columns = [
-          { id: "name", label: "Tên sản phẩm", minWidth: 190 },
+          { id: "PRODUCTNAME", label: "Tên sản phẩm", minWidth: 190 },
           {
-            id: "pirce2",
+            id: "PRICE",
             label: "Giá",
             minWidth: 120,
             align: "left",
             format: (value) => value.toLocaleString("en-US"),
           },
           {
-            id: "quantity",
+            id: "QUANITY",
             label: "Số lượng",
             minWidth: 100,
             align: "left",

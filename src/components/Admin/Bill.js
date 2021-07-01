@@ -16,12 +16,13 @@ console.log(Helper.convertDateToString(date2));
 
 export default function Bill() {
   const [page, setPage] = useState({
-    page: 1,
-    limit: 10,
+    PAGEINDEX: 1,
+    PAGESIZE: 10,
   });
   const [state, setState] = useState({
     data: [],
     type: "Bill",
+    count: 0,
   });
   const [showModal, setShowModal] = useState({
     show: false,
@@ -44,63 +45,63 @@ export default function Bill() {
     setShowModal({ data: { billInfo: [{ a: 2 }] }, show: false });
   };
   useEffect(() => {
-    callApi("Bill/page/" + page.page + "/" + page.limit, "GET").then((res) => {
-      setState({ ...state, data: res.data });
+    callApi("bills/filter", "GET", { ...page }).then((res) => {
+      setState({ ...state, data: res.data.data, count: res.data.count });
     });
   }, []);
 
-  const filterDate = (e) => {
-    let fromDate = document.getElementById("fromDate").value;
-    let toDate = document.getElementById("toDate").value;
+  // const filterDate = (e) => {
+  //   let fromDate = document.getElementById("fromDate").value;
+  //   let toDate = document.getElementById("toDate").value;
 
-    if (toDate !== "" && fromDate !== "") {
-      callApi("Bill/filter/" + fromDate + "/" + toDate, "GET").then((res) => {
-        setState({ ...state, data: res.data });
-      });
-    }
+  //   if (toDate !== "" && fromDate !== "") {
+  //     callApi("Bill/filter/" + fromDate + "/" + toDate, "GET").then((res) => {
+  //       setState({ ...state, data: res.data });
+  //     });
+  //   }
 
-  };
-  const search = (e) => {
-    if (e.target.value !== "") {
-      callApi("Bill/search/fullname" + "/" + e.target.value, "GET").then(
-        (res) => {
-          setState({ ...state, data: res.data });
-        }
-      );
-    } else {
-      callApi("Bill/page/" + page.page + "/" + page.limit, "GET").then(
-        (res) => {
-          setState({ ...state, data: res.data });
-        }
-      );
-    }
+  // };
+  // const search = (e) => {
+  //   if (e.target.value !== "") {
+  //     callApi("Bill/search/fullname" + "/" + e.target.value, "GET").then(
+  //       (res) => {
+  //         setState({ ...state, data: res.data });
+  //       }
+  //     );
+  //   } else {
+  //     callApi("Bill/page/" + page.page + "/" + page.limit, "GET").then(
+  //       (res) => {
+  //         setState({ ...state, data: res.data });
+  //       }
+  //     );
+  //   }
 
-    setChangeText({ value: e.target.value });
-  };
+  //   setChangeText({ value: e.target.value });
+  // };
 
   const handleChangeRowsPerPage = (rowsPerPage) => {
-    setPage({ ...page, limit: rowsPerPage });
-    callApi("Bill/page/" + (page.page + 1) + "/" + rowsPerPage, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
+    setPage({ ...page, PAGESIZE: rowsPerPage });
+    const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage };
+    callApi("api/bills/filter", "GET", obj).then((res) => {
+      console.log(res.data)
+      setState({ ...state, data: res.data.data });
+    });
   };
-  const deleteItem = () => {
-    callApi( state.type +  "/page/" + page.page + "/" + page.limit, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
-  };
+  // const deleteItem = () => {
+  //   callApi( state.type +  "/page/" + page.page + "/" + page.limit, "GET").then(
+  //     (res) => {
+  //       setState({ ...state, data: res.data });
+  //     }
+  //   );
+  // };
 
   const handleChangePage = (newPage) => {
-    callApi("Bill/page/" + (newPage + 1) + "/" + page.limit, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
-    setPage({ ...page, page: newPage });
+    const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE };
+    callApi("api/bills/filter", "GET", obj).then((res) => {
+     
+      setState({ ...state, data: res.data.data });
+    });
+    setPage({ ...page, PAGEINDEX: newPage });
   };
 
   return (
@@ -124,7 +125,7 @@ export default function Bill() {
             className={classes.textSeacch}
             value={changeText.value}
             onChange={(e) => {
-              search(e);
+              // search(e);
             }}
           />
 
@@ -140,7 +141,7 @@ export default function Bill() {
                 shrink: true,
               }}
               onChange={() => {
-                filterDate();
+                // filterDate();
               }}
             />
           </form>
@@ -155,7 +156,7 @@ export default function Bill() {
                 shrink: true,
               }}
               onChange={(e) => {
-                filterDate();
+                // filterDate();
               }}
             />
           </form>
@@ -166,7 +167,7 @@ export default function Bill() {
             handleOpen2={handleOpen}
             handleChangePage={handleChangePage}
             data={state}
-            deleteItem2={deleteItem}
+            // deleteItem2={deleteItem}
             handleChangeRowsPerPage={handleChangeRowsPerPage}
           />
           {/* {[{ a: 2 }].map(() => {
