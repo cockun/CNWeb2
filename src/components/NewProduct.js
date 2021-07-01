@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactPaginate from "react-paginate";
 import "../styles.css";
-import { callApi } from "../ultis/apiCaller";
+import { callApi } from "../utils/apiCaller";
 import { Link } from "react-router-dom";
 import { Helper } from "../utils/helper";
 import "../css/Product.css";
@@ -13,21 +13,20 @@ export default class App extends Component {
     this.state = {
       offset: 0,
       data: [],
-      perPage: 12,
+      perPage: 10,
       currentPage: 1,
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
-  receivedData() {
-    callApi(`Products/page/`+(this.state.currentPage+1)+'/'+this.state.perPage, "GET", null).then((res) => {
-      const data = res.data;
+  receivedData(data) {
+  
 
       const postData = data.map((pd, index) => (
         <React.Fragment key={index}>
-          <Link to={`/Detail/${pd._id}`} className="Product">
+          <Link to={`/Detail/${pd.ID}`} className="Product">
             <div className="productImgCont">
-              <img src={pd.src} className="productImg" alt="" />
-              <span style={{fontWeight: 'bold'}}>Hello World</span>
+              <img src={pd.IMGSRC} className="productImg" alt="" />
+              <span style={{fontWeight: 'bold'}}>{pd.NAME}</span>
             </div>
             <div className="productTitleCont">
               <span
@@ -38,7 +37,7 @@ export default class App extends Component {
               </span>
               <div className="priceofProduct">
                 <span style={{ color: "red", fontWeight: 700, fontSize: 22 }}>
-                  {Helper.formatDollar(pd.pirce2)}đ
+                  {Helper.formatDollar(pd.PRICE)}đ
                 </span>
                 <span
                   style={{
@@ -48,7 +47,7 @@ export default class App extends Component {
                     textDecorationLine: "line-through",
                   }}
                 >
-                  {Helper.formatDollar(pd.price)}đ
+                  {Helper.formatDollar(pd.DISCOUNT)}đ
                 </span>
               </div>
             </div> 
@@ -61,33 +60,43 @@ export default class App extends Component {
 
         postData,
       });
-    });
+    
   }
 
-  handlePageClick = (e) => {
+   handlePageClick = async (e) => {
     const selectedPage = e.selected;
     const offset = selectedPage * this.state.perPage;
-
-    this.setState(
+    const obj = {PAGEINDEX:selectedPage +1, PAGESIZE : this.state.perPage}
+    var data = await this.fetchData(obj);
+    this.setState(  
       {
         currentPage: selectedPage,
         offset: offset,
       },
       () => {
-        this.receivedData();
+       
+        this.receivedData(data.data.data);
       }
     );
+      
+
+
   };
 
-  componentDidMount() {
-     var lengthData = async () => {
-      await callApi(`Products/get/length`, "GET", null).then((res) => {
-       lengthD =  res.data;
-      });
-    };
-    lengthData();
-    this.receivedData();
+  fetchData = async (obj)=>{
+
+     return await callApi(`products/filter`, "GET", obj);
+
   }
+
+  async componentDidMount() {
+    const obj = {PAGEINDEX:this.state.currentPage, PAGESIZE : this.state.perPage}
+    var data = await this.fetchData(obj);
+  
+
+    lengthD  =data.data.count;
+    this.receivedData(data.data.data);
+  } 
   render() {
   
     return (

@@ -13,12 +13,11 @@ function ReviewBill() {
   }
 
   const findPD = (pdID) => {
-    {
+
       callApi("products/getid/"+pdID, "GET", null).then((res) => {
         console.log( res.data.data.NAME);
         return res.data.data.NAME;
       })
-    }
   }
 
 
