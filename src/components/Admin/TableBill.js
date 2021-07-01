@@ -84,33 +84,47 @@ export default function TableBill(props) {
     }
     if (props.data.type === "Bill") {
       columns = [
-        { id: "id", label: "ID", minWidth: 100 },
-        { id: "fullname", label: "Người mua", minWidth: 120 },
+        { id: "ID", label: "ID", minWidth: 100 },
+        { id: "TOTAL", label: "Người mua", minWidth: 120 },
 
         {
-          id: "date",
+          id: "DATEBUY",
           label: "Ngày mua",
           minWidth: 170,
           align: "left",
           format: (value) => value.toLocaleString("en-US"),
         },
         {
-          id: "phone",
-          label: "Số điện thoại",
+          id: "FULLNAME",
+          label: "Họ và tên",
           minWidth: 100,
           align: "left",
           format: (value) => value.toLocaleString("en-US"),
         },
         {
-          id: "address",
-          label: "Địa chỉ",
+          id: "PHONE",
+          label: "Số điện thoại",
           minWidth: 250,
           align: "left",
           format: (value) => value.toLocaleString("en-US"),
         },
         {
-          id: "total",
-          label: "Tổng tiền",
+          id: "ADDRESS",
+          label: "Địa chỉ",
+          minWidth: 100,
+          align: "right",
+          format: (value) => value.toLocaleString("en-US"),
+        },
+        {
+          id: "ACCOUNTID",
+          label: "Người mua",
+          minWidth: 100,
+          align: "right",
+          format: (value) => value.toLocaleString("en-US"),
+        },
+        {
+          id: "BILLSTATUS",
+          label: "Trạng thái",
           minWidth: 100,
           align: "right",
           format: (value) => value.toLocaleString("en-US"),
@@ -119,16 +133,19 @@ export default function TableBill(props) {
     } else {
       if (props.data.type === "billInfo") {
         columns = [
-          { id: "name", label: "Tên sản phẩm", minWidth: 190 },
+          { id: "ID", label: "ID BillInfo", minWidth: 190 },
+          { id: "BILLID", label: "IDBILL", minWidth: 190 },
+          { id: "PRODUCTID", label: "ID sản phẩm", minWidth: 190 },
+          { id: "PRODUCTNAME", label: "Tên sản phẩm", minWidth: 190 },
           {
-            id: "pirce2",
+            id: "PRICE",
             label: "Giá",
             minWidth: 120,
             align: "left",
             format: (value) => value.toLocaleString("en-US"),
           },
           {
-            id: "quantity",
+            id: "QUANITY",
             label: "Số lượng",
             minWidth: 100,
             align: "left",

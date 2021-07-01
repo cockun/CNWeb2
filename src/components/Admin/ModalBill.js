@@ -51,7 +51,17 @@ export default function ModalBill(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    ID:"",
+    TOTAL: "",
+    DATEBUY: "",
+    FULLNAME: "",
+    PHONE: "",
+    ADDRESS:"",
+    ACCOUNTID:"",
+    BILLSTATUS:""
+
+  });
   useEffect(() => {
     setOpen(props.show.show);
     setData(props.show.data);
@@ -96,9 +106,9 @@ export default function ModalBill(props) {
                     style={{ marginRight: "auto", height: "30px" }}
                     size="5"
                     type="text"
-                    value={data._id}
+                    value={data.ID}
                     onChange={(e) => {
-                      setData({ ...data, _id: e.target.value });
+                      setData({ ...data, ID: e.target.value });
                     }}
                   />
                   <div className={classes.rowText1}>
@@ -111,9 +121,9 @@ export default function ModalBill(props) {
                     <input
                       style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                       type="text"
-                      value={data.total}
+                      value={data.TOTAL}
                       onChange={(e) => {
-                        setData({ ...data, total: e.target.value });
+                        setData({ ...data, TOTAL: e.target.value });
                       }}
                     />
                   </div>
@@ -130,15 +140,15 @@ export default function ModalBill(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.fullname}
+                    value={data.FULLNAME}
                     onChange={(e) => {
                       console.log(e.target.value);
                       if (e.target.value !== "") {
                         if (Helper.checkNumber(e.target.value)) {
-                          setData({ ...data, fullname: e.target.value });
+                          setData({ ...data, FULLNAME: e.target.value });
                         }
                       } else {
-                        setData({ ...data, fullname: "" });
+                        setData({ ...data, FULLNAME: "" });
                       }
                     }}
                   />
@@ -153,15 +163,15 @@ export default function ModalBill(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.address}
+                    value={data.ADDRESS}
                     onChange={(e) => {
                       console.log(e.target.value);
                       if (e.target.value !== "") {
                         if (Helper.checkNumber(e.target.value)) {
-                          setData({ ...data, address: e.target.value });
+                          setData({ ...data, ADDRESS: e.target.value });
                         }
                       } else {
-                        setData({ ...data, address: "" });
+                        setData({ ...data, ADDRESS: "" });
                       }
                     }}
                   />
@@ -176,15 +186,15 @@ export default function ModalBill(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.phone}
+                    value={data.PHONE}
                     onChange={(e) => {
                       console.log(e.target.value);
                       if (e.target.value !== "") {
                         if (Helper.checkNumber(e.target.value)) {
-                          setData({ ...data, phone: e.target.value });
+                          setData({ ...data, PHONE: e.target.value });
                         }
                       } else {
-                        setData({ ...data, phone: "" });
+                        setData({ ...data, PHONE: "" });
                       }
                     }}
                   />
