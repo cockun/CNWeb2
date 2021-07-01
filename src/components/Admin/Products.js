@@ -24,7 +24,7 @@ export default function Account() {
 
   const [page, setPage] = useState({
     PAGEINDEX: 1,
-    PAGESIZE: 30,
+    PAGESIZE: 40,
   });
 
 
