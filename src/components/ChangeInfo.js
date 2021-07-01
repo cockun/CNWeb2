@@ -6,18 +6,22 @@ function ChangePass() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [addr, setAddr] = useState("");  
+  const [email, setEmail] = useState("");
+  const [gender, setGender] = useState("");  
 
   useEffect(() => {
     if(JSON.parse(localStorage.getItem("myAccountInfo")).data !== undefined){
       setName(JSON.parse(localStorage.getItem("myAccountInfo")).data.FULLNAME);
       setPhone(JSON.parse(localStorage.getItem("myAccountInfo")).data.PHONE);
       setAddr(JSON.parse(localStorage.getItem("myAccountInfo")).data.ADDRESS);
+      setEmail(JSON.parse(localStorage.getItem("myAccountInfo")).data.EMAIL);
+      setGender(JSON.parse(localStorage.getItem("myAccountInfo")).data.SEX);
     }
 
   }, [])
   
   const savePass = () => {
-    if (name === "" || phone === "" || addr === "") {
+    if (name === "" || phone === "" || addr === "" || gender === "" || email === "") {
       swal("Thông báo!", "Vui Lòng Nhập Đầy Đủ Thông Tin!!!", "error");
     } else {
       callApi(
@@ -29,7 +33,9 @@ function ChangePass() {
             ID: JSON.parse(localStorage.getItem("myAccountInfo")).data.ACCOUNTID,
             FULLNAME: name,
             PHONE: phone,
-            ADDRESS: addr
+            ADDRESS: addr,
+            SEX: gender,
+            EMAIL: email
           }
         }
       ).then(() => {
@@ -43,7 +49,9 @@ function ChangePass() {
             PHONE: phone,
             POINTS: JSON.parse(localStorage.getItem("myAccountInfo")).data.POINTS,
             ROLENAME: JSON.parse(localStorage.getItem("myAccountInfo")).data.ROLENAME,
-            USERNAME: JSON.parse(localStorage.getItem("myAccountInfo")).data.USERNAME
+            USERNAME: JSON.parse(localStorage.getItem("myAccountInfo")).data.USERNAME,
+            SEX: gender,
+            EMAIL: email
           }
         }
         localStorage.setItem("myAccountInfo",JSON.stringify(obj));
@@ -79,6 +87,24 @@ function ChangePass() {
           placeholder="input here...."
           onChange={(e) => setAddr(e.target.value)}
           value={addr}
+        ></input>
+      </div>
+      <div className="inputChange">
+        <span>Email: </span>
+        <input
+          type="text"
+          placeholder="input here...."
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        ></input>
+      </div>
+      <div className="inputChange">
+        <span>Giới Tính: </span>
+        <input
+          type="text"
+          placeholder="input here...."
+          onChange={(e) => setGender(e.target.value)}
+          value={gender}
         ></input>
       </div>
       <button className="btnChange" onClick={savePass}>
