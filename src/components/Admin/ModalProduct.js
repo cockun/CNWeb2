@@ -43,7 +43,17 @@ const useStyles = makeStyles((theme) => ({
 export default function ModalAccount(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    NAME: "",
+    PRICE: "",
+    CATEGORYID: "",
+    IMGSRC: "",
+    DISCOUNT: "",
+    DESCRIPTION:"",
+    SOLD:"",
+    CREATEDATE:null
+
+});
   useEffect(() => {
     setOpen(props.show.show);
   }, [props.show.show]);
@@ -57,10 +67,10 @@ export default function ModalAccount(props) {
   const btnOk = async () => {
     try {
       if (props.show.action === "POST") {
-        await callApi("Products", "POST", data);
+        await callApi("products/add", "POST", data);
       } else {
         if (props.show.action === "PUT") {
-          callApi("Products/" + data._id, props.show.action, data);
+          callApi("products/update" ,"PUT" , data);
         }
       }
       props.handleClose(data, props.show.action);
@@ -110,9 +120,9 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.name}
+                    value={data.NAME}
                     onChange={(e) => {
-                      setData({ ...data, name: e.target.value });
+                      setData({ ...data, NAME: e.target.value });
                     }}
                   />
                 </div>
@@ -126,9 +136,9 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.category}
+                    value={data.CATEGORYID}
                     onChange={(e) => {
-                      setData({ ...data, category: e.target.value });
+                      setData({ ...data, CATEGORYID: e.target.value });
                     }}
                   />
                 </div>
@@ -157,7 +167,7 @@ export default function ModalAccount(props) {
                     />
 
                     <img
-                      src={data.src}
+                      src={data.IMGSRC}
                       style={{ width: 120, height: 120 }}
                       alt=""
                     />
@@ -174,9 +184,9 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.price}
+                    value={data.PRICE}
                     onChange={(e) => {
-                      setData({ ...data, price: e.target.value });
+                      setData({ ...data, PRICE: e.target.value });
                     }}
                   />
                 </div>
@@ -190,9 +200,9 @@ export default function ModalAccount(props) {
                   <input
                     style={{ flex: 2, marginLeft: "10px", height: "30px" }}
                     type="text"
-                    value={data.pirce2}
+                    value={data.DISCOUNT}
                     onChange={(e) => {
-                      setData({ ...data, pirce2: e.target.value });
+                      setData({ ...data, DISCOUNT: e.target.value });
                     }}
                   />
                 </div>
@@ -207,10 +217,10 @@ export default function ModalAccount(props) {
                     style={{ flex: 2, marginLeft: "10px" }}
                     aria-label="maximum height"
                     rowsMin={10}
-                    placeholder="Nhập địa chỉ "
-                    value={data.description}
+                    placeholder="Nhập "
+                    value={data.DESCRIPTION}
                     onChange={(e) => {
-                      setData({ ...data, description: e.target.value });
+                      setData({ ...data, DESCRIPTION: e.target.value });
                     }}
                   />
                 </div>
