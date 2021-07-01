@@ -42,25 +42,25 @@ export default function TableData(props) {
     setCount(props.data.count);
     if (props.data.type === "Products") {
       columns = [
-        { id: "src", label: "Hình ảnh", minWidth: 120 },
-        { id: "name", label: "Tên sản phẩm", minWidth: 120 },
-        { id: "category", label: "Loại", minWidth: 120 },
+        { id: "IMGSRC", label: "Hình ảnh", minWidth: 120 },
+        { id: "NAME", label: "Tên sản phẩm", minWidth: 120 },
+        { id: "CATEGORYID", label: "Loại", minWidth: 120 },
         {
-          id: "price",
+          id: "PRICE",
           label: "Giá gốc",
           minWidth: 120,
           align: "right",
           format: (value) => value.toLocaleString("en-US"),
         },
         {
-          id: "pirce2",
+          id: "DISCOUNT",
           label: "Giá đã giảm",
           minWidth: 120,
           align: "right",
           format: (value) => value.toLocaleString("en-US"),
         },
         {
-          id: "description",
+          id: "DESCRIPTION",
           label: "Mô tả",
           minWidth: 222,
           align: "left",
@@ -221,7 +221,7 @@ export default function TableData(props) {
                   {columns.map((column) => {
                     const value = row[column.id];
 
-                    if (column.id === "src") {
+                    if (column.id === "IMGSRC") {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           <div style={{ width: "90px", height: "90px" }}>

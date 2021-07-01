@@ -23,10 +23,14 @@ function Header({ route }) {
     if(user.data){
       setName(user.data.FULLNAME);
     }
+<<<<<<< HEAD
     else{
       setName("");
     }
 
+=======
+    
+>>>>>>> a516a8a9a181c86b50e8386b3c8cbe9433e3cb0d
   });
 
   const changeValue = (e) => {

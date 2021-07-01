@@ -10,97 +10,79 @@ export default function Account() {
   const [state, setState] = useState({
     data: [],
     type: "Products",
+    count: 0,
   });
   const [showModal, setShowModal] = useState({
     show: false,
     data: {},
     action: "",
   });
-  const handleOpen = (item, a) => {
-    setShowModal({ data: item, show: true, action: a });
-  };
   const [changeText, setChangeText] = useState({
     value: "",
     data: [],
   });
 
   const [page, setPage] = useState({
-    page: 1,
-    limit: 10,
+    PAGEINDEX: 1,
+    PAGESIZE: 30,
   });
 
+
   const handleChangeRowsPerPage = (rowsPerPage) => {
-    setPage({ ...page, limit: rowsPerPage });
-    callApi("Products/page/" + (page.page + 1) + "/" + rowsPerPage, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
+    setPage({ ...page, PAGESIZE: rowsPerPage });
+    const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage };
+    callApi("api/products/filter", "GET", obj).then((res) => {
+      console.log(res.data)
+      setState({ ...state, data: res.data.data });
+    });
   };
   const handleChangePage = (newPage) => {
-    callApi("Products/page/" + (newPage + 1) + "/" + page.limit, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
-    setPage({ ...page, page: newPage });
+    const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE };
+    callApi("api/products/filter", "GET", obj).then((res) => {
+     
+      setState({ ...state, data: res.data.data });
+    });
+    setPage({ ...page, PAGEINDEX: newPage });
+  };
+  const handleOpen = (item, a) => {
+    setShowModal({ data: item, show: true, action: a });
   };
 
   const search = (e) => {
-    if (e.target.value !== "") {
-      callApi("Products/search/name" + "/" + e.target.value, "GET").then(
-        (res) => {
-          setState({ ...state, data: res.data });
-        }
-      );
-    } else {
-      callApi("Products/page/" + page.page + "/" + page.limit, "GET").then(
-        (res) => {
-          setState({ ...state, data: res.data });
-        }
-      );
-    }
-
-    setChangeText({ value: e.target.value });
+    
   };
 
   const deleteItem = () => {
-    callApi( state.type +  "/page/" + page.page + "/" + page.limit, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
+    
   };
 
   const handleClose2 = (item, action) => {
-    if (item) {
-      let data = state.data.map((a) => {
-        if (a._id === item._id) {
-          return item;
-        } else {
-          return a;
-        }
-      });
-      setState({ ...state, data: data });
-    }
-    if (action === "POST") {
-      callApi("Products/page/" + 1 + "/" + 10, "GET").then((res) => {
-        setState({ ...state, data: res.data });
-      });
-      setPage({
-        page: 1,
-        limit: 10,
-      });
-    }
+    // if (item) {
+    //   let data = state.data.map((a) => {
+    //     if (a._id === item._id) {
+    //       return item;
+    //     } else {
+    //       return a;
+    //     }
+    //   });
+    //   setState({ ...state, data: data });
+    // }
+    // if (action === "POST") {
+    //   callApi("Products/page/" + 1 + "/" + 10, "GET").then((res) => {
+    //     setState({ ...state, data: res.data });
+    //   });
+    //   setPage({
+    //     page: 1,
+    //     limit: 10,
+    //   });
+    // }
 
     setShowModal({ data: {}, show: false });
   };
   useEffect(() => {
-    callApi("Products/page/" + page.page + "/" + page.limit, "GET").then(
-      (res) => {
-        setState({ ...state, data: res.data });
-      }
-    );
+    callApi("products/filter", "GET", { ...page }).then((res) => {
+      setState({ ...state, data: res.data.data, count: res.data.count });
+    });
   }, []);
 
   return (
@@ -121,7 +103,17 @@ export default function Account() {
             color="primary"
             className={classes.button}
             onClick={() => {
-              handleOpen({}, "POST");
+              handleOpen({
+                IMGSRC:"",
+                NAME: "",
+                PRICE: "",
+               
+                
+                DISCOUNT: "",
+                DESCRIPTION: "",
+           
+               
+              }, "POST");
             }}
           >
             Thêm mới
@@ -145,7 +137,7 @@ export default function Account() {
           handleOpen2={handleOpen}
           handleChangePage={handleChangePage}
           data={state}
-          deleteItem2 ={deleteItem}
+          deleteItem2={deleteItem}
           handleChangeRowsPerPage={handleChangeRowsPerPage}
         />
 
@@ -171,7 +163,7 @@ export default function Account() {
           }
         })} */}
       </div>
-      <ModalProduct show={showModal} handleClose={handleClose2} />
+      <ModalProduct allData={state} show={showModal} handleClose={handleClose2} />
     </div>
   );
 }
