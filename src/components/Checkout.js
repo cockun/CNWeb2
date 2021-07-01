@@ -26,7 +26,7 @@ export function Checkout() {
 
   var billInfoReq = [];
   data.map((item)=>{
-        let tmp = {"PRODUCTID":item.ID , "QUANTITY":item.quantity};
+        let tmp = {"PRODUCTID":item.ID ,"PRODUCTNAME":item.NAME ,"PRICE": item.DISCOUNT ,"QUANTITY":item.quantity};
         billInfoReq.push(tmp);
       })
   const checkoutbill = () => {
@@ -45,11 +45,10 @@ export function Checkout() {
         }
       }
       console.log(req);
-
       callApi('bills/add', 'POST', req).then((res) => {
         swal("Thông báo!", "Đặt hàng thành công", "success");
-        sessionStorage.removeItem("myCart");
-        sessionStorage.removeItem("totalBill");
+        sessionStorage.setItem("myCart",JSON.stringify([]));
+        sessionStorage.setItem("totalBill",0);
       }); 
 
       

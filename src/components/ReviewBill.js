@@ -6,19 +6,10 @@ import { Helper } from "../utils/helper";
 function ReviewBill() {
   const [bill, setBill] = useState([]);
   let accountID;
-  if (JSON.parse(localStorage.getItem("myAccountInfo"))) {
+  if (JSON.parse(localStorage.getItem("myAccountInfo")).data) {
     accountID = JSON.parse(localStorage.getItem("myAccountInfo")).data.ACCOUNTID;
   } else {
     accountID = "";
-  }
-
-  const findPD = (pdID) => {
-    {
-      callApi("products/getid/"+pdID, "GET", null).then((res) => {
-        console.log( res.data.data.NAME);
-        return res.data.data.NAME;
-      })
-    }
   }
 
 
@@ -81,7 +72,7 @@ function ReviewBill() {
                   <div className="itemBought">
                     <span style={{ maxWidth: 250 }}>
 
-                      {findPD(itemB.PRODUCTID)} x {itemB.QUANTITY}
+                      {itemB.PRODUCTNAME} x {itemB.QUANTITY}
                     </span>
                     <span>
                       {Helper.formatDollar(

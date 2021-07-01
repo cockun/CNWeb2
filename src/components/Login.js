@@ -40,7 +40,6 @@ class Login extends React.Component {
       //     console.log(response.data);
       //   });
       callApi('accounts/login', 'POST', coc).then((res) => {
-        console.log(res.data);
       
         const data = res.data.data;
     

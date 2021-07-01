@@ -7,6 +7,10 @@ function ChangePass() {
   const [newPass, setNewPass] = useState("");
   const [renewPass, setRenewPass] = useState("");
   const savePass = () => {
+    if(nowPass ==="" || renewPass ==="" || nowPass ===""){
+      swal("Thông báo!", "Vui Lòng Nhập Đầy Đủ Thông Tin !!!", "error");
+      return;
+    }
     callApi(
       "accounts/getid/" + JSON.parse(localStorage.getItem("myAccountInfo")).data.ACCOUNTID,
       "GET"
