@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "../../css/Account.module.css";
-
+import swal from "sweetalert";
 import Button from "@material-ui/core/Button";
 import { callApi } from "../../utils/apiCaller";
 import ModalProduct from "./ModalProduct";
@@ -47,14 +47,34 @@ export default function Account() {
   const handleOpen = (item, a) => {
     setShowModal({ data: item, show: true, action: a });
   };
+  const deleteItem = (id) => {
+    try {
+      callApi("products/delete/" + id, "DELETE").then((res)=>{
+        if(res.data!=null)
+        {
+          window.location.reload();
+        }   
+      });
+      swal("Đã xóa", {
+        icon: "success",
+      });
+      
+    } catch (e) {
+      swal("Error", {
+        icon: "Warning",
+      });
+    }
+
+    callApi("products/filter", "GET", { ...page }).then((res) => {
+      setState({ ...state, data: res.data.data });
+    });
+  };
 
   const search = (e) => {
     
   };
 
-  const deleteItem = () => {
-    
-  };
+  
 
   const handleClose2 = (item, action) => {
     // if (item) {
@@ -104,15 +124,14 @@ export default function Account() {
             className={classes.button}
             onClick={() => {
               handleOpen({
-                IMGSRC:"",
-                NAME: "",
-                PRICE: "",
-               
-                
+                ID:"",
+                NAME:"",
+                PRICE:"",
+                CATEGORYID: "",
+                IMGSRC: "",             
                 DISCOUNT: "",
                 DESCRIPTION: "",
-           
-               
+                SOLD:"",   
               }, "POST");
             }}
           >

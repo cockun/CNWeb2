@@ -44,6 +44,7 @@ export default function ModalAccount(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [data, setData] = useState({
+    ID:"",
     NAME: "",
     PRICE: "",
     CATEGORYID: "",
@@ -62,7 +63,7 @@ export default function ModalAccount(props) {
     if (props.show.data) {
       setData(props.show.data);
     }
-  }, [props.show.data]);
+  }, [props.show]);
 
   const btnOk = async () => {
     try {
@@ -70,7 +71,9 @@ export default function ModalAccount(props) {
         await callApi("products/add", "POST", data);
       } else {
         if (props.show.action === "PUT") {
-          callApi("products/update" ,"PUT" , data);
+          callApi("products/update" ,"PUT" , data).then((res)=>{
+            
+          });
         }
       }
       props.handleClose(data, props.show.action);
@@ -110,6 +113,22 @@ export default function ModalAccount(props) {
             <div className={classes.container}>
               <div className={classes.textContainer}>
                 <h2 style={classes.tittle}>Thông tin sản phảm</h2>
+                <div className={classes.rowText}>
+                  <span
+                    style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
+                  >
+                    ID sản phẩm
+                  </span>
+
+                  <input
+                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
+                    type="text"
+                    value={data.ID}
+                    onChange={(e) => {
+                      setData({ ...data, ID: e.target.value });
+                    }}
+                  />
+                </div>
                 <div className={classes.rowText}>
                   <span
                     style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
@@ -159,18 +178,13 @@ export default function ModalAccount(props) {
                     }}
                   >
                     <input
-                      type="file"
-                      style={{ width: 150 }}
-                      onChange={(e) => {
-                        onChangee(e);
-                      }}
-                    />
-
-                    <img
-                      src={data.IMGSRC}
-                      style={{ width: 120, height: 120 }}
-                      alt=""
-                    />
+                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
+                    type="text"
+                    value={data.IMGSRC}
+                    onChange={(e) => {
+                      setData({ ...data, IMGSRC: e.target.value });
+                    }}
+                  />
                   </div>
                 </div>
                 <h2>Giá sản phẩm</h2>
@@ -231,6 +245,17 @@ export default function ModalAccount(props) {
                   variant="outlined"
                   onClick={() => {
                     props.handleClose();
+                    setData({
+                      ID:"",
+                      NAME:"",
+                      PRICE:"",
+                      CATEGORYID: "",
+                      IMGSRC: "",             
+                      DISCOUNT: "",
+                      DESCRIPTION: "",
+                      SOLD:"",   
+                      CREATEDATE:null
+                    });
                   }}
                 >
                   Đóng
