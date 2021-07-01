@@ -46,7 +46,12 @@ export default function Account() {
   };
   const deleteItem = (id) => {
     try {
-      callApi("accounts/delete/" + id, "DELETE");
+      callApi("accounts/delete/" + id, "DELETE").then((res)=>{
+        if(res.data!=null)
+        {
+          window.location.reload();
+        }   
+      });;
       swal("Đã xóa", {
         icon: "success",
       });
