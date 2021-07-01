@@ -67,10 +67,8 @@ export default function ModalAccount(props) {
     try {
       if (props.show.action === "POST") {
         await callApi("products/add", "POST", data);
-      } else {
-        
-          
-            
+      } 
+      else {
           callApi("products/update" ,"UPDATE" , data).then((res)=>{
               console.log(res.data)
           });

@@ -127,11 +127,11 @@ export default function Account() {
                 ID:"",
                 NAME:"",
                 PRICE:"",
-                CATEGORYID: "",
-                IMGSRC: "",             
-                DISCOUNT: "",
-                DESCRIPTION: "",
-                SOLD:"",   
+                CATEGORYID:"",
+                IMGSRC:"",             
+                DISCOUNT:"",
+                DESCRIPTION:"",
+               
               }, "POST");
             }}
           >
