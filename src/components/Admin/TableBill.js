@@ -133,9 +133,7 @@ export default function TableBill(props) {
     } else {
       if (props.data.type === "billInfo") {
         columns = [
-          { id: "ID", label: "ID BillInfo", minWidth: 190 },
-          { id: "BILLID", label: "IDBILL", minWidth: 190 },
-          { id: "PRODUCTID", label: "ID sản phẩm", minWidth: 190 },
+        
           { id: "PRODUCTNAME", label: "Tên sản phẩm", minWidth: 190 },
           {
             id: "PRICE",
@@ -145,7 +143,7 @@ export default function TableBill(props) {
             format: (value) => value.toLocaleString("en-US"),
           },
           {
-            id: "QUANITY",
+            id: "QUANTITY",
             label: "Số lượng",
             minWidth: 100,
             align: "left",
