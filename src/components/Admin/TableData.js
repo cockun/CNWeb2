@@ -100,6 +100,13 @@ export default function TableData(props) {
             minWidth: 250,
             align: "right",
             format: (value) => value.toLocaleString("en-US"),
+          },
+          {
+            id: "EMAIL",
+            label: "Email",
+            minWidth: 250,
+            align: "right",
+            format: (value) => value.toLocaleString("en-US"),
           }
         ];
       }
