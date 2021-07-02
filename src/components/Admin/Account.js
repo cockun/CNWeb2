@@ -30,13 +30,13 @@ export default function Account() {
   const handleChangeRowsPerPage = (rowsPerPage) => {
     setPage({ ...page, PAGESIZE: rowsPerPage });
     const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage };
-    callApi("api/accounts/filter", "GET", obj).then((res) => {
+    callApi("accounts/filter", "GET", obj).then((res) => {
       setState({ ...state, data: res.data.data });
     });
   };
   const handleChangePage = (newPage) => {
     console.log(newPage);
-    const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE ,FULLNAME :  changeText.value};
+    const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE };
     callApi("accounts/filter", "GET", obj).then((res) => {
       setState({ ...state, data: res.data.data });
     });

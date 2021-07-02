@@ -35,7 +35,7 @@ export default function Bill() {
   });
   const [date, setDate] = useState({
     fromDate: "2018-06-28",
-    toDate: "2020-06-28",
+    toDate: "2022-03-28",
   });
   const handleOpen = (item, a) => {
     setShowModal({ data: item, show: true, action: "show" });
@@ -50,40 +50,52 @@ export default function Bill() {
     });
   }, []);
 
-  // const filterDate = (e) => {
-  //   let fromDate = document.getElementById("fromDate").value;
-  //   let toDate = document.getElementById("toDate").value;
+  const filterDate = (e) => {
+    let fromDate = document.getElementById("fromDate").value;
+    let toDate = document.getElementById("toDate").value;
 
-  //   if (toDate !== "" && fromDate !== "") {
-  //     callApi("Bill/filter/" + fromDate + "/" + toDate, "GET").then((res) => {
-  //       setState({ ...state, data: res.data });
-  //     });
-  //   }
+    setPage(
+      { PAGEINDEX: 1,PAGESIZE: 10}
+    )
 
-  // };
-  // const search = (e) => {
-  //   if (e.target.value !== "") {
-  //     callApi("Bill/search/fullname" + "/" + e.target.value, "GET").then(
-  //       (res) => {
-  //         setState({ ...state, data: res.data });
-  //       }
-  //     );
-  //   } else {
-  //     callApi("Bill/page/" + page.page + "/" + page.limit, "GET").then(
-  //       (res) => {
-  //         setState({ ...state, data: res.data });
-  //       }
-  //     );
-  //   }
+    if (toDate !== "" && fromDate !== "") {
+      const obj = {
+        FROMDATE: new Date(document.getElementById("fromDate").value),
+        TODATE: new Date(document.getElementById("toDate").value),
+        ...page,
+     
+        
+      };
+      
+      callApi("bills/filter/", "GET", obj).then((res) => {
+        setState({ ...state, data: res.data.data, count: res.data.count });
+      });
+    }
+  };
 
-  //   setChangeText({ value: e.target.value });
-  // };
+  const search = (e) => {
+    if (e.target.value !== "") {
+      callApi("Bill/search/fullname" + "/" + e.target.value, "GET").then(
+        (res) => {
+          setState({ ...state, data: res.data });
+        }
+      );
+    } else {
+      callApi("Bill/page/" + page.page + "/" + page.limit, "GET").then(
+        (res) => {
+          setState({ ...state, data: res.data });
+        }
+      );
+    }
+
+    setChangeText({ value: e.target.value });
+  };
 
   const handleChangeRowsPerPage = (rowsPerPage) => {
     setPage({ ...page, PAGESIZE: rowsPerPage });
-    const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage };
-    callApi("api/bills/filter", "GET", obj).then((res) => {
-      console.log(res.data)
+    const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage , };
+    callApi("bills/filter", "GET", obj).then((res) => {
+      console.log(res.data);
       setState({ ...state, data: res.data.data });
     });
   };
@@ -97,8 +109,7 @@ export default function Bill() {
 
   const handleChangePage = (newPage) => {
     const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE };
-    callApi("api/bills/filter", "GET", obj).then((res) => {
-     
+    callApi("bills/filter", "GET", obj).then((res) => {
       setState({ ...state, data: res.data.data });
     });
     setPage({ ...page, PAGEINDEX: newPage });
@@ -141,7 +152,7 @@ export default function Bill() {
                 shrink: true,
               }}
               onChange={() => {
-                // filterDate();
+                filterDate();
               }}
             />
           </form>
@@ -156,7 +167,7 @@ export default function Bill() {
                 shrink: true,
               }}
               onChange={(e) => {
-                // filterDate();
+                filterDate();
               }}
             />
           </form>

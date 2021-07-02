@@ -113,7 +113,7 @@ export default function TableData(props) {
     }
     if (props.data.type === "Bill") {
       columns = [
-        { id: "NAME", label: "ID", minWidth: 100 },
+      
         { id: "FULLNAME", label: "Người mua", minWidth: 120 },
 
         {
@@ -135,6 +135,13 @@ export default function TableData(props) {
           label: "Địa chỉ",
           minWidth: 250,
           align: "left",
+          format: (value) => value.toLocaleString("en-US"),
+        },
+        {
+          id: "BILLSTATUS",
+          label: "Trạng thái",
+     
+
           format: (value) => value.toLocaleString("en-US"),
         },
         {
