@@ -96,7 +96,15 @@ export default function Bill() {
   // };
 
   const handleChangePage = (newPage) => {
-    const obj = { PAGEINDEX: 1, PAGESIZE: 10, FULLNAME: changeText.value };
+    
+    let obj ;
+   
+    if(changeText.value !== ""){
+       obj = { PAGEINDEX: 1, PAGESIZE: 10, FULLNAME: changeText.value };
+    }else{
+       obj = {...page, PAGEINDEX: newPage + 1, };
+    }
+ 
     callApi("bills/filter", "GET", obj).then((res) => {
       setState({ ...state, data: res.data.data });
     });
