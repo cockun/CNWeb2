@@ -54,19 +54,15 @@ export default function Bill() {
     let fromDate = document.getElementById("fromDate").value;
     let toDate = document.getElementById("toDate").value;
 
-    setPage(
-      { PAGEINDEX: 1,PAGESIZE: 10}
-    )
+    setPage({ PAGEINDEX: 1, PAGESIZE: 10 });
 
     if (toDate !== "" && fromDate !== "") {
       const obj = {
         FROMDATE: new Date(document.getElementById("fromDate").value),
         TODATE: new Date(document.getElementById("toDate").value),
         ...page,
-     
-        
       };
-      
+
       callApi("bills/filter/", "GET", obj).then((res) => {
         setState({ ...state, data: res.data.data, count: res.data.count });
       });
@@ -74,26 +70,18 @@ export default function Bill() {
   };
 
   const search = (e) => {
-    if (e.target.value !== "") {
-      callApi("Bill/search/fullname" + "/" + e.target.value, "GET").then(
-        (res) => {
-          setState({ ...state, data: res.data });
-        }
-      );
-    } else {
-      callApi("Bill/page/" + page.page + "/" + page.limit, "GET").then(
-        (res) => {
-          setState({ ...state, data: res.data });
-        }
-      );
-    }
+    setPage({ PAGEINDEX: 1, PAGESIZE: 10 });
+    const obj = { PAGEINDEX: 1, PAGESIZE: 10, FULLNAME: e.target.value };
+    callApi("bills/filter", "GET", obj).then((res) => {
+      setState({ ...state, data: res.data.data, count: res.data.count });
+    });
 
     setChangeText({ value: e.target.value });
   };
 
   const handleChangeRowsPerPage = (rowsPerPage) => {
     setPage({ ...page, PAGESIZE: rowsPerPage });
-    const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage , };
+    const obj = { PAGEINDEX: page.PAGEINDEX + 1, PAGESIZE: page.rowsPerPage };
     callApi("bills/filter", "GET", obj).then((res) => {
       console.log(res.data);
       setState({ ...state, data: res.data.data });
@@ -108,7 +96,7 @@ export default function Bill() {
   // };
 
   const handleChangePage = (newPage) => {
-    const obj = { PAGEINDEX: newPage + 1, PAGESIZE: page.PAGESIZE };
+    const obj = { PAGEINDEX: 1, PAGESIZE: 10, FULLNAME: changeText.value };
     callApi("bills/filter", "GET", obj).then((res) => {
       setState({ ...state, data: res.data.data });
     });
@@ -136,7 +124,7 @@ export default function Bill() {
             className={classes.textSeacch}
             value={changeText.value}
             onChange={(e) => {
-              // search(e);
+               search(e);
             }}
           />
 

@@ -116,22 +116,7 @@ export default function ModalAccount(props) {
             <div className={classes.container}>
               <div className={classes.textContainer}>
                 <h2 style={classes.tittle}>Tài khoản</h2>
-                <div className={classes.rowText}>
-                  <span
-                    style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
-                  >
-                    ID:
-                  </span>
-
-                  <input
-                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
-                    type="text"
-                    value={data.NAME}
-                    onChange={(e) => {
-                      setData({ ...data, NAME: e.target.value });
-                    }}
-                  />
-                </div>
+            
                 <div className={classes.rowText}>
                   <span
                     style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
@@ -148,22 +133,7 @@ export default function ModalAccount(props) {
                     }}
                   />
                 </div>
-                <div className={classes.rowText}>
-                  <span
-                    style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}
-                  >
-                    Mật khẩu:
-                  </span>
-
-                  <input
-                    style={{ flex: 2, marginLeft: "10px", height: "30px" }}
-                    type="text"
-                    value={data.PASSWORD}
-                    onChange={(e) => {
-                      setData({ ...data, PASSWORD: e.target.value });
-                    }}
-                  />
-                </div>
+             
                 <div className={classes.rowText}>
                   <span
                     style={{ flex: 1, fontSize: "15px", fontWeight: "bold" }}

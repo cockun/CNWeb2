@@ -71,7 +71,14 @@ export default function Account() {
   };
 
   const search = (e) => {
-    
+    setPage({ PAGEINDEX: 1, PAGESIZE: 10 });
+    const obj = { PAGEINDEX: 1, PAGESIZE: 10, NAME: e.target.value };
+    callApi("products/filter", "GET", obj).then((res) => {
+      setState({ ...state, data: res.data.data , count : res.data.count });
+    });
+
+
+    setChangeText({ value: e.target.value });
   };
 
   
