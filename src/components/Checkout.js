@@ -49,7 +49,7 @@ export function Checkout(props) {
         swal("Thông báo!", "Đặt hàng thành công", "success");
         sessionStorage.setItem("myCart",JSON.stringify([]));
         sessionStorage.setItem("totalBill",0);
-        props.history.push("/");
+        props.history.push("/AccUser");
       }); 
 
       
@@ -140,11 +140,7 @@ export function Checkout(props) {
                         </label>
                       </div>
                       <div className="pc-item">
-                        <label htmlFor="pc-paypal">
-                          Paypal
-                          <input type="checkbox" id="pc-paypal" />
-                          <span className="checkmark"></span>
-                        </label>
+
                       </div>
                     </div>
                     <div className="order-btn">
