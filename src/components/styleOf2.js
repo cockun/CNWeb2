@@ -1,6 +1,6 @@
 import React from 'react'
 
-
+import { Helper } from "../utils/helper";
 import '../css/styleOf.css'
 import {Link} from 'react-router-dom'
 import { callApi } from '../ultis/apiCaller';
@@ -73,7 +73,9 @@ export default class styleOf2 extends React.Component {
 
                             </div>
                             <div className="textprice">
-                            {item.PRICE}đ
+                            {Helper.formatDollar(item.DISCOUNT)}đ
+                            <span style={{fontSize: 18, color: 'black' , fontWeight: 400, textDecorationLine:'line-through', marginLeft: 63  }}>
+                {Helper.formatDollar(parseFloat(item.PRICE))}đ</span>
                             </div>
                                 </div>
                                 

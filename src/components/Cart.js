@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../css/Cart.css";
 import { Helper } from "../utils/helper";
-
+import swal from "sweetalert";
 
 function Cart() {
   var total = 0;
+  console.log(JSON.parse(localStorage.getItem("myAccountInfo")).data)
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -131,9 +132,17 @@ function Cart() {
               {Helper.formatDollar(total)} (vnđ)
             </span>
           </div>
+          {JSON.parse(localStorage.getItem("myAccountInfo")).data !== undefined &&
           <Link to="/Checkout" className="cartCheckoutBtn">
             THANH TOÁN
           </Link>
+          }
+          {JSON.parse(localStorage.getItem("myAccountInfo")).data ===  undefined && 
+          
+          <Link to="/login" className="cartCheckoutBtn">
+            THANH TOÁN 
+          </Link>
+          }
         </div>
       </div>
     </div>
