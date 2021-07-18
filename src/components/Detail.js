@@ -9,9 +9,10 @@ function Detail(props) {
   const {
     match: { params },
   } = props;
+  console.log(params);
   useEffect(() => {
     // get by id 
-    callApi("products/getid/" + params.id, "GET", null).then((res) => {
+    callApi("products/getSlug/" + params.id, "GET", null).then((res) => {
       setData(res.data.data);
       console.log(res.data.data)
     });
