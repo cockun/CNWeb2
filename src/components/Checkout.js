@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../css/Checkout.css";
 import { Helper } from '../utils/helper';
 import { Link } from "react-router-dom";
-import { callApi } from '../ultis/apiCaller';
+import { callApi } from '../utils/apiCaller';
 import swal from 'sweetalert';
 var data = [];
 var total = 0;
