@@ -50,7 +50,6 @@ export function Checkout(props) {
 
       console.log(req);
       callApi("bills/add", "POST", req).then((res) => {
-        
         window.location.href = res.data.data;
         sessionStorage.setItem("myCart", JSON.stringify([]));
         sessionStorage.setItem("totalBill", 0);
@@ -154,7 +153,11 @@ export function Checkout(props) {
                         className={method === true ? "opt activeMethod" : "opt"}
                         onClick={() => setMethod(true)}
                       >
-                        <img className="imgPay" src={MoMo}></img>
+                        <img
+                          className="imgPay"
+                          src={MoMo}
+                          alt="MoMo Payment"
+                        ></img>
                       </div>
                       <div
                         className={
@@ -162,7 +165,11 @@ export function Checkout(props) {
                         }
                         onClick={() => setMethod(false)}
                       >
-                        <img className="imgPay" src={PayPal}></img>
+                        <img
+                          className="imgPay"
+                          src={PayPal}
+                          alt="PayPal Payment"
+                        ></img>
                       </div>
                     </div>
                     <div className="order-btn">
