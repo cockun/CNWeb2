@@ -61,7 +61,7 @@ export default class styleOf extends React.Component {
                   <div className="product-list">
                   <div className="loading-more">
                  
-                    <Link to="#"> <p className="texttitle">  Sản phẩm bán chạy</p>
+                    <Link to="#"> <h1 className="texttitle">  Sản phẩm bán chạy</h1>
                      </Link>
                   </div>
                     <div className="item">
@@ -76,7 +76,7 @@ export default class styleOf extends React.Component {
                                   </div>
                              <div className="text">
                             <div className="textname" >
-                            {item.NAME}
+                            <h3>{item.NAME}</h3>
                             </div>
                             <div className="textprice">
                             {Helper.formatDollar(item.DISCOUNT)}đ

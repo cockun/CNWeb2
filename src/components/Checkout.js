@@ -137,10 +137,10 @@ export function Checkout(props) {
                     <h3>Thanh Toán Online</h3>
                     <div className="pickPay">
                         <div className={method === true ? "opt activeMethod" : "opt"} onClick={() => setMethod(true)}>
-                          <img className="imgPay" src={MoMo}></img>
+                          <img className="imgPay" src={MoMo} alt="MoMo Payment"></img>
                         </div>
                         <div className={method === false ? "opt activeMethod" : "opt"} onClick={() => setMethod(false)}>
-                          <img className="imgPay" src={PayPal}></img>
+                          <img className="imgPay" src={PayPal} alt="PayPal Payment"></img>
                         </div>
                     </div>
                     <div className="order-btn">

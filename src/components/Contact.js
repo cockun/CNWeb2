@@ -8,7 +8,7 @@ function Contact(){
         <div >
           
             <div className="ContactCont">
-                <img src={Contact1} className="ContactBanner" alt=""/>
+                <img src={Contact1} className="ContactBanner" alt="Trung tâm chăm sóc khách hàng"/>
                 <div className="ContactUs">
                     <div className="ContWWidth">
                         <p className="ContactTitle">Trung tâm chăm sóc khách hàng </p>

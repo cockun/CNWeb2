@@ -242,7 +242,7 @@ export default function TableData(props) {
                             <img
                               style={{ width: "100%", height: "100%" }}
                               src={value}
-                              alt=""
+                              alt="Picture Of Table"
                             />
                           </div>
                         </TableCell>
