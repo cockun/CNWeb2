@@ -8,6 +8,7 @@ import StyleOf2 from './styleOf2.js'
 function Home() {
   return (
     <div className="App">
+      
       <Slider />
       <Category />
       <StyleOf />
