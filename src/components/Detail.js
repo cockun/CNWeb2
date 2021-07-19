@@ -16,7 +16,7 @@ function Detail(props) {
   const {
     match: { params },
   } = props;
-  console.log(params);
+  console.log(props);
   useEffect(() => {
     // get by id 
     callApi("products/getSlug/" + params.id, "GET", null).then((res) => {
@@ -44,9 +44,15 @@ function Detail(props) {
   }
   return (
     <div className="DetailContainer">
+      <MetaTags>
+          <title>{data.NAME}</title> 
+          <meta name="description" content={data.DESCRIPTION} />
+          <meta property="og:title" content={data.NAME} />
+          <meta property="og:image" content={data.IMGSRC} />
+        </MetaTags>
       <div className="DetailProduct">
         <div className="imgDetailCont">
-          <img src={data.IMGSRC} alt="" className="imgDetail"/>
+          <img src={data.IMGSRC} alt={data.NAME} className="imgDetail"/>
           <span style={{fontWeight: 'bold'}}></span>
         </div>
         <div className="titleDetailProduct">
@@ -99,20 +105,13 @@ function Detail(props) {
  
             // OPTIONAL PARAMETERS
             url: window.location.href , // (defaults to current url)
-            // image: data.IMGSRC,  // (defaults to og:image or twitter:image)
-            // description: data.DESCRIPTION,       // (defaults to og:description or twitter:description)
-            // title: data.NAME,            // (defaults to og:title or twitter:title)
-            // message: 'custom email text',     // (only for email sharing)
-            // subject: 'custom email subject',  // (only for email sharing)
-            // username: 'custom twitter handle' // (only for twitter sharing)
+            image: data.IMGSRC,  // (defaults to og:image or twitter:image)
+            description: data.DESCRIPTION,       // (defaults to og:description or twitter:description)
+            title: data.NAME,            // (defaults to og:title or twitter:title)
+
           }}
           />
-          <MetaTags>
-            {/* <title>Page 1</title> */}
-            <meta name="description" content={data.DESCRIPTION} />
-            <meta property="og:title" content={data.NAME} />
-            <meta property="og:image" content={data.IMGSRC} />
-          </MetaTags>
+
             </div>
 
           </div>

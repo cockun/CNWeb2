@@ -19,15 +19,15 @@ export default class DemoCarousel extends Component {
                 size='1500'
             >
                 <div>
-                    <img src={img1} alt="" />
+                    <img src={img1} alt="Banner" />
                 
                 </div>
                 <div>
-                    <img  src={img2} alt="" />
+                    <img  src={img2} alt="Banner" />
                    
                 </div>
                 <div>
-                    <img  src={img3} alt="" />
+                    <img  src={img3} alt="Banner" />
                    
                 </div>
                 

@@ -76,7 +76,7 @@ function Cart() {
         {data !== null && data.map((item, index) => (
           <div className="cartProduct" key={index}>
             <div className="cartCenter" style={{ flex: 3 }}>
-              <img src={item.IMGSRC} className="cartProductImage" alt="" />
+              <img src={item.IMGSRC} className="cartProductImage" alt={item.NAME} />
             </div>
             <div className="cartProductName cartCenter" style={{ flex: 4 }}>
               {item.NAME}

@@ -36,7 +36,7 @@ function ReviewBill() {
             Bạn chưa đăng nhập , Vui lòng đăng nhập để xem lại đơn hàng của
             mình!!!
           </div>
-          <img src={error} alt="" />
+          <img src={error} alt="error 404" />
         </div>
       )}
       {bill.length !== 0 &&

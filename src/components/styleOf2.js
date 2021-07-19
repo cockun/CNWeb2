@@ -65,7 +65,7 @@ export default class styleOf2 extends React.Component {
                               <Link to={`/Detail/${item.SLUG}`}>
                               <div className="containerhome1">
                                 <div  className="pic">
-                                <img src={item.IMGSRC} alt="" className="pi-pic"  />
+                                <img src={item.IMGSRC} alt={item.NAME} className="pi-pic"  />
                                   </div>
                              <div className="text">
                             <div className="textname">

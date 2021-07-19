@@ -31,7 +31,7 @@ export default class App extends Component {
         <React.Fragment key={index}>
           <Link to={`/Detail/${pd.SLUG}`} className="Product">
             <div className="productImgCont">
-              <img src={pd.IMGSRC} className="productImg" alt="" />
+              <img src={pd.IMGSRC} className="productImg" alt={pd.NAME} />
             </div>
             <div className="productTitleCont">
               <span
