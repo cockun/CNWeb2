@@ -4,6 +4,8 @@ import { Helper } from '../utils/helper';
 import { Link } from "react-router-dom";
 import { callApi } from '../utils/apiCaller';
 import swal from 'sweetalert';
+import MoMo from "../image/MoMo.png"
+import PayPal from "../image/paypal.png"
 var data = [];
 var total = 0;
 var today = new Date();
@@ -16,6 +18,7 @@ export function Checkout(props) {
     address: JSON.parse(localStorage.getItem("myAccountInfo")).data.ADDRESS,
     accountId: JSON.parse(localStorage.getItem("myAccountInfo")).data.ACCOUNTID,
   });
+  const [method, setMethod] = useState(true); // true momo , false paypal
   useEffect(() => {
     data = JSON.parse(sessionStorage.getItem("myCart"));
     
@@ -131,17 +134,14 @@ export function Checkout(props) {
                         Tổng cộng <span>{Helper.formatDollar(total)}</span>
                       </li>
                     </ul>
-                    <div className="payment-check">
-                      <div className="pc-item">
-                        <label htmlFor="pc-check">
-                          Kiểm tra thanh toán
-                          <input type="checkbox" id="pc-check" />
-                          <span className="checkmark"></span>
-                        </label>
-                      </div>
-                      <div className="pc-item">
-
-                      </div>
+                    <h3>Thanh Toán Online</h3>
+                    <div className="pickPay">
+                        <div className={method === true ? "opt activeMethod" : "opt"} onClick={() => setMethod(true)}>
+                          <img className="imgPay" src={MoMo}></img>
+                        </div>
+                        <div className={method === false ? "opt activeMethod" : "opt"} onClick={() => setMethod(false)}>
+                          <img className="imgPay" src={PayPal}></img>
+                        </div>
                     </div>
                     <div className="order-btn">
                       <button type="button" onClick={checkoutbill} className="site-btn place-btn">
