@@ -236,3 +236,47 @@
     font-size: 20px;
 }
 
+.pickPay{
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.opt{
+	height: 50px;
+	width: 90px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 10px;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+.imgPay{
+	height: auto;
+	width: 80px;
+}
+
+.activeMethod{
+	border: 2px solid red;
+	transform: scale(1);
+}
+
+.activeMethod:after {
+    content: "v";
+    position: absolute;
+    background: #fc0303;
+    width: 25px;
+    height: 25px;
+    right: -12px;
+    top: -12px;
+    color: #fff;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 300;
+    text-align: center;
+    line-height: 25px;
+    border-radius: 50%;
+}
+
