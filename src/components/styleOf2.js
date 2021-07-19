@@ -3,7 +3,7 @@ import React from 'react'
 import { Helper } from "../utils/helper";
 import '../css/styleOf.css'
 import {Link} from 'react-router-dom'
-import { callApi } from '../ultis/apiCaller';
+import { callApi } from '../utils/apiCaller';
 
 export default class styleOf2 extends React.Component {
   constructor(props) {

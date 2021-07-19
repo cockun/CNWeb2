@@ -2,7 +2,7 @@ import React from 'react'
 import { Helper } from "../utils/helper";
 
 import {Link} from 'react-router-dom'
-import { callApi } from '../ultis/apiCaller';
+import { callApi } from '../utils/apiCaller';
 import axios from 'axios';
 export default class styleOf extends React.Component {
   constructor(props) {

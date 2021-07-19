@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/Detail.css";
-import { callApi } from "../ultis/apiCaller";
+import { callApi } from "../utils/apiCaller";
 import { Helper } from "../utils/helper";
 import swal from "sweetalert";
 import {InlineReactionButtons} from 'sharethis-reactjs';

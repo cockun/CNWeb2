@@ -1,6 +1,6 @@
 import React, { useState , useEffect } from "react";
 import "../css/ChangePass.css";
-import { callApi } from "../ultis/apiCaller";
+import { callApi } from "../utils/apiCaller";
 import swal from "sweetalert";
 function ChangePass() {
   const [name, setName] = useState("");

@@ -1,5 +1,5 @@
 import "../css/Bill.css";
-import { callApi } from "../ultis/apiCaller";
+import { callApi } from "../utils/apiCaller";
 import React, { useState, useEffect } from "react";
 import error from "../image/error.jpg";
 import { Helper } from "../utils/helper";
