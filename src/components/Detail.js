@@ -8,6 +8,7 @@ import { InlineShareButtons } from "sharethis-reactjs";
 import { StickyShareButtons } from "sharethis-reactjs";
 import { InlineFollowButtons } from "sharethis-reactjs";
 import MetaTags from "react-meta-tags";
+import Helmet from "react-helmet";
 
 function Detail(props) {
   console.log(window.location.href);
@@ -44,16 +45,50 @@ function Detail(props) {
   };
   return (
     <div className="DetailContainer">
-      <MetaTags>
-          <title>{data.NAME}</title> 
-          <meta name="description" content={data.DESCRIPTION} />
-          <meta property="og:title" content={data.NAME} />
-          <meta property="og:image" content={data.IMGSRC} />
-        </MetaTags>
+      <Helmet>
+        {/* <!-- HTML Meta Tags --> */}
+        <title>{data.NAME}</title>
+        <meta
+          name="description"
+          content={data.DESCRIPTION}
+        />
+
+        {/* <!-- Google / Search Engine Tags --> */}
+        <meta itemprop="name" content="Reed" />
+        <meta
+          itemprop="description"
+          content={data.DESCRIPTION}
+        />
+        <meta
+          itemprop="image"
+          content={data.IMGSRC}
+        />
+
+        {/* <!-- Facebook Meta Tags --> */}
+        <meta property="og:url" content="http://mdsfone.xyz/Detail/iphone-12-pro-max-i-chinh-hang-vna" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={data.NAME} />
+        <meta
+          property="og:description"
+          content={data.DESCRIPTION}
+        />
+        <meta
+          property="og:image"
+          content={data.IMGSRC}
+        />
+
+
+      </Helmet>
+      {/* <MetaTags>
+        <title>{data.NAME}</title>
+        <meta name="description" content={data.DESCRIPTION} />
+        <meta property="og:title" content={data.NAME} />
+        <meta property="og:image" content={data.IMGSRC} />
+      </MetaTags> */}
       <div className="DetailProduct">
         <div className="imgDetailCont">
-          <img src={data.IMGSRC} alt={data.NAME} className="imgDetail"/>
-          <span style={{fontWeight: 'bold'}}></span>
+          <img src={data.IMGSRC} alt={data.NAME} className="imgDetail" />
+          <span style={{ fontWeight: 'bold' }}></span>
         </div>
         <div className="titleDetailProduct">
           <div className="contentTitle">
@@ -139,46 +174,41 @@ function Detail(props) {
               </span>
             </div>
             <div className="sharePlace">
-            <InlineShareButtons
-            config={{
-            alignment: 'center',  // alignment of buttons (left, center, right)
-            color: 'social',      // set the color of buttons (social, white)
-            enabled: true,        // show/hide buttons (true, false)
-            font_size: 16,        // font size for the buttons
-            labels: 'cta',        // button labels (cta, counts, null)
-            language: 'en',       // which language to use (see LANGUAGES)
-            networks: [           // which networks to include (see SHARING NETWORKS)
-              'whatsapp',
-              'linkedin',
-              'messenger',
-              'facebook',
-              'twitter'
-            ],
-            padding: 12,          // padding within buttons (INTEGER)
-            radius: 4,            // the corner radius on each button (INTEGER)
-            show_total: true,
-            size: 40,             // the size of each button (INTEGER)
- 
-            // OPTIONAL PARAMETERS
-            url: window.location.href , // (defaults to current url)
-            image: data.IMGSRC,  // (defaults to og:image or twitter:image)
-            description: data.DESCRIPTION,       // (defaults to og:description or twitter:description)
-            title: data.NAME,            // (defaults to og:title or twitter:title)
-          }}
-          />
+              <InlineShareButtons
+                config={{
+                  alignment: 'center',  // alignment of buttons (left, center, right)
+                  color: 'social',      // set the color of buttons (social, white)
+                  enabled: true,        // show/hide buttons (true, false)
+                  font_size: 16,        // font size for the buttons
+                  labels: 'cta',        // button labels (cta, counts, null)
+                  language: 'en',       // which language to use (see LANGUAGES)
+                  networks: [           // which networks to include (see SHARING NETWORKS)
+                    'whatsapp',
+                    'linkedin',
+                    'messenger',
+                    'facebook',
+                    'twitter'
+                  ],
+                  padding: 12,          // padding within buttons (INTEGER)
+                  radius: 4,            // the corner radius on each button (INTEGER)
+                  show_total: true,
+                  size: 40,             // the size of each button (INTEGER)
+
+                  // OPTIONAL PARAMETERS
+                  url: window.location.href, // (defaults to current url)
+                  image: data.IMGSRC,  // (defaults to og:image or twitter:image)
+                  description: data.DESCRIPTION,       // (defaults to og:description or twitter:description)
+                  title: data.NAME,            // (defaults to og:title or twitter:title)
+                }}
+              />
 
             </div>
 
-              <MetaTags>
-                {/* <title>Page 1</title> */}
-                <meta name="description" content={data.DESCRIPTION} />
-                <meta property="og:title" content={data.NAME} />
-                <meta property="og:image" content={data.IMGSRC} />
-              </MetaTags>
-            </div>
+
           </div>
         </div>
       </div>
+    </div>
   );
 }
 
