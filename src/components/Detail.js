@@ -9,6 +9,8 @@ import { StickyShareButtons } from "sharethis-reactjs";
 import { InlineFollowButtons } from "sharethis-reactjs";
 import MetaTags from "react-meta-tags";
 import Helmet from "react-helmet";
+import { FacebookShareButton, TwitterShareButton } from "react-share";
+import { FacebookIcon, TwitterIcon } from "react-share";
 
 function Detail(props) {
   console.log(window.location.href);
@@ -45,46 +47,20 @@ function Detail(props) {
   };
   return (
     <div className="DetailContainer">
-      <Helmet>
-        {/* <!-- HTML Meta Tags --> */}
+     
+      <MetaTags>
         <title>{data.NAME}</title>
-        <meta
-          name="description"
-          content={data.DESCRIPTION}
-        />
-
-        {/* <!-- Google / Search Engine Tags --> */}
-        <meta itemprop="name" content="Reed" />
-        <meta
-          itemprop="description"
-          content={data.DESCRIPTION}
-        />
-        <meta
-          itemprop="image"
-          content={data.IMGSRC}
-        />
-
-        {/* <!-- Facebook Meta Tags --> */}
-        <meta property="og:url" content="http://mdsfone.xyz/Detail/iphone-12-pro-max-i-chinh-hang-vna" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={data.NAME} />
-        <meta
-          property="og:description"
-          content={data.DESCRIPTION}
-        />
-        <meta
-          property="og:image"
-          content={data.IMGSRC}
-        />
-
-
-      </Helmet>
-      {/* <MetaTags>
-        <title>{data.NAME}</title>
+        <meta name="keywords" content="Điện Thoại ,Laptop, Bàn Phím, Đồ Điện Tử , Công Nghệ , Macbook , Iphone" />
         <meta name="description" content={data.DESCRIPTION} />
         <meta property="og:title" content={data.NAME} />
+        <meta property="og:type"  content="website" />
         <meta property="og:image" content={data.IMGSRC} />
-      </MetaTags> */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@flickr" />
+        <meta name="twitter:title" content={data.NAME}  />
+        <meta name="twitter:description" content={data.DESCRIPTION} />
+        <meta name="twitter:image" content={data.IMGSRC} />
+      </MetaTags>
       <div className="DetailProduct">
         <div className="imgDetailCont">
           <img src={data.IMGSRC} alt={data.NAME} className="imgDetail" />
@@ -166,41 +142,23 @@ function Detail(props) {
               </span>
             </div>
             <div className="addtoCartDT">
-              <span
+              <h3
                 style={{ fontSize: 16, color: "white", fontWeight: 700 }}
                 onClick={addToCart}
               >
                 THÊM VÀO GIỎ HÀNG
-              </span>
+              </h3>
             </div>
             <div className="sharePlace">
-              <InlineShareButtons
-                config={{
-                  alignment: 'center',  // alignment of buttons (left, center, right)
-                  color: 'social',      // set the color of buttons (social, white)
-                  enabled: true,        // show/hide buttons (true, false)
-                  font_size: 16,        // font size for the buttons
-                  labels: 'cta',        // button labels (cta, counts, null)
-                  language: 'en',       // which language to use (see LANGUAGES)
-                  networks: [           // which networks to include (see SHARING NETWORKS)
-                    'whatsapp',
-                    'linkedin',
-                    'messenger',
-                    'facebook',
-                    'twitter'
-                  ],
-                  padding: 12,          // padding within buttons (INTEGER)
-                  radius: 4,            // the corner radius on each button (INTEGER)
-                  show_total: true,
-                  size: 40,             // the size of each button (INTEGER)
-
-                  // OPTIONAL PARAMETERS
-                  url: window.location.href, // (defaults to current url)
-                  image: data.IMGSRC,  // (defaults to og:image or twitter:image)
-                  description: data.DESCRIPTION,       // (defaults to og:description or twitter:description)
-                  title: data.NAME,            // (defaults to og:title or twitter:title)
-                }}
-              />
+              <FacebookShareButton
+                url={window.location.href}
+                quote={data.NAME}
+                hashtag={"#mdsFone"}
+                title={data.NAME}
+                image={data.IMGSRC}
+              >
+                <FacebookIcon size={32} round /> Facebook
+              </FacebookShareButton>
 
             </div>
 
