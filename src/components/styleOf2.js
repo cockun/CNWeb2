@@ -69,7 +69,7 @@ export default class styleOf2 extends React.Component {
                                   </div>
                              <div className="text">
                             <div className="textname">
-                            {item.NAME}
+                            <h3>{item.NAME}</h3>
 
                             </div>
                             <div className="textprice">

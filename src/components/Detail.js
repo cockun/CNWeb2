@@ -65,9 +65,9 @@ function Detail(props) {
                 letterSpacing: 2,
               }}
             ></span>
-            <h3 style={{ fontSize: 30, color: "#252525", fontWeight: 700 }}>
+            <h1 style={{ fontSize: 30, color: "#252525", fontWeight: 700 }}>
               {data.NAME}
-            </h3>
+            </h1>
             <p
               style={{
                 fontSize: 16,
