@@ -4,7 +4,7 @@ export default function Subscribe() {
   return (
     <div id="mc_embed_signup">
       <form
-        action="https://gmail.us6.list-manage.com/subscribe/post?u=7bd56446690088a5528dcb07e&id=0d9bb024c2"
+        action="https://gmail.us6.list-manage.com/subscribe/post?u=86965ed020b63caf48b05c566&amp;id=f534f52ed1"
         method="post"
         id="mc-embedded-subscribe-form"
         name="mc-embedded-subscribe-form"
