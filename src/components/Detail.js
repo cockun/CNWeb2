@@ -195,7 +195,7 @@ function Detail(props) {
                   size: 40,             // the size of each button (INTEGER)
 
                   // OPTIONAL PARAMETERS
-                  url: "http://mdsfone.xyz/Detail/iphone-12-pro-max-i-chinh-hang-vna", // (defaults to current url)
+                  url: window.location.href, // (defaults to current url)
                   image: data.IMGSRC,  // (defaults to og:image or twitter:image)
                   description: data.DESCRIPTION,       // (defaults to og:description or twitter:description)
                   title: data.NAME,            // (defaults to og:title or twitter:title)
