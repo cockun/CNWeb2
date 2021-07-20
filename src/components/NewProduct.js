@@ -19,11 +19,12 @@ export default class App extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   receivedData(data) {
-  
+      console.log(data);
 
       const postData = data.map((pd, index) => (
+        
         <React.Fragment key={index}>
-          <Link to={`/Detail/${pd.ID}`} className="Product">
+          <Link to={`/Detail/${pd.SLUG}`} className="Product">
             <div className="productImgCont">
               <img src={pd.IMGSRC} className="productImg" alt={pd.NAME} />
               <span style={{fontWeight: 'bold'}}>{pd.NAME}</span>
