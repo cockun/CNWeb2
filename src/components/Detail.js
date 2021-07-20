@@ -47,7 +47,7 @@ function Detail(props) {
     <div className="DetailContainer">
       <Helmet>
         {/* <!-- HTML Meta Tags --> */}
-        <title>Reed</title>
+        <title>{data.NAME}</title>
         <meta
           name="description"
           content={data.DESCRIPTION}
