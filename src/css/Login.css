@@ -140,12 +140,13 @@
 }
 .login-form
 {
-    width: 500px;
+    width: 800px;
     height: 600px;
     align-self: center;
 }
 
 .site-btn {
+	
 	color: #ffffff;
 	background: #e7ab3c;
 	border: 1px solid #e7ab3c;
