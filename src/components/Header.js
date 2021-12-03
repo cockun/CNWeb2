@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../css/Header.css";
 import React, { useState, useEffect } from "react";
 import swal from "sweetalert";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { renderRoutes } from "react-router-config";
 import {
   faSearch,
@@ -62,26 +62,17 @@ function Header({ route }) {
               />
               <Link to={`/Search/${text}`} style={{ flex: 1 }}>
                 <button className="button" type="button">
-                  <FontAwesomeIcon
-                    icon={faSearch}
-                    style={{ fontSize: 20, color: "white" }}
-                  />
+                  
                 </button>
               </Link>
             </div>
           </div>
           <div className="Cart">
             <Link to="/Cart">
-              <FontAwesomeIcon
-                icon={faCartPlus}
-                style={{ fontSize: 25, color: "#E7AB3C", marginLeft: 20 }}
-              />
+              
             </Link>
             <div className="loginContainer">
-              <FontAwesomeIcon
-                icon={faSignInAlt}
-                style={{ fontSize: 25, color: "#E7AB3C" }}
-              />
+              
               {name === ""&& (
                 <div className="lgOrlo">
                   <Link to="/Login" className="optionLg">
