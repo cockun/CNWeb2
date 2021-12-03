@@ -17,7 +17,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Checkout from "./components/Checkout";
 import Detail from "./components/Detail";
-
+import Transaction from "./components/Transaction"
 import AccUser from "./components/AccUser";
 import Bill from "./components/Admin/Bill";
 
@@ -130,6 +130,11 @@ const routes = [
             path:"/Search/:text",
             exact: false,
             component: Search,
+          },
+          {
+            path:"/Transaction",
+            exact: false,
+            component: Transaction,
           }
         ],
       },
