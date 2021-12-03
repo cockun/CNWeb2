@@ -1,10 +1,10 @@
 import React from "react";
-import "../css/Login.css";
+import "../css/Transaction.css";
 import { Link, Redirect, Switch, withRouter } from "react-router-dom";
 import swal from "sweetalert";
 import { callApi } from "../utils/apiCaller";
 import axios from "axios";
-class Login extends React.Component {
+class Transaction extends React.Component {
   constructor(props) {
     super(props);
 
@@ -84,11 +84,11 @@ class Login extends React.Component {
                 <div className="collogin">
                   <form>
                     <div className="login-form">
-                      <h2>Đăng nhập</h2>
+                      <h2>Giao dịch</h2>
                       <form action="#" className="form" onSubmit={this.check}>
                         <div className="group-input">
                           <label for="username">
-                            Tên tài khoản hoặc email *
+                            Địa chỉ ví gửi
                           </label>
                           <input
                             type="text"
@@ -101,7 +101,7 @@ class Login extends React.Component {
                         </div>
                         
                         <div className="group-input">
-                          <label for="pass">Mật khẩu *</label>
+                          <label for="pass"> Địa chỉ ví nhận</label>
                           <input
                             type="text"
                             id="pass"
@@ -109,12 +109,12 @@ class Login extends React.Component {
                             onChange={(txt) => {
                               this.setState({ pass: txt.target.value });
                             }}
-                            type="password"
+                            type="text"
                           />
                         </div>
                         <div className="group-input">
                           <label for="username">
-                            Private Key
+                            Số lượng
                           </label>
                           <input
                             type="text"
@@ -127,14 +127,10 @@ class Login extends React.Component {
                         </div>
                         <div className="group-input gi-check"></div>
                         <button type="submit" className="site-btn login-btn">
-                          ĐĂNG NHẬP
+                          Giao dịch
                         </button>
                       </form>
-                      <div className="switch-login">
-                        <Link to="/Register" className="or-login">
-                          Hoặc Tạo tài khoản mới
-                        </Link>
-                      </div>
+                      
                     </div>
                   </form>
                 </div>
@@ -146,4 +142,4 @@ class Login extends React.Component {
     );
   }
 }
-export default withRouter(Login);
+export default withRouter(Transaction);
