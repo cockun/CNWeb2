@@ -12,6 +12,7 @@ class Login extends React.Component {
       data: [],
       name: "",
       pass: "",
+      privatekey:"",
       redirect: false,
     };
 
@@ -28,8 +29,8 @@ class Login extends React.Component {
         
         
           USERNAME:this.state.name,
-          PASSWORD:this.state.pass
-        
+          PASSWORD:this.state.pass,
+          PRIVATEKEY:this.state.privatekey
       }
       // axios({
       //   method: 'POST',
@@ -98,6 +99,7 @@ class Login extends React.Component {
                             }}
                           />
                         </div>
+                        
                         <div className="group-input">
                           <label for="pass">Mật khẩu *</label>
                           <input
@@ -108,6 +110,19 @@ class Login extends React.Component {
                               this.setState({ pass: txt.target.value });
                             }}
                             type="password"
+                          />
+                        </div>
+                        <div className="group-input">
+                          <label for="username">
+                            Private Key
+                          </label>
+                          <input
+                            type="text"
+                            id="username"
+                            value={String(this.state.privatekey)}
+                            onChange={(txt) => {
+                              this.setState({ privatekey: txt.target.value });
+                            }}
                           />
                         </div>
                         <div className="group-input gi-check"></div>
