@@ -20,7 +20,7 @@ import Detail from "./components/Detail";
 import Transaction from "./components/Transaction"
 import AccUser from "./components/AccUser";
 import Bill from "./components/Admin/Bill";
-
+import Mining from "./components/Mining";
 import Products from "./components/Admin/Products";
 import Account from "./components/Admin/Account";
 const Both = ({ route }) => {
@@ -76,6 +76,7 @@ const routes = [
             exact: true,
             component: Home,
           },
+          
           {
             path: "/AccUser",
             exact: true,
@@ -135,7 +136,13 @@ const routes = [
             path:"/Transaction",
             exact: false,
             component: Transaction,
+          },
+          {
+            path:"/Mining",
+            exact: false,
+            component: Mining,
           }
+        
         ],
       },
     ],
